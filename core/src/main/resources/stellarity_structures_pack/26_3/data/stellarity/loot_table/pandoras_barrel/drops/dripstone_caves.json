@@ -1,0 +1,121 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 6,
+        "max": 8,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 13,
+          "name": "minecraft:dripstone_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 6,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:pointed_dripstone",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 4,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:stone",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 8,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "name": "minecraft:cobblestone",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 8,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 7,
+          "name": "minecraft:diorite",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 8,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 7,
+          "name": "minecraft:granite",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 8,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 7,
+          "name": "minecraft:andesite",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 8,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

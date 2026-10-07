@@ -1,0 +1,141 @@
+{
+  "id": "stellarity_nullscape_compat",
+  "pack": {
+    "pack_format": 107,
+    "supported_formats": [
+      48,
+      121
+    ],
+    "min_format": [
+      48,
+      0
+    ],
+    "max_format": [
+      121,
+      0
+    ],
+    "description": [
+      {
+        "text": "Nullscape x Stellarity Compatibility",
+        "color": "#9729bc"
+      },
+      "\n",
+      {
+        "text": "Universal Multi-Version Pack (1.21.4 - 26.x)",
+        "color": "white"
+      }
+    ]
+  },
+  "overlays": {
+    "entries": [
+      {
+        "directory": "overlay_1_21_4",
+        "min_format": 48,
+        "max_format": 61,
+        "min_inclusive": 48,
+        "max_inclusive": 61,
+        "supported_formats": [
+          48,
+          61
+        ],
+        "formats": [
+          48,
+          61
+        ]
+      },
+      {
+        "directory": "overlay_1_21_6",
+        "min_format": 71,
+        "max_format": 81,
+        "min_inclusive": 71,
+        "max_inclusive": 81,
+        "supported_formats": [
+          71,
+          81
+        ],
+        "formats": [
+          71,
+          81
+        ]
+      },
+      {
+        "directory": "overlay_1_21_9",
+        "min_format": 88,
+        "max_format": 93,
+        "min_inclusive": 88,
+        "max_inclusive": 93,
+        "supported_formats": [
+          88,
+          93
+        ],
+        "formats": [
+          88,
+          93
+        ]
+      },
+      {
+        "directory": "overlay_1_21_11",
+        "min_format": [
+          94,
+          0
+        ],
+        "max_format": [
+          100,
+          0
+        ],
+        "min_inclusive": 94,
+        "max_inclusive": 100,
+        "supported_formats": [
+          94,
+          100
+        ],
+        "formats": [
+          94,
+          100
+        ]
+      },
+      {
+        "directory": "overlay_26_x",
+        "min_format": [
+          101,
+          0
+        ],
+        "max_format": [
+          120,
+          0
+        ],
+        "min_inclusive": 101,
+        "max_inclusive": 120,
+        "supported_formats": [
+          101,
+          120
+        ],
+        "formats": [
+          101,
+          120
+        ]
+      },
+      {
+        "directory": "overlay_26_3",
+        "min_format": [
+          121,
+          0
+        ],
+        "max_format": [
+          121,
+          0
+        ],
+        "min_inclusive": 121,
+        "max_inclusive": 121,
+        "supported_formats": [
+          121,
+          121
+        ],
+        "formats": [
+          121,
+          121
+        ]
+      }
+    ]
+  }
+}

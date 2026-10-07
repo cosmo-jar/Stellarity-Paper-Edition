@@ -1,0 +1,173 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 6,
+        "max": 8,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:spruce_log",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 6,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 6,
+          "name": "minecraft:stripped_spruce_log",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 5,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:spruce_leaves",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 7,
+                "max": 12,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "name": "minecraft:stick",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 5,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 6,
+          "name": "minecraft:oak_log",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 6,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 6,
+          "name": "minecraft:stripped_oak_log",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 4,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 6,
+          "name": "minecraft:oak_leaves",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 7,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 11,
+          "name": "minecraft:snow_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 11,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 7,
+          "name": "minecraft:ice",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 9,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "name": "minecraft:packed_ice",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 8,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

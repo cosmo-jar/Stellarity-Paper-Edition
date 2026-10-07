@@ -1,0 +1,340 @@
+package dev.cosmojar.stellaritypaper.items.definitions;
+
+import dev.cosmojar.stellaritypaper.items.api.StellarityItemDefinition;
+import dev.cosmojar.stellaritypaper.items.definitions.spawn_eggs.VoidedZombieItem;
+import dev.cosmojar.stellaritypaper.items.definitions.spawn_eggs.VoidedSlimeItem;
+import dev.cosmojar.stellaritypaper.items.definitions.tools.ShulkerPickaxeItem;
+import dev.cosmojar.stellaritypaper.items.definitions.tools.ShulkerAxeItem;
+import dev.cosmojar.stellaritypaper.items.definitions.spawn_eggs.VoidedSkeletonItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.SpelunkerPotionExtItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.SpelunkerPotionItem;
+import dev.cosmojar.stellaritypaper.items.definitions.spawn_eggs.FleshPiglinItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.SpelunkerPotionIiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.CrestOfTheEndItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.CopperElektraShieldItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.DragonsEyeItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.LivingFleshItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.LifeCrystalItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.DuskberryItem;
+import dev.cosmojar.stellaritypaper.items.definitions.tools.FisherOfVoidsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.tools.ShulkerShovelItem;
+import dev.cosmojar.stellaritypaper.items.definitions.tools.ShulkerHoeItem;
+import dev.cosmojar.stellaritypaper.items.definitions.tools.ShulkerSpearItem;
+import dev.cosmojar.stellaritypaper.items.definitions.tools.ShulkerSwordItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.RoyalJellyIiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.HellfireTreaderPotionItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.FrostCloudPotionItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.HellfireTreaderPotionIiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.HellfireTreaderPotionExtItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.EntanglementPotionIiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.EndurancePotionIiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.EndurancePotionExtItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.EntanglementPotionExtItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.EntanglementPotionItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.RegeneragaExtItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.RegeneragaItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.RoyalJellyItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.RegeneragaIiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.RedPotionItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.LifeforcePotionExtItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.LifeforcePotionItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.PoseidonsNectarItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.LifeforcePotionIiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.SoaringInsigniaItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.SandstormTridentItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.FluffyHammerItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.GooshItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.EndonomiconItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.FlavorsOfTheVoidItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.BookOfObstructItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.BookOfLightItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.BookOfJinxItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.BookOfUpdraftItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.BookOfReturnItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.DecayedCloverItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.BellFlowerItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.SlayerCrossbowItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.VoidPendantItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.LuckPotionItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.SuspiciousStewLevitationItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.SuspiciousStewAbsorptionItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.ChorusPetalItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.SuspiciousStewStrengthItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.BookOfConveyanceItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.HarvesterItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.DragonbladeItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.PrismaticPunchItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.KaleidoscopeItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.AncientWoodenSwordItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.EndermansHandItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.StarstruckShieldItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.PrismaticPearlItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.SatchelOfVoidsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.trinkets.RadiantJewelItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.SpectralFuryItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.TamarisItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.CallOfTheVoidItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.StellarStrikerItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.StarlessScytheItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.SharangaItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.PrismemberItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.TheEndItem;
+import dev.cosmojar.stellaritypaper.items.definitions.weapons.TheBeginningItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.EndurancePotionItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.EnderGrassBlockItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.EnderDirtPathItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.EnderiteBlockItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.RootedEnderDirtItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.EnderDirtItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.AltarOfTheSacredItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.AltarOfTheAccursedItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.PixieInAJarYellowItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.PixieInAJarMagentaItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.PixieInAJarLimeItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.PixieInAJarLightBlueItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.PixieInAJarRadiantItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.ReinforcedHorseArmorItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.AshenFroglightItem;
+import dev.cosmojar.stellaritypaper.items.definitions.blocks.PhantomItemFrameItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.FleshyPiranhaItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.FlarefinKoiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.OvergrownCodItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.FrostMinnowItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.EnderKoiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.PotassifishItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.BubblefishItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.AmethystBudfishItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.CrystalHeartfishItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.CrimsonTigerfishItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.PhantomWingsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.HallowedLeggingsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.HallowedChestplateItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.ShulkerHelmetItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.HallowedBootsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.HallowedHelmetItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.ChampionChestplateItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.ChampionHelmetItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.ChampionBootsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.ChampionLeggingsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.FloralBootsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.FloralLeggingsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.EmpressWingsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.DragonWingsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.FloralChestplateItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.ShulkerLeggingsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.ShulkerChestplateItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.FloralHelmetItem;
+import dev.cosmojar.stellaritypaper.items.definitions.armor.ShulkerBootsItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.PrismiteItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.StarlightSootItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.HallowedIngotItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.GildedPurpurKeyItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.SandRuneItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.EnderiteSmithingTemplateItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.ChorusPlatingItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.FloatingTreasureItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.EnderiteShardItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.EmptyEnchantedBookItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.AmareneItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.EnderEggItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.BlindRagePotionExtItem;
+import dev.cosmojar.stellaritypaper.items.definitions.potions.BlindRagePotionItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.PrecipiceStereoItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.PurpurKeyItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.WingedKeyItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.FiresOfHokkaiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.DeviantsLightMusicBoxItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.ChapelOfLightItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.FriedChorusFruitItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.EndermanFleshItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.GoldenChorusFruitItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.FrozenCarpaccioItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.ChorusStewItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.CandiedChorusFruitItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.PufferfishItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.ChorusPieItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.ChorusJuiceItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.LoafOfPlentyItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.SushiItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.VillageItem;
+import dev.cosmojar.stellaritypaper.items.definitions.misc.EndCityItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.ShulkerBodyItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.PhoItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.GrilledEndermanFleshItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.ShepherdsPieItem;
+import dev.cosmojar.stellaritypaper.items.definitions.food.PrismaticSushiItem;
+
+import dev.cosmojar.stellaritypaper.items.definitions.spawn_eggs.VoidedSilverfishItem;
+
+import java.util.List;
+
+public final class GeneratedItemRegistry {
+    private GeneratedItemRegistry() {}
+    public static List<StellarityItemDefinition> create() {
+        return List.of(
+                new VoidedZombieItem(),
+                new VoidedSlimeItem(),
+                new ShulkerPickaxeItem(),
+                new ShulkerAxeItem(),
+                new VoidedSkeletonItem(),
+                new SpelunkerPotionExtItem(),
+                new SpelunkerPotionItem(),
+                new FleshPiglinItem(),
+                new VoidedSilverfishItem(),
+                new SpelunkerPotionIiItem(),
+                new CrestOfTheEndItem(),
+                new DragonsEyeItem(),
+                new LivingFleshItem(),
+                new CopperElektraShieldItem(),
+                new LifeCrystalItem(),
+                new DuskberryItem(),
+                new FisherOfVoidsItem(),
+                new ShulkerShovelItem(),
+                new ShulkerHoeItem(),
+                new ShulkerSpearItem(),
+                new ShulkerSwordItem(),
+                new RoyalJellyIiItem(),
+                new HellfireTreaderPotionItem(),
+                new FrostCloudPotionItem(),
+                new HellfireTreaderPotionIiItem(),
+                new HellfireTreaderPotionExtItem(),
+                new EntanglementPotionIiItem(),
+                new EndurancePotionIiItem(),
+                new EndurancePotionExtItem(),
+                new EntanglementPotionExtItem(),
+                new EntanglementPotionItem(),
+                new RegeneragaExtItem(),
+                new RegeneragaItem(),
+                new RoyalJellyItem(),
+                new RegeneragaIiItem(),
+                new RedPotionItem(),
+                new LifeforcePotionExtItem(),
+                new LifeforcePotionItem(),
+                new PoseidonsNectarItem(),
+                new LifeforcePotionIiItem(),
+                new SoaringInsigniaItem(),
+                new SandstormTridentItem(),
+                new FluffyHammerItem(),
+                new GooshItem(),
+                new EndonomiconItem(),
+                new FlavorsOfTheVoidItem(),
+                new BookOfObstructItem(),
+                new BookOfLightItem(),
+                new BookOfJinxItem(),
+                new BookOfUpdraftItem(),
+                new BookOfReturnItem(),
+                new DecayedCloverItem(),
+                new BellFlowerItem(),
+                new SlayerCrossbowItem(),
+                new VoidPendantItem(),
+                new LuckPotionItem(),
+                new SuspiciousStewLevitationItem(),
+                new SuspiciousStewAbsorptionItem(),
+                new ChorusPetalItem(),
+                new SuspiciousStewStrengthItem(),
+                new BookOfConveyanceItem(),
+                new HarvesterItem(),
+                new DragonbladeItem(),
+                new PrismaticPunchItem(),
+                new KaleidoscopeItem(),
+                new AncientWoodenSwordItem(),
+                new EndermansHandItem(),
+                new StarstruckShieldItem(),
+                new PrismaticPearlItem(),
+                new SatchelOfVoidsItem(),
+                new RadiantJewelItem(),
+                new SpectralFuryItem(),
+                new TamarisItem(),
+                new CallOfTheVoidItem(),
+                new StellarStrikerItem(),
+                new StarlessScytheItem(),
+                new SharangaItem(),
+                new PrismemberItem(),
+                new TheEndItem(),
+                new TheBeginningItem(),
+                new EndurancePotionItem(),
+                new EnderGrassBlockItem(),
+                new EnderDirtPathItem(),
+                new EnderiteBlockItem(),
+                new RootedEnderDirtItem(),
+                new EnderDirtItem(),
+                new AltarOfTheSacredItem(),
+                new AltarOfTheAccursedItem(),
+                new PixieInAJarYellowItem(),
+                new PixieInAJarMagentaItem(),
+                new PixieInAJarLimeItem(),
+                new PixieInAJarLightBlueItem(),
+                new PixieInAJarRadiantItem(),
+                new ReinforcedHorseArmorItem(),
+                new AshenFroglightItem(),
+                new PhantomItemFrameItem(),
+                new FleshyPiranhaItem(),
+                new FlarefinKoiItem(),
+                new OvergrownCodItem(),
+                new FrostMinnowItem(),
+                new EnderKoiItem(),
+                new PotassifishItem(),
+                new BubblefishItem(),
+                new AmethystBudfishItem(),
+                new CrystalHeartfishItem(),
+                new CrimsonTigerfishItem(),
+                new PhantomWingsItem(),
+                new HallowedLeggingsItem(),
+                new HallowedChestplateItem(),
+                new ShulkerHelmetItem(),
+                new HallowedBootsItem(),
+                new HallowedHelmetItem(),
+                new ChampionChestplateItem(),
+                new ChampionHelmetItem(),
+                new ChampionBootsItem(),
+                new ChampionLeggingsItem(),
+                new FloralBootsItem(),
+                new FloralLeggingsItem(),
+                new EmpressWingsItem(),
+                new DragonWingsItem(),
+                new FloralChestplateItem(),
+                new ShulkerLeggingsItem(),
+                new ShulkerChestplateItem(),
+                new FloralHelmetItem(),
+                new ShulkerBootsItem(),
+                new PrismiteItem(),
+                new StarlightSootItem(),
+                new HallowedIngotItem(),
+                new GildedPurpurKeyItem(),
+                new SandRuneItem(),
+                new EnderiteSmithingTemplateItem(),
+                new ChorusPlatingItem(),
+                new FloatingTreasureItem(),
+                new EnderiteShardItem(),
+                new EmptyEnchantedBookItem(),
+                new AmareneItem(),
+                new EnderEggItem(),
+                new BlindRagePotionExtItem(),
+                new BlindRagePotionItem(),
+                new PrecipiceStereoItem(),
+                new PurpurKeyItem(),
+                new WingedKeyItem(),
+                new FiresOfHokkaiItem(),
+                new DeviantsLightMusicBoxItem(),
+                new ChapelOfLightItem(),
+                new FriedChorusFruitItem(),
+                new EndermanFleshItem(),
+                new GoldenChorusFruitItem(),
+                new FrozenCarpaccioItem(),
+                new ChorusStewItem(),
+                new CandiedChorusFruitItem(),
+                new PufferfishItem(),
+                new ChorusPieItem(),
+                new ChorusJuiceItem(),
+                new LoafOfPlentyItem(),
+                new SushiItem(),
+                new VillageItem(),
+                new EndCityItem(),
+                new ShulkerBodyItem(),
+                new PhoItem(),
+                new GrilledEndermanFleshItem(),
+                new ShepherdsPieItem(),
+                new PrismaticSushiItem()
+        );
+    }
+}

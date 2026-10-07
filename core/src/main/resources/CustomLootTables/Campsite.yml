@@ -1,0 +1,37 @@
+# ----------------------------------------------------------------
+# Stellarity ~ Paper Edition - Custom Loot Configuration: Campsite
+# ----------------------------------------------------------------
+enabled: true
+
+settings:
+  max_custom_items: 4
+  prevent_duplicates: true
+
+containers:
+  CHEST:
+    - item: "chorus_juice"
+      chance: 30.0
+    - item: "chorus_pie"
+      chance: 25.0
+    - item: "enderite_shard"
+      chance: 15.0
+    - item: "village"
+      chance: 25.0
+    - item: "chapel_of_light"
+      chance: 15.0
+    - item: "fried_chorus_fruit"
+      chance: 30.0
+
+  BARREL:
+    - item: "chorus_juice"
+      chance: 35.0
+    - item: "chorus_pie"
+      chance: 30.0
+    - item: "fried_chorus_fruit"
+      chance: 35.0
+
+  DECORATED_POT:
+    - item: "chorus_juice"
+      chance: 25.0
+    - item: "enderite_shard"
+      chance: 10.0

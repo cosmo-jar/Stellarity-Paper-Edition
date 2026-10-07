@@ -1,0 +1,33 @@
+# -------------------------------------------------------------------------------
+# Stellarity ~ Paper Edition - Custom Loot Configuration: Shipwreck & Archaeology
+# -------------------------------------------------------------------------------
+enabled: true
+
+settings:
+  max_custom_items: 3
+  prevent_duplicates: true
+
+# Abstract Container Categories: CHEST, BARREL, DECORATED_POT, SPAWNER, VAULT
+
+containers:
+  CHEST:
+    - item: "enchantments_books:dune_speed:1"
+      chance: 15.0
+    - item: "enchantments_books:ambush:1"
+      chance: 15.0
+    - item: "void_pendant"
+      chance: 20.0
+    - item: "end_city"
+      chance: 20.0
+    - item: "floating_treasure"
+      chance: 20.0
+    - item: "music_disc_fires_of_hokkai"
+      chance: 12.0
+    - item: "enderite_smithing_template"
+      chance: 10.0
+
+  SUSPICIOUS_SAND:
+    - item: "void_pendant"
+      chance: 30.0
+    - item: "music_disc_fires_of_hokkai"
+      chance: 15.0

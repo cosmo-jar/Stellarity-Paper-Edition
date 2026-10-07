@@ -1,0 +1,25 @@
+# -------------------------------------------------------------------
+# Stellarity ~ Paper Edition - Custom Loot Configuration: Desert Ruin
+# -------------------------------------------------------------------
+enabled: true
+
+settings:
+  # Max custom items per structure
+  max_custom_items: 10
+  # Force unique items (false = the same item can drop from multiple sand blocks in the ruins)
+  prevent_duplicates: false
+
+# Archaeology container categories:
+# SUSPICIOUS_SAND_COMMON - common suspicious sand
+# SUSPICIOUS_SAND_RARE   - rare suspicious sand
+
+containers:
+  SUSPICIOUS_SAND_COMMON:
+    - item: "enderite_shard"
+      # chance: 12.5 (original datapack)
+      chance: 37.5
+
+  SUSPICIOUS_SAND_RARE:
+    - item: "sand_rune"
+    # chance: 27.3 (original datapack)
+      chance: 54.6

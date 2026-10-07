@@ -1,0 +1,125 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 6,
+        "max": 9,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:red_mushroom",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 6,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:brown_mushroom",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 6,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "name": "minecraft:brown_mushroom_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 7,
+                "max": 12,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "name": "minecraft:red_mushroom_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 7,
+                "max": 12,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "name": "minecraft:mushroom_stem",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 7,
+                "max": 12,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 7,
+          "name": "minecraft:mycelium",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 9,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 6,
+          "name": "minecraft:dirt",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 11,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

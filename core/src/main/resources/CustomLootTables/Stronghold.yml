@@ -1,0 +1,83 @@
+# ------------------------------------------------------------------
+# Stellarity ~ Paper Edition - Custom Loot Configuration: Stronghold
+# ------------------------------------------------------------------
+enabled: true
+
+settings:
+  max_custom_items: 10
+  prevent_duplicates: true
+
+# Abstract Container Categories: CHEST, BARREL, DECORATED_POT, SPAWNER, VAULT
+
+containers:
+  CHEST:
+    - item: "book_of_light"
+      chance: 25.0
+    - item: "book_of_updraft"
+      chance: 25.0
+    - item: "book_of_obstruct"
+      chance: 25.0
+    - item: "enchantments_books:critical_strike:1"
+      chance: 20.0
+    - item: "enchantments_books:critical_strike:2"
+      chance: 10.0
+    - item: "enchantments_books:void_strike:1"
+      chance: 15.0
+    - item: "enchantments_books:soaring:1"
+      chance: 15.0
+    - item: "enchantments_books:soaring:2"
+      chance: 8.0
+    - item: "enchantments_books:plated:1"
+      chance: 15.0
+    - item: "enchantments_books:plated:2"
+      chance: 8.0
+    - item: "sharanga"
+      chance: 15.0
+    - item: "copper_elektra_shield"
+      chance: 15.0
+    - item: "amarene"
+      chance: 10.0
+    - item: "endurance_potion"
+      chance: 20.0
+    - item: "lifeforce_potion"
+      chance: 20.0
+
+  BARREL:
+    - item: "endurance_potion"
+      chance: 20.0
+    - item: "lifeforce_potion"
+      chance: 20.0
+    - item: "red_potion"
+      chance: 20.0
+    - item: "book_of_light"
+      chance: 15.0
+    - item: "book_of_updraft"
+      chance: 15.0
+    - item: "ender_koi"
+      chance: 25.0
+    - item: "potassifish"
+      chance: 25.0
+
+  DECORATED_POT:
+    - item: "enderite_shard"
+      chance: 15.0
+    - item: "lifeforce_potion"
+      chance: 25.0
+    - item: "endurance_potion"
+      chance: 25.0
+    - item: "red_potion"
+      chance: 25.0
+
+  DISPENSER:
+    - item: "red_potion"
+      chance: 30.0
+    - item: "endurance_potion"
+      chance: 30.0
+    - item: "food_suspicious_stew_levitation"
+      chance: 20.0
+
+  SPAWNER:
+    - item: "call_of_the_void"
+      chance: 15.0
+    - item: "enderite_shard"
+      chance: 20.0

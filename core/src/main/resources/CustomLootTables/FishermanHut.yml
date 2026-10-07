@@ -1,0 +1,43 @@
+# ---------------------------------------------------------------------
+# Stellarity ~ Paper Edition - Custom Loot Configuration: Fisherman Hut
+# ---------------------------------------------------------------------
+enabled: true
+
+settings:
+  max_custom_items: 5
+  prevent_duplicates: true
+
+containers:
+  CHEST:
+    - item: "ender_koi"
+      chance: 30.0
+    - item: "floating_treasure"
+      chance: 15.0
+    - item: "crystal_heartfish"
+      chance: 25.0
+    - item: "amethyst_budfish"
+      chance: 25.0
+    - item: "prismite"
+      chance: 25.0
+    - item: "frost_minnow"
+      chance: 25.0
+    - item: "flarefin_koi"
+      chance: 25.0
+
+  BARREL:
+    - item: "ender_koi"
+      chance: 35.0
+    - item: "potassifish"
+      chance: 35.0
+    - item: "fleshy_piranha"
+      chance: 30.0
+    - item: "goosh"
+      chance: 30.0
+
+  SHULKER_BOX:
+    - item: "crystal_heartfish"
+      chance: 30.0
+    - item: "prismite"
+      chance: 30.0
+    - item: "amethyst_budfish"
+      chance: 30.0

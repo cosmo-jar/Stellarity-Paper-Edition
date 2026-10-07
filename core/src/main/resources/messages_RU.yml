@@ -1,0 +1,638 @@
+# ------------------------------------------------------------
+# Stellarity Paper - сообщения плагина (RU)
+# ------------------------------------------------------------
+# Для добавления своей локализации создайте файл messages_<LOCALE>.yml.
+# Ключи в разных локализациях должны совпадать.
+
+log:
+  plugin:
+    enabled: "Stellarity ~ Paper Edition включён"
+    disabled: "Stellarity ~ Paper Edition выключен"
+
+command:
+  common:
+    only-player: "<red>Эту команду может использовать только игрок.</red>"
+    no-permission: "<red>У вас нет прав на использование этой команды!</red>"
+
+  reload:
+    success: "<red>ѕᴛᴇʟʟᴀʀɪᴛʏ</red> <gray>|</gray> <green>Конфиги и сообщения перезагружены.</green>"
+
+  uninstall:
+    start: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gray>Запущена процедура безопасного очищения сервера.</gray>"
+    datapacks-disabled: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#a7f3d0>✔ Отключение датапаков...</#a7f3d0>"
+    datapacks-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Ошибка при отключении датапаков: %error%</#f87171>"
+    saved-chunks: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#67e8f9>✦ Активные чанки и миры зафиксированы на диске.</#67e8f9>"
+    save-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Ошибка при сохранении миров: %error%</#f87171>"
+    scan-found: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gray>Обнаружено для очистки:</gray> <#e879f9>%leveldats% level.dat</#e879f9> <gray>и</gray> <#818cf8>%mcas% файлов регионов (MCA)</#818cf8><gray>...</gray>"
+    scan-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Ошибка при сканировании миров: %error%</#f87171>"
+    mca-progress: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gradient:#818cf8:#c084fc>Очистка файлов миров: [%current%/%total% MCA] (%percent%%)</gradient> <dark_gray>•</dark_gray> <#f472b6>Чанков: %chunks%</#f472b6>"
+    mca-file-cleaned: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gray>Регион</gray> <#818cf8>%file%</#818cf8><gray>:</gray> <#a7f3d0>очищено чанков:</#a7f3d0> <#f472b6>%chunks%</#f472b6>"
+    mca-summary: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gradient:#4ade80:#2dd4bf>Глубокая очистка завершена:</gradient> <gray>обработано</gray> <#818cf8>%files%</#818cf8> <gray>файлов регионов, возвращено к ваниле</gray> <#f472b6>%chunks%</#f472b6> <gray>чанков.</gray>"
+    hook-success: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gradient:#4ade80:#2dd4bf>Сервер очищен от кастомных генераторов, структур и биомов.</gradient>"
+    stop-hint: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gradient:#fbbf24:#f59e0b><bold>Для окончательного сохранения остановите сервер:</bold></gradient> <click:suggest_command:'/stop'><hover:show_text:'<gray>Нажмите, чтобы вставить /stop в чат</gray>'><#fbbf24><bold>[ /stop ]</bold></#fbbf24></hover></click>"
+    hook-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Не удалось зарегистрировать процедуру сброса: %error%</#f87171>"
+    console-recheck: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gradient:#818cf8:#c084fc>Финальная контрольная очистка миров и чанков перед завершением работы сервера...</gradient>"
+    console-finished: "<gradient:#818cf8:#c084fc><bold>              ✦ Эндер мир успешно возвращён к ванильному состоянию ✦</bold></gradient>"
+    console-jar-hint: "<gradient:#fbbf24:#f472b6><bold>              ✦ Все следы Stellarity удалены. Плагин самоудалился с сервера ✦</bold></gradient>"
+    jar-deleted: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#a7f3d0>Файл плагина</#a7f3d0> <#818cf8>(%file%)</#818cf8> <#a7f3d0>автоматически удалён с сервера.</#a7f3d0>"
+    jar-delete-exit: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#fbbf24>Файл (%file%) заблокирован системой и будет автоматически удалён сразу после закрытия процесса сервера (deleteOnExit).</#fbbf24>"
+    datapack-deleted: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#a7f3d0>Датапак</#a7f3d0> <#818cf8>(%file%)</#818cf8> <#a7f3d0>автоматически удалён с сервера.</#a7f3d0>"
+    datapack-delete-exit: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#fbbf24>Датапак (%file%) заблокирован процессом и будет автоматически удалён сразу после остановки сервера.</#fbbf24>"
+    level-dat-cleaned: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#a7f3d0>level.dat (%world%) очищен от кастомных генераторов.</#a7f3d0>"
+    level-dat-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Ошибка при сбросе %file%: %error%</#f87171>"
+    mca-locked: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#fbbf24>⚠ Файл региона %file% временно занят процессом сервера. Очистка отложена до выключения.</#fbbf24>"
+    mca-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Ошибка при обработке региона %file%: %error%</#f87171>"
+    end-dragonfight-reset: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#67e8f9>✦ Данные DragonFight в %file% сброшены для ванильного Портала и Дракона.</#67e8f9>"
+    end-island-reset: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#a7f3d0>Главный остров Энда в %file% сброшен к ванильной генерации (удалено чанков: %chunks%).</#a7f3d0>"
+
+  stellarity:
+    usage-main: "<yellow>Использование: /stellarity <reload|give|enchant|item></yellow>"
+    usage-give: "<yellow>Использование: /stellarity give <игрок> <категория> <предмет></yellow>"
+    usage-enchant: "<yellow>Использование: /stellarity enchant <list|apply|remove|clear> ...</yellow>"
+    unknown-subcommand: "<red>Неизвестная подкоманда: %subcommand%</red>"
+
+  item:
+    usage: "<yellow>Использование: /stellarity item info</yellow>"
+    no-custom-item: "<red>Вы должны держать предмет Stellarity в основной руке!</red>"
+    gui-title: "Информация о предмете"
+    gui-format: "<gray><!italic>%line%</gray>"
+    book-title: "<light_purple>Кастомные зачарования</light_purple>"
+    no-enchants-lore: "<gray>На этом предмете нет кастомных зачарований Stellarity.</gray>"
+
+  give:
+    player-not-found: "<red>Игрок не найден: %player%</red>"
+    unknown-category: "<red>Неизвестная категория: %category%</red>"
+    unknown-item-in-category: "<red>В категории '%category%' нет предмета '%item%'.</red>"
+    success: "<green>Выдан предмет %category%/%item% игроку %player%.</green>"
+    level-suffix: " (уровень %level%)"
+
+  enchant:
+    list: "<gray>Доступные зачарования: %enchants%</gray>"
+    unknown-enchant: "<red>Неизвестное зачарование: %enchant%</red>"
+    invalid-level: "<red>Некорректный уровень зачарования.</red>"
+    incompatible-item: "<red>Это зачарование нельзя наложить на предмет в главной руке: %enchant%</red>"
+    not-applied: "<yellow>На предмете нет зачарования: %enchant%</yellow>"
+    apply-success: "<green>Наложено зачарование %enchant% %level% на предмет в главной руке игрока %player%.</green>"
+    remove-success: "<green>Удалёно чарование %enchant% с предмета в главной руке игрока %player%.</green>"
+    clear-success: "<green>С предмета в главной руке игрока %player% удалены все зачарования Stellarity.</green>"
+
+enchants:
+  format:
+    line: "<gray><!italic>%name%%level%</gray>"
+
+  entries:
+    armor_add_value_chest:
+      name: "Броня (нагрудник)"
+      description: "<gray>Добавляет очки брони при ношении нагрудника.</gray>"
+      levels:
+        1: "Броня: +3"
+        2: "Броня: +8"
+    armor_add_value_feet:
+      name: "Броня (ботинки)"
+      description: "<gray>Добавляет очки брони при ношении ботинок.</gray>"
+      levels:
+        1: "Броня: +3"
+    armor_add_value_head:
+      name: "Броня (шлем)"
+      description: "<gray>Добавляет очки брони при ношении шлема.</gray>"
+      levels:
+        1: "Броня: +3"
+    armor_add_value_legs:
+      name: "Броня (поножи)"
+      description: "<gray>Добавляет очки брони при ношении поножей.</gray>"
+      levels:
+        1: "Броня: +6"
+    armor_toughness_add_value_chest:
+      name: "Твердость брони (нагрудник)"
+      description: "<gray>Увеличивает твердость брони при ношении нагрудника.</gray>"
+      levels:
+        1: "Твёрдость брони: +2"
+        2: "Твёрдость брони: +3"
+        3: "Твёрдость брони: +4"
+    armor_toughness_add_value_feet:
+      name: "Твердость брони (ботинки)"
+      description: "<gray>Увеличивает твердость брони при ношении ботинок.</gray>"
+      levels:
+        1: "Твёрдость брони: +2"
+        2: "Твёрдость брони: +3"
+        3: "Твёрдость брони: +4"
+    armor_toughness_add_value_head:
+      name: "Твердость брони (шлем)"
+      description: "<gray>Увеличивает твердость брони при ношении шлема.</gray>"
+      levels:
+        1: "Твёрдость брони: +2"
+        2: "Твёрдость брони: +3"
+        3: "Твёрдость брони: +4"
+    armor_toughness_add_value_legs:
+      name: "Твердость брони (поножи)"
+      description: "<gray>Увеличивает твердость брони при ношении поножей.</gray>"
+      levels:
+        1: "Твёрдость брони: +2"
+        2: "Твёрдость брони: +3"
+        3: "Твёрдость брони: +4"
+    attack_damage_add_multiplied_base_chest:
+      name: "Урон (нагрудник)"
+      description: "<gray>Процентно изменяет базовый урон при ношении нагрудника.</gray>"
+      levels:
+        1: "Урон: +2.5%"
+        2: "Урон: -5%"
+    attack_damage_add_multiplied_base_feet:
+      name: "Урон (ботинки)"
+      description: "<gray>Процентно изменяет базовый урон при ношении ботинок.</gray>"
+      levels:
+        1: "Урон: +2.5%"
+        2: "Урон: -5%"
+    attack_damage_add_multiplied_base_head:
+      name: "Урон (шлем)"
+      description: "<gray>Процентно изменяет базовый урон при ношении шлема.</gray>"
+      levels:
+        1: "Урон: +2.5%"
+        2: "Урон: -5%"
+    attack_damage_add_multiplied_base_legs:
+      name: "Урон (поножи)"
+      description: "<gray>Процентно изменяет базовый урон при ношении поножей.</gray>"
+      levels:
+        1: "Урон: +2.5%"
+        2: "Урон: -5%"
+    attack_damage_add_multiplied_total_hand:
+      name: "Урон (рука)"
+      description: "<gray>Увеличивает общий наносимый урон при удержании предмета в руке.</gray>"
+      levels:
+        1: "Урон: +5%"
+    attack_damage_add_value_mainhand:
+      name: "Урон (главная рука)"
+      description: "<gray>Увеличивает базовый урон оружия в правой руке.</gray>"
+      levels:
+        1: "Урон в ближнем бою: +0.5"
+        2: "Урон в ближнем бою: +3"
+        3: "Урон в ближнем бою: +4"
+        4: "Урон в ближнем бою: +4.5"
+        5: "Урон в ближнем бою: +5"
+        6: "Урон в ближнем бою: +5.5"
+        7: "Урон в ближнем бою: +6"
+        8: "Урон в ближнем бою: +7"
+        9: "Урон в ближнем бою: +7.5"
+        10: "Урон в ближнем бою: +8"
+        11: "Урон в ближнем бою: +9"
+        12: "Урон в ближнем бою: +9.5"
+        13: "Урон в ближнем бою: +14"
+        14: "Урон в ближнем бою: -2"
+    attack_damage_add_value_offhand:
+      name: "Урон (левая рука)"
+      description: "<gray>Добавляет урон внезапной атаки в левой руке.</gray>"
+      levels:
+        1: "Урон внезапной атаки (левая рука): +1"
+    attack_speed_add_multiplied_base_chest:
+      name: "Скорость атаки (нагрудник)"
+      description: "<gray>Увеличивает базовую скорость атаки при ношении нагрудника.</gray>"
+      levels:
+        1: "Скорость атаки: +15%"
+    attack_speed_add_multiplied_total_mainhand:
+      name: "Скорость атаки (главная рука)"
+      description: "<gray>Увеличивает общую скорость атаки оружия в правой руке.</gray>"
+      levels:
+        1: "Скорость атаки: +10%"
+    attack_speed_add_value_mainhand:
+      name: "Скорость атаки (главная рука)"
+      description: "<gray>Значительно увеличивает скорость атаки оружия в правой руке (Ураганные взмахи).</gray>"
+      levels:
+        1: "Ураганные взмахи"
+    attack_speed_add_multiplied_total_chest:
+      name: "Скорость атаки (нагрудник)"
+      description: "<gray>Слегка снижает общую скорость атаки при ношении нагрудника.</gray>"
+      levels:
+        1: "Скорость атаки: -3%"
+    attack_speed_add_multiplied_total_feet:
+      name: "Скорость атаки (ботинки)"
+      description: "<gray>Слегка снижает общую скорость атаки при ношении ботинок.</gray>"
+      levels:
+        1: "Скорость атаки: -3%"
+    attack_speed_add_multiplied_total_head:
+      name: "Скорость атаки (шлем)"
+      description: "<gray>Слегка снижает общую скорость атаки при ношении шлема.</gray>"
+      levels:
+        1: "Скорость атаки: -3%"
+    attack_speed_add_multiplied_total_legs:
+      name: "Скорость атаки (поножи)"
+      description: "<gray>Слегка снижает общую скорость атаки при ношении поножей.</gray>"
+      levels:
+        1: "Скорость атаки: -3%"
+    attack_speed_bonus_mainhand:
+      name: "Скорость атаки (главная рука)"
+      description: "<gray>Добавляет фиксированную скорость атаки в правой руке.</gray>"
+      levels:
+        1: "Скорость атаки: +0.4"
+    block_break_speed_add_multiplied_total_mainhand:
+      name: "Скорость ломания (главная рука)"
+      description: "<gray>Увеличивает общую скорость ломания блоков в правой руке.</gray>"
+      levels:
+        1: "Скорость копания: +20%"
+    block_interaction_range_add_value_hand:
+      name: "Дистанция взаимодействия с блоками (рука)"
+      description: "<gray>Увеличивает дальность взаимодействия с блоками.</gray>"
+      levels:
+        1: "Дальность взаимодействия: +3 блока"
+    entity_interaction_range_add_value_mainhand:
+      name: "Дистанция удара (главная рука)"
+      description: "<gray>Изменяет дальность атаки по существам в правой руке.</gray>"
+      levels:
+        1: "Дальность атаки: -0.3 блока"
+        2: "Дальность атаки: +0.3 блока"
+        3: "Дальность атаки: +0.5 блока"
+    fall_damage_multiplier_add_multiplied_total_chest:
+      name: "Урон от падения (нагрудник)"
+      description: "<gray>Снижает получаемый игроком урон от падения при ношении нагрудника.</gray>"
+      levels:
+        1: "Урон от падения: -25%"
+    gravity_add_multiplied_total_chest:
+      name: "Гравитация (нагрудник)"
+      description: "<gray>Изменяет гравитацию, влияющую на игрока при ношении нагрудника.</gray>"
+      levels:
+        1: "Гравитация: -35%"
+        2: "Гравитация: +65%"
+    jump_strength_add_multiplied_base_legs:
+      name: "Сила прыжка (поножи)"
+      description: "<gray>Увеличивает силу прыжка игрока при ношении поножей.</gray>"
+      levels:
+        1: "Сила прыжка: +15%"
+    knockback_resistance_add_value_chest:
+      name: "Сопротивление отбрасыванию (нагрудник)"
+      description: "<gray>Увеличивает сопротивление отбрасыванию при ношении нагрудника.</gray>"
+      levels:
+        1: "Сопротивление отбрасыванию: +8%"
+        2: "Сопротивление отбрасыванию: +10%"
+        3: "Сопротивление отбрасыванию: +20%"
+    knockback_resistance_add_value_feet:
+      name: "Сопротивление отбрасыванию (ботинки)"
+      description: "<gray>Увеличивает сопротивление отбрасыванию при ношении ботинок.</gray>"
+      levels:
+        1: "Сопротивление отбрасыванию: +8%"
+        2: "Сопротивление отбрасыванию: +10%"
+        3: "Сопротивление отбрасыванию: +20%"
+    knockback_resistance_add_value_head:
+      name: "Сопротивление отбрасыванию (шлем)"
+      description: "<gray>Увеличивает сопротивление отбрасыванию при ношении шлема.</gray>"
+      levels:
+        1: "Сопротивление отбрасыванию: +8%"
+        2: "Сопротивление отбрасыванию: +10%"
+        3: "Сопротивление отбрасыванию: +20%"
+    knockback_resistance_add_value_legs:
+      name: "Сопротивление отбрасыванию (поножи)"
+      description: "<gray>Увеличивает сопротивление отбрасыванию при ношении поножей.</gray>"
+      levels:
+        1: "Сопротивление отбрасыванию: +8%"
+        2: "Сопротивление отбрасыванию: +10%"
+        3: "Сопротивление отбрасыванию: +20%"
+    luck_add_multiplied_base_offhand:
+      name: "Удача +10% (левая рука)"
+      description: "<gray>Увеличивает показатель удачи игрока в левой руке на 10%.</gray>"
+    luck_add_value_offhand:
+      name: "Удача +1 (левая рука)"
+      description: "<gray>Добавляет +1 к показателю удачи игрока в левой руке.</gray>"
+    movement_speed_add_multiplied_base_chest:
+      name: "Скорость движения (нагрудник)"
+      description: "<gray>Изменяет базовую скорость движения игрока при ношении нагрудника.</gray>"
+      levels:
+        1: "Скорость движения: -8%"
+        2: "Скорость движения: +10%"
+    movement_speed_add_multiplied_base_body:
+      name: "Скорость движения (лошадь)"
+      description: "<gray>Увеличивает скорость движения лошади при езде.</gray>"
+      levels:
+        1: "Скорость лошади: +30%"
+    movement_speed_add_multiplied_base_feet:
+      name: "Скорость движения (ботинки)"
+      description: "<gray>Увеличивает базовую скорость движения игрока при ношении ботинок.</gray>"
+      levels:
+        1: "Скорость движения: +7%"
+        2: "Скорость движения: +10%"
+    movement_speed_add_multiplied_total_chest:
+      name: "Скорость движения (нагрудник)"
+      description: "<gray>Немного изменяет общую скорость движения игрока при ношении нагрудника.</gray>"
+      levels:
+        1: "Скорость движения: -3%"
+    movement_speed_add_multiplied_total_feet:
+      name: "Скорость движения (ботинки)"
+      description: "<gray>Немного снижает общую скорость движения игрока при ношении ботинок.</gray>"
+      levels:
+        1: "Скорость движения: -3%"
+    movement_speed_add_multiplied_total_head:
+      name: "Скорость движения (шлем)"
+      description: "<gray>Немного снижает общую скорость движения игрока при ношении шлема.</gray>"
+      levels:
+        1: "Скорость движения: -3%"
+    movement_speed_add_multiplied_total_legs:
+      name: "Скорость движения (поножи)"
+      description: "<gray>Немного снижает общую скорость движения игрока при ношении поножей.</gray>"
+      levels:
+        1: "Скорость движения: -3%"
+    movement_speed_add_multiplied_total_mainhand:
+      name: "Скорость движения (главная рука)"
+      description: "<gray>Увеличивает скорость движения при удержании предмета в правой руке.</gray>"
+      levels:
+        1: "Скорость движения: +15%"
+    movement_speed_add_multiplied_total_offhand:
+      name: "Скорость движения (левая рука)"
+      description: "<gray>Увеличивает скорость движения при удержании предмета в левой руке.</gray>"
+      levels:
+        1: "Скорость движения: +5%"
+    safe_fall_distance_add_value_chest:
+      name: "Безопасная высота падения (нагрудник)"
+      description: "<gray>Увеличивает безопасную высоту падения при ношении нагрудника.</gray>"
+      levels:
+        1: "Безопасное падение: +1 блок"
+        2: "Безопасное падение: +4 блока"
+    safe_fall_distance_add_value_head:
+      name: "Безопасная высота падения (шлем)"
+      description: "<gray>Увеличивает безопасную высоту падения при ношении шлема.</gray>"
+      levels:
+        1: "Безопасное падение: +1 блок"
+    sneaking_speed_add_multiplied_base_legs:
+      name: "Скорость крадучись (поножи)"
+      description: "<gray>Увеличивает скорость передвижения крадучись при ношении поножей.</gray>"
+      levels:
+        1: "Скорость крадучись: +25%"
+    step_height_add_value_feet:
+      name: "Высота шага (ботинки)"
+      description: "<gray>Позволяет автоматически подниматься на блоки высотой до 1 блока при ношении ботинок.</gray>"
+      levels:
+        1: "Высота шага: +0.5 блока"
+    sweeping_damage_ratio_add_value_legs:
+      name: "Размашистый урон (поножи)"
+      description: "<gray>Увеличивает размашистый урон меча при ношении поножей.</gray>"
+      levels:
+        1: "Размашистый урон: +15%"
+    sweeping_damage_ratio_add_value_mainhand:
+      name: "Размашистый урон (главная рука)"
+      description: "<gray>Увеличивает размашистый урон меча в правой руке.</gray>"
+      levels:
+        1: "Размашистый урон: +50%"
+        2: "Размашистый урон: +60%"
+    critical_strike:
+      name: "<gradient:#7F3FFF:#B85499>Критический удар</gradient>"
+      description: "<gray>Увеличивает критический урон оружия.</gray>"
+      levels-description:
+        1: "<gray>Наносит <green>1.25x</green> критического урона.</gray>"
+        2: "<gray>Наносит <green>1.5x</green> критического урона.</gray>"
+        3: "<gray>Наносит <green>2x</green> критического урона.</gray>"
+    levitation_shot:
+      name: "<gradient:#7F3FFF:#B85499>Выстрел левитации</gradient>"
+      description: "<gray>Накладывает левитацию на пораженные цели.</gray>"
+      levels-description:
+        1: "<gray>Поднимает цель в воздух на <green>1 сек</green>.</gray>"
+        2: "<gray>Поднимает цель в воздух на <green>1.5 сек</green>.</gray>"
+        3: "<gray>Поднимает цель в воздух на <green>2 сек</green>.</gray>"
+    plated:
+      name: "<gradient:#7F3FFF:#B85499>Обшивка</gradient>"
+      description: "<gray>Увеличивает показатель брони при ношении элитр.</gray>"
+      levels-description:
+        1: "<gray>Дает <green>+2</green> к броне.</gray>"
+        2: "<gray>Дает <green>+4</green> к броне.</gray>"
+        3: "<gray>Дает <green>+6</green> к броне.</gray>"
+        4: "<gray>Дает <green>+8</green> к броне.</gray>"
+    soaring:
+      name: "<gradient:#7F3FFF:#B85499>Парение</gradient>"
+      description: "<gray>Увеличивает скорость полета на элитрах.</gray>"
+      levels-description:
+        1: "<gray>Увеличивает скорость полета на <green>10%</green>.</gray>"
+        2: "<gray>Увеличивает скорость полета на <green>20%</green>.</gray>"
+        3: "<gray>Увеличивает скорость полета на <green>30%</green>.</gray>"
+    void_strike:
+      name: "<gradient:#7F3FFF:#B85499>Пустотный удар</gradient>"
+      description: "<gray>Увеличивает урон в зависимости от недостающего здоровья цели.</gray>"
+      levels-description:
+        1: "<gray>Наносит до <green>1.15x</green> больше урона.</gray>"
+        2: "<gray>Наносит до <green>1.3x</green> больше урона.</gray>"
+        3: "<gray>Наносит до <green>1.5x</green> больше урона.</gray>"
+    void_shot:
+      name: "<gradient:#7F3FFF:#B85499>Пустотный выстрел</gradient>"
+      description: "<gray>Увеличивает дистанционный урон в зависимости от недостающего здоровья цели.</gray>"
+      levels-description:
+        1: "<gray>Наносит до <green>1.15x</green> больше урона.</gray>"
+        2: "<gray>Наносит до <green>1.3x</green> больше урона.</gray>"
+        3: "<gray>Наносит до <green>1.5x</green> больше урона.</gray>"
+    ambush:
+      name: "<gradient:#7F3FFF:#B85499>Засада</gradient>"
+      description: "<gray>Наносит дополнительный урон при атаке со спины.</gray>"
+    dune_speed:
+      name: "<gradient:#7F3FFF:#B85499>Скоростные дюны</gradient>"
+      description: "<gray>Увеличивает скорость передвижения по обычному и красному песку.</gray>"
+    technical_daybroken:
+      name: "<gradient:#7F3FFF:#B85499>Рассветный раскол</gradient>"
+      description: "<gray>Вызывает солнечные вспышки, поражающие цели.</gray>"
+      levels-description:
+        1: "<gray>Вызывает небольшие взрывы. До 3 ударов за срабатывание.</gray>"
+        2: "<gray>Вызывает небольшие взрывы. До 5 ударов за срабатывание.</gray>"
+    technical_draconic:
+      name: "<gradient:#7647D4:#916CC4>Драконий</gradient>"
+      description: "<gray>Превращает обычные атаки в круговые размашистые удары.</gray>"
+      levels-description:
+        1: "<gray>Поражает до 3 целей одновременно.</gray>"
+        2: "<gray>Поражает до 4 целей одновременно.</gray>"
+        3: "<gray>Поражает до 5 целей одновременно.</gray>"
+    technical_infernal_infusion:
+      name: "<gradient:#7F3FFF:#B85499>Адское варево</gradient>"
+      description: "<gray>Зажатие Shift с оружием вращает его, поджигая и нанося урон целям вокруг.</gray>"
+    technical_mighty_wind:
+      name: "<gradient:#7F3FFF:#B85499>Могучий ветер</gradient>"
+      description: "<gray>Притягивает врагов в область удара. Каждые 3 удара бьет молнией со станом.</gray>"
+    technical_soul_harvest:
+      name: "<gradient:#7F3FFF:#B85499>Жатва душ</gradient>"
+      description: "<gray>Убийство врагов роняет души. Сбор душ накладывает временные баффы.</gray>"
+    technical_void_pendant_amethyst:
+      name: "ЗРЕНИЕ (Аметист)"
+      description: "<gray>Постоянное ночное зрение. Приседание подсвечивает врагов вокруг (кд 45с).</gray>"
+    technical_void_pendant_copper:
+      name: "МОЩЬ (Медь)"
+      description: "<gray>Атаки иногда вызывают электрические дуги, наносящие дополнительный урон.</gray>"
+    technical_void_pendant_diamond:
+      name: "НЕИСТОВСТВЫЙ (Алмаз)"
+      description: "<gray>Увеличивает скорость атаки на <green>+6%</green> (мультипликативно).</gray>"
+    technical_void_pendant_emerald:
+      name: "УДАЧА (Изумруд)"
+      description: "<gray>Дарует игроку <green>+1</green> к показателю удачи.</gray>"
+    technical_void_pendant_gold:
+      name: "ШАХТЁРСТВО (Золото)"
+      description: "<gray><green>+15%</green> к скорости копания и <green>+5</green> к эффективности спелеологии.</gray>"
+    technical_void_pendant_iron:
+      name: "СТОЙКОСТЬ (Железо)"
+      description: "<gray>Дарует игроку <green>+1</green> к показателю Armor Toughness.</gray>"
+    technical_void_pendant_lapis:
+      name: "МУДРОСТЬ (Лазурит)"
+      description: "<gray>5% шанс выпадения 5 опыта при получении урона от мобов.</gray>"
+    technical_void_pendant_netherite:
+      name: "ЯРОСТЬ (Незерит)"
+      description: "<gray><green>+2</green> к урону атаки и <green>+35%</green> к урону от размашистого удара.</gray>"
+    technical_void_pendant_quartz:
+      name: "ЛОВКОСТЬ (Кварц)"
+      description: "<gray><green>+4%</green> к скорости, <green>+4%</green> к силе прыжка и <green>+40%</green> к эффективности перемещения.</gray>"
+
+spellbooks:
+  disabled: "<red>Это заклинание отключено в настройках сервера!</red>"
+  ready: "<green>Книга заклинаний готова!</green>"
+  cooldown_actionbar: "<red>Перезарядка: %seconds% сек</red>"
+  obstruct:
+    too_close: "<red>Слишком близко к другой стене из шалкеров!</red>"
+  return:
+    start: "<yellow>Начало телепортации... Стойте смирно %duration% секунд.</yellow>"
+    cancelled: "<red>Телепортация отменена: вы сдвинулись с места!</red>"
+    actionbar_progress: "<light_purple>Каст возврата: %progress%%</light_purple>"
+    success: "<green>Вы успешно возвращены на спавн!</green>"
+
+trinkets:
+  satchel_of_voids:
+    already_active: "<red>У вас уже есть активный Алтарь Бездны!</red>"
+    too_close: "<red>Вы не можете использовать Алтарь Бездны так близко к другому алтарю!</red>"
+  void_pendant:
+    amethyst_ready: "<gray>Способность Медальона Бездны готова: <bold><light_purple>Зрение</light_purple></bold></gray>"
+
+loaf_of_plenty:
+  description:
+    1: "Ну, как бы это сказать..."
+    2: "Он просто никогда не закончится"
+    3: "Ты съел его, чтобы проверить, или"
+    4: "правда проголодался?"
+    5: "Всё продолжаешь, да?"
+    6: "Я же говорю, он бесконечный"
+    7: "Всё ещё бесконечный :3"
+    8: "Ладно, сейчас ты уже просто"
+    9: "пытаешься посмотреть, что я скажу"
+    10: "Не испытывай судьбу слишком сильно"
+    11: "Тебе не страшно, что случится"
+    12: "что-то плохое, если ты продолжишь?"
+    13: "Типа, это же Стелларити. этот хлеб"
+    14: "вполне может случайно взорваться"
+    15: "Ты на 100% УВЕРЕН, что хочешь продолжать?"
+    16: "Это были предупреждения, кстати, но хз,"
+    17: "может, ты просто не умеешь читать"
+    18: "Ладно, с меня хватит"
+    19: "Съешь его ещё раз, и я тебе покажу"
+    20: "Да, сюрприз-сюрприз"
+    21: "Ничего не произошло"
+    22: "Но твоя жадность меня угнетает,"
+    23: "мягко говоря"
+    24: "Ладно, становится скучно"
+    25: "Больше я ничего придумывать не буду"
+
+altar_of_the_sacred:
+  invalid_world: "<red>Священный алтарь отказывается принимать это подношение в данном мире.</red>"
+  too_close_to_private: "<red>Вы не можете призвать босса здесь, так как в радиусе 10 блоков находится чужая территория!</red>"
+  mob_spawning_denied: "<red>Вы не можете призвать босса здесь, так как в этом регионе запрещён спавн мобов!</red>"
+  spawn_started: "<#FF69B4>Древний ритуал начался! %boss% пробуждается...</#FF69B4>"
+  already_summoned: "<red>На этом алтаре уже был призван босс, который всё ещё жив!</red>"
+
+altar_of_the_accursed:
+  locked: "<dark_purple>Алтарь Проклятых заперт...</dark_purple>"
+  unlocked: "<dark_purple>Алтарь Проклятых разблокирован!</dark_purple>"
+
+boss:
+  shulking:
+    name: "⚔ Король Шалкеров"
+    despawn: "<#FF69B4>Король Шалкеров улетел рассерженным, так как ни один воин не осмелился сразить его!</#FF69B4>"
+  empress_of_light:
+    name: "✦ Императрица Света"
+    despawn: "<#FF69B4>Императрица Света улетела рассерженной, так как ни один воин не осмелился сразить её!</#FF69B4>"
+    death: "\n<#AF4BFF>✦ Императрица Света повержена!</#AF4BFF>\n"
+  radiant_empress_of_light:
+    name: "✦ Лучезарная Императрица Света"
+    despawn: "<#FF4B4B>Лучезарная Императрица Света улетела рассерженной, так как ни один воин не осмелился сразить её!</#FF4B4B>"
+    death: "\n<#FF4B4B>✦ Лучезарная Императрица Света повержена!</#FF4B4B>\n"
+
+
+mechanics:
+  vault:
+    already_opened: "<red>Это хранилище уже было открыто ранее</red>"
+    wrong_key: "<red>Этот ключ не подходит к данному хранилищу!</red>"
+    locked_by_crystals: "<red>Хранилище защищено кристаллами Города Края!</red>"
+    unlocked_somewhere: "<gradient:#c084fc:#e879f9><bold>✦ Где-то разблокировалось хранилище... ✦</bold></gradient>"
+
+dragon:
+  spawn: "<light_purple>ѕᴛᴇʟʟᴀʀɪᴛʏ |</light_purple> <dark_purple>Эндер Дракон пробудился!</dark_purple>"
+  death: "<light_purple>ѕᴛᴇʟʟᴀʀɪᴛʏ |</light_purple> <light_purple>Эндер Дракон был повержен!</light_purple>"
+  crystals_left: "<light_purple>Осталось кристаллов: <white>%count%</white></light_purple>"
+
+# ------------------------------------------------------------
+# Endonomicon
+# ------------------------------------------------------------
+endonomicon:
+  main_menu:
+    title: "<light_purple><bold>Endonomicon:</bold></light_purple> <gold>Гримуар Алтаря Проклятых</gold>"
+    header: "Выберите категорию, просмотрите недавние или используйте поиск для просмотра всех ритуалов Алтаря Проклятых."
+    categories:
+      weapons_tools: "<gold>⚔ Оружие и Инструменты</gold>"
+      armor: "<gold>🛡 Комплекты Брони</gold>"
+      artifacts: "<light_purple>🔮 Артефакты и Заклинания</light_purple>"
+      upgrades: "<green>🧪 Элитры и Модификации</green>"
+    personal:
+      favorites: "<yellow>⭐ Избранные Рецепты (%count%)</yellow>"
+      recent: "<gray>🕓 Недавно Просмотренные (%count%)</gray>"
+    search: "<aqua>🔍 Поиск Рецептов</aqua>"
+    tooltips:
+      weapons_tools: "Рецепты оружия и инструментов"
+      armor: "Рецепты комплектов брони и доспехов"
+      artifacts: "Рецепты древних артефактов и книг"
+      upgrades: "Рецепты элитр и эффектов шлейфов"
+      favorites: "Сохранённые вами рецепты"
+      recent: "Недавно открытые вами рецепты"
+      search: "Искать по названию, тегам или ингредиентам"
+      back: "Вернуться к категории"
+      main_menu: "Вернуться в Главное Меню"
+      close: "Закрыть Эндономикон"
+    buttons:
+      back: "<gold>← Назад</gold>"
+      main_menu: "<gold>🏠 Главное Меню</gold>"
+      close: "<red>❌ Закрыть</red>"
+      prev_page: "<gold>← Назад</gold>"
+      next_page: "<gold>Далее →</gold>"
+      add_favorite: "<yellow>⭐ В Избранное</yellow>"
+      remove_favorite: "<yellow>⭐ Удалить из Избранного</yellow>"
+
+  category:
+    title:
+      weapons_tools: "<gold><bold>⚔ Оружие и Инструменты</bold></gold> <yellow>(%page%/%total%)</yellow>"
+      armor: "<gold><bold>🛡 Броня</bold></gold> <yellow>(%page%/%total%)</yellow>"
+      artifacts: "<light_purple><bold>🔮 Артефакты</bold></light_purple> <yellow>(%page%/%total%)</yellow>"
+      upgrades: "<green><bold>🧪 Элитры</bold></green> <yellow>(%page%/%total%)</yellow>"
+
+  favorites:
+    title: "<yellow><bold>⭐ Избранные Рецепты</bold></yellow> <yellow>(%page%/%total%)</yellow>"
+    empty: "<gray>У вас пока нет сохранённых в избранное рецептов.</gray>"
+
+  recent:
+    title: "<gray><bold>🕓 Недавно Просмотренные</bold></gray> <yellow>(%page%/%total%)</yellow>"
+    empty: "<gray>Вы ещё не просматривали рецепты.</gray>"
+
+  search:
+    prompt_title: "<aqua><bold>🔍 Поиск Рецептов</bold></aqua>"
+    prompt_message: "Введите название предмета, тег (напр. #weapon) или ингредиент:"
+    query_label: "Запрос"
+    results_title: "<aqua><bold>🔍 Результаты Поиска:</bold> \"%query%\"</aqua> <yellow>(%page%/%total%)</yellow>"
+    no_results: "<red>По вашему запросу ничего не найдено.</red>"
+
+  recipe:
+    header: "<white>Рецепт: </white><light_purple><bold><name></bold></light_purple> <gold>| Сложность: <stars></gold>\n\n<light_purple><bold>🔮 ИНГРЕДИЕНТЫ:</bold></light_purple>"
+    ingredient_ok: "<green> • ✔ %current%/%required% </green>"
+    ingredient_missing: "<red> • ✖ %current%/%required% </red>"
+    ingredient_missing_suffix: "<red> (Не хватает %missing% шт.)</red>"
+    result_header: "\n<gold><bold>➜ РЕЗУЛЬТАТ КРАФТА:</bold></gold>\n<gold>1x </gold><gold><bold><name></bold></gold>"
+    used_in: "\n<gold>Используется для: <used_in></gold>"
+
+  elytra_dyeing:
+    title: "<gold><bold>🧪 Покраска шлейфа элитр</bold></gold>"
+    header: "<white>Рецепт: </white><light_purple><bold>Покраска шлейфа элитр</bold></light_purple> <gold>| Сложность: ⭐⭐⭐☆☆</gold>\n\n<light_purple><bold>🔮 ИНГРЕДИЕНТЫ:</bold></light_purple>"
+    elytra_ok: "<green> • ✔ %current%/1 Элитры (или Крылья Императрицы)</green>"
+    elytra_missing: "<red> • ✖ 0/1 Элитры (или Крылья Императрицы) (Не хватает 1 шт.)</red>"
+    dye_ok: "<green> • ✔ %current%/1 Любой краситель</green>"
+    dye_missing: "<red> • ✖ 0/1 Любой краситель (Не хватает 1 шт.)</red>"
+    description: "<dark_aqua>\n💡 При полёте в дневное время суток элитры оставляют цветной шлейф из частиц соответствующего оттенка.\nНочью шлейф автоматически переливается радужными цветами!\n💧 Цвет шлейфа можно сбросить, бросив элитры с ведром воды.\n\n</dark_aqua><gold><bold>➜ РЕЗУЛЬТАТ КРАФТА:</bold></gold>\n<gold>1x </gold><gold><bold>Элитры с цветным шлейфом частиц</bold></gold>"
+
+  items:
+    elytra_dyeing: "<gold>Покраска шлейфа элитр</gold>"
+    elytra_undyeing: "<gray>Снятие покраски элитр</gray>"
+    misc_empty_enchanted_book: "<yellow>Зачарованная книга (или Пустая зачарованная книга)</yellow>"
+    default_item_fallback: "<gray>Предмет</gray>"
+
+mechanic:
+  void-totem:
+    actionbar: "<gradient:#E77CC6:#E7917C>Там живут драконы...</gradient>"
+

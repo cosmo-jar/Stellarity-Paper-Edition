@@ -1,0 +1,104 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:end_stone",
+              "modifier": [
+                {
+                  "type": "minecraft:set_attributes",
+                  "modifiers": [
+                    {
+                      "attribute": "minecraft:max_health",
+                      "id": "stellarity:pandoras_barrel_biome",
+                      "amount": -3,
+                      "operation": "add_value",
+                      "slot": "mainhand"
+                    }
+                  ]
+                }
+              ],
+              "condition": {
+                "predicate": {
+                  "dimension": "minecraft:the_end"
+                },
+                "type": "minecraft:location_check"
+              }
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:netherrack",
+              "modifier": [
+                {
+                  "type": "minecraft:set_attributes",
+                  "modifiers": [
+                    {
+                      "attribute": "minecraft:max_health",
+                      "id": "stellarity:pandoras_barrel_biome",
+                      "amount": -2,
+                      "operation": "add_value",
+                      "slot": "mainhand"
+                    }
+                  ]
+                }
+              ],
+              "condition": {
+                "predicate": {
+                  "dimension": "minecraft:the_nether"
+                },
+                "type": "minecraft:location_check"
+              }
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:grass_block",
+              "modifier": [
+                {
+                  "type": "minecraft:set_attributes",
+                  "modifiers": [
+                    {
+                      "attribute": "minecraft:max_health",
+                      "id": "stellarity:pandoras_barrel_biome",
+                      "amount": -1,
+                      "operation": "add_value",
+                      "slot": "mainhand"
+                    }
+                  ]
+                }
+              ],
+              "condition": {
+                "predicate": {
+                  "dimension": "minecraft:overworld"
+                },
+                "type": "minecraft:location_check"
+              }
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:stone",
+              "modifier": [
+                {
+                  "type": "minecraft:set_attributes",
+                  "modifiers": [
+                    {
+                      "attribute": "minecraft:max_health",
+                      "id": "stellarity:pandoras_barrel_biome",
+                      "amount": -1,
+                      "operation": "add_value",
+                      "slot": "mainhand"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

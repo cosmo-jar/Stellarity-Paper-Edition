@@ -1,0 +1,27 @@
+# ------------------------------------------------------------------------------------------
+# Stellarity ~ Paper Edition - Custom Loot Configuration: End Dungeon (Underground Spawners)
+# ------------------------------------------------------------------------------------------
+enabled: true
+
+settings:
+  max_custom_items: 5
+  prevent_duplicates: true
+
+containers:
+  CHEST:
+    - item: "enderite_shard"
+      chance: 20.0
+    - item: "enderite_smithing_template"
+      chance: 15.0
+    - item: "enchantments_books:void_strike:1"
+      chance: 25.0
+    - item: "enchantments_books:critical_strike:1"
+      chance: 20.0
+    - item: "phantom_item_frame"
+      chance: 20.0
+
+  SPAWNER:
+    - item: "enderite_shard"
+      chance: 25.0
+    - item: "phantom_item_frame"
+      chance: 25.0

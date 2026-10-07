@@ -1,0 +1,10 @@
+{
+  "type": "cache",
+  "input": {
+    "type": "add",
+    "left": {
+      "type": "minecraft:end_outer_islands"
+    },
+    "right": 0.3
+  }
+}

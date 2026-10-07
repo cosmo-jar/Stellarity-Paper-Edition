@@ -1,0 +1,11 @@
+# ---------------------------------------------------------------------------
+# Stellarity ~ Paper Edition - Settings for other game mechanics and items...
+# ---------------------------------------------------------------------------
+
+elytra:
+  dragon-wings-resistance: true # Grants Resistance III when flying with dragon wings
+  boost-durability-nerf: true # Increased durability damage to elytra when boosting with fireworks
+  boost-durability-damage: 8 # Base durability damage to elytra without the Unbreaking enchantment
+
+flavors_of_the_void:
+  enabled: true

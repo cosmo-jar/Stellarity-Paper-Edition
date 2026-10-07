@@ -1,0 +1,26 @@
+{
+  "pack": {
+    "pack_format": 48,
+    "supported_formats": [
+      48,
+      121
+    ],
+    "min_format": 48,
+    "max_format": 121,
+    "description": "Stellarity ~ Paper Edition Advancements mini-Datapack"
+  },
+  "overlays": {
+    "entries": [
+      {
+        "directory": "26_2",
+        "min_format": 107,
+        "max_format": 120
+      },
+      {
+        "directory": "26_3",
+        "min_format": 121,
+        "max_format": 121
+      }
+    ]
+  }
+}

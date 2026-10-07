@@ -1,0 +1,1380 @@
+{
+  "spawn_eggs": {
+    "voided_zombie": {
+      "name_translate_key": "item.stellarity.voided_zombie_spawn_egg",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "voided_slime": {
+      "name_translate_key": "item.stellarity.voided_slime_spawn_egg",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "voided_skeleton": {
+      "name_translate_key": "item.stellarity.voided_skeleton_spawn_egg",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "flesh_piglin": {
+      "name_translate_key": "item.stellarity.flesh_piglin_spawn_egg",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "voided_silverfish": {
+      "name_translate_key": "item.stellarity.voided_silverfish_spawn_egg",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    }
+  },
+  "tools": {
+    "shulker_pickaxe": {
+      "name_translate_key": "item.stellarity.shulker_pickaxe",
+      "name_color": "#976A97",
+      "lore_translate_keys": [
+        "items.stellarity.donator",
+        "Stellarity"
+      ]
+    },
+    "shulker_axe": {
+      "name_translate_key": "item.stellarity.shulker_axe",
+      "name_color": "#976A97",
+      "lore_translate_keys": [
+        "items.stellarity.donator",
+        "Stellarity"
+      ]
+    },
+    "fisher_of_voids": {
+      "name_translate_key": "item.stellarity.fisher_of_voids",
+      "name_color": "#8865AF",
+      "lore_translate_keys": [
+        "item.stellarity.fisher_of_voids.description",
+        "Stellarity"
+      ]
+    },
+    "shulker_shovel": {
+      "name_translate_key": "item.stellarity.shulker_shovel",
+      "name_color": "#976A97",
+      "lore_translate_keys": [
+        "items.stellarity.donator",
+        "Stellarity"
+      ]
+    },
+    "shulker_hoe": {
+      "name_translate_key": "item.stellarity.shulker_hoe",
+      "name_color": "#976A97",
+      "lore_translate_keys": [
+        "items.stellarity.donator",
+        "Stellarity"
+      ]
+    },
+    "shulker_spear": {
+      "name_translate_key": "item.stellarity.shulker_spear",
+      "name_color": "#976A97",
+      "lore_translate_keys": [
+        "items.stellarity.donator",
+        "Stellarity"
+      ]
+    },
+    "shulker_sword": {
+      "name_translate_key": "item.stellarity.shulker_sword",
+      "name_color": "#976A97",
+      "lore_translate_keys": [
+        "items.stellarity.donator",
+        "Stellarity"
+      ]
+    }
+  },
+  "potions": {
+    "spelunker_potion_ext": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.spelunker",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "spelunker_potion": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.spelunker",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "spelunker_potion_ii": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.spelunker",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "royal_jelly_ii": {
+      "name_translate_key": "item.stellarity.royal_jelly",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "effect.minecraft.absorption",
+        "potion.potency.1",
+        "item.stellarity.royal_jelly.usage",
+        "Stellarity"
+      ]
+    },
+    "hellfire_treader_potion": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.hellfire_treader",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "frost_cloud_potion": {
+      "name_translate_key": "item.minecraft.lingering_potion.effect.stellarity.frost_cloud",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "hellfire_treader_potion_ii": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.hellfire_treader",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "hellfire_treader_potion_ext": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.hellfire_treader",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "entanglement_potion_ii": {
+      "name_translate_key": "item.minecraft.splash_potion.effect.stellarity.entanglement",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "endurance_potion_ii": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.endurance",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "endurance_potion_ext": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.endurance",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "entanglement_potion_ext": {
+      "name_translate_key": "item.minecraft.splash_potion.effect.stellarity.entanglement",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "entanglement_potion": {
+      "name_translate_key": "item.minecraft.splash_potion.effect.stellarity.entanglement",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "regeneraga_ext": {
+      "name_translate_key": "item.stellarity.regeneraga",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "regeneraga": {
+      "name_translate_key": "item.stellarity.regeneraga",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "royal_jelly": {
+      "name_translate_key": "item.stellarity.royal_jelly",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "effect.minecraft.absorption",
+        "item.stellarity.royal_jelly.usage",
+        "Stellarity"
+      ]
+    },
+    "regeneraga_ii": {
+      "name_translate_key": "item.stellarity.regeneraga",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "red_potion": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.red",
+      "name_color": "#FF5454",
+      "lore_translate_keys": [
+        "item.minecraft.potion.effect.stellarity.red.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "lifeforce_potion_ext": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.lifeforce",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "lifeforce_potion": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.lifeforce",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "poseidons_nectar": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.poseidons_nectar",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "lifeforce_potion_ii": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.lifeforce",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "luck_potion": {
+      "name_translate_key": "item.minecraft.potion",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "endurance_potion": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.endurance",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "amarene": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.amarene",
+      "name_color": "#C90D17",
+      "lore_translate_keys": [
+        "item.minecraft.potion.effect.stellarity.amarene.description",
+        "item.minecraft.potion.effect.stellarity.amarene.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "blind_rage_potion_ext": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.blind_rage",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "blind_rage_potion": {
+      "name_translate_key": "item.minecraft.potion.effect.stellarity.blind_rage",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    }
+  },
+  "trinkets": {
+    "crest_of_the_end": {
+      "name_translate_key": "item.stellarity.crest_of_the_end",
+      "name_color": "#9936D6",
+      "lore_translate_keys": [
+        "item.stellarity.crest_of_the_end.description.1",
+        "item.stellarity.crest_of_the_end.description.2",
+        "Stellarity"
+      ]
+    },
+    "copper_elektra_shield": {
+      "name_translate_key": "item.stellarity.copper_elektra_shield",
+      "name_color": "#E0976B",
+      "lore_translate_keys": [
+        "item.stellarity.copper_elektra_shield.description.1",
+        "item.stellarity.copper_elektra_shield.description.2",
+        "item.stellarity.copper_elektra_shield.description.3",
+        "item.stellarity.copper_elektra_shield.description.4",
+        "Stellarity"
+      ]
+    },
+    "life_crystal": {
+      "name_translate_key": "item.stellarity.life_crystal",
+      "name_color": "#9936D6",
+      "lore_translate_keys": [
+        "item.stellarity.life_crystal.description",
+        "Stellarity"
+      ]
+    },
+    "duskberry": {
+      "name_translate_key": "item.stellarity.duskberry",
+      "name_color": "#AB6AD1",
+      "lore_translate_keys": [
+        "item.stellarity.duskberry.description.1",
+        "item.stellarity.duskberry.description.2",
+        "item.stellarity.duskberry.description.3",
+        "item.stellarity.duskberry.description.4",
+        "- Member #666 Item -",
+        "Stellarity"
+      ]
+    },
+    "soaring_insignia": {
+      "name_translate_key": "item.stellarity.soaring_insignia",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "item.stellarity.soaring_insignia.description.1",
+        "item.stellarity.soaring_insignia.description.2",
+        "item.stellarity.soaring_insignia.description.3",
+        "item.stellarity.soaring_insignia.description.4",
+        "Stellarity"
+      ]
+    },
+    "decayed_clover": {
+      "name_translate_key": "item.stellarity.decayed_clover",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "item.stellarity.decayed_clover.description.1",
+        "item.stellarity.decayed_clover.description.2",
+        "Stellarity"
+      ]
+    },
+    "bell_flower": {
+      "name_translate_key": "item.stellarity.bell_flower",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "item.stellarity.bell_flower.description",
+        "items.stellarity.donator",
+        "Stellarity"
+      ]
+    },
+    "void_pendant": {
+      "name_translate_key": "item.stellarity.void_pendant",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "item.stellarity.void_pendant.description.1",
+        "item.stellarity.void_pendant.description.2",
+        "Stellarity"
+      ]
+    },
+    "chorus_petal": {
+      "name_translate_key": "item.stellarity.chorus_petal",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "item.stellarity.chorus_petal.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "enderman_hand": {
+      "name_translate_key": "item.stellarity.enderman_hand",
+      "name_color": "#ED8CFF",
+      "lore_translate_keys": [
+        "item.stellarity.enderman_hand.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "starstruck_shield": {
+      "name_translate_key": "item.stellarity.starstruck_shield",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "item.stellarity.starstruck_shield.description.1",
+        "Stellarity"
+      ]
+    },
+    "prismatic_pearl": {
+      "name_translate_key": "item.stellarity.prismatic_pearl",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "dragons_eye": {
+      "name_translate_key": "item.stellarity.dragons_eye",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "item.stellarity.dragons_eye.description.1",
+        "item.stellarity.dragons_eye.description.2",
+        "item.stellarity.dragons_eye.description.3",
+        "Stellarity"
+      ]
+    },
+    "living_flesh": {
+      "name_translate_key": "item.stellarity.living_flesh",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "item.stellarity.living_flesh.description.1",
+        "item.stellarity.living_flesh.description.2",
+        "item.stellarity.living_flesh.description.3",
+        "Stellarity"
+      ]
+    },
+    "satchel_of_voids": {
+      "name_translate_key": "item.stellarity.satchel_of_voids",
+      "name_color": "#FF55FF",
+      "lore_translate_keys": [
+        "item.stellarity.satchel_of_voids.description.1",
+        "item.stellarity.satchel_of_voids.description.2",
+        "item.stellarity.satchel_of_voids.description.3",
+        "item.stellarity.satchel_of_voids.description.4",
+        "item.stellarity.satchel_of_voids.description.5",
+        "Stellarity"
+      ]
+    },
+    "radiant_jewel": {
+      "name_translate_key": "item.stellarity.radiant_jewel",
+      "name_color": "#C92222",
+      "lore_translate_keys": [
+        "item.stellarity.radiant_jewel.description.1",
+        "item.stellarity.radiant_jewel.description.2",
+        "Stellarity"
+      ]
+    }
+  },
+  "weapons": {
+    "sandstorm_trident": {
+      "name_translate_key": "item.stellarity.sandstorm_trident",
+      "name_color": "#FF55FF",
+      "lore_translate_keys": [
+        "item.stellarity.sandstorm_trident.description",
+        "item.stellarity.sandstorm_trident.flavor_text",
+        "items.stellarity.donator",
+        "Stellarity"
+      ]
+    },
+    "fluffy_hammer": {
+      "name_translate_key": "item.stellarity.fluffy_hammer",
+      "name_color": "#9936D6",
+      "lore_translate_keys": [
+        "item.stellarity.fluffy_hammer.description.1",
+        "item.stellarity.fluffy_hammer.description.2",
+        "item.stellarity.fluffy_hammer.flavor_text",
+        "items.stellarity.donator",
+        "Stellarity"
+      ]
+    },
+    "book_of_obstruct": {
+      "name_translate_key": "item.stellarity.book_of_obstruct",
+      "name_color": "#F816FF",
+      "lore_translate_keys": [
+        "item.stellarity.book_of_obstruct.description.1",
+        "item.stellarity.book_of_obstruct.description.2",
+        "items.stellarity.spellbooks.cooldown",
+        "Stellarity"
+      ]
+    },
+    "book_of_light": {
+      "name_translate_key": "item.stellarity.book_of_light",
+      "name_color": "#FFF300",
+      "lore_translate_keys": [
+        "item.stellarity.book_of_light.description.1",
+        "item.stellarity.book_of_light.description.2",
+        "item.stellarity.book_of_light.description.3",
+        "items.stellarity.spellbooks.cooldown",
+        "Stellarity"
+      ]
+    },
+    "book_of_jinx": {
+      "name_translate_key": "item.stellarity.book_of_jinx",
+      "name_color": "#F816FF",
+      "lore_translate_keys": [
+        "item.stellarity.book_of_jinx.description.1",
+        "item.stellarity.book_of_jinx.description.2",
+        "item.stellarity.book_of_jinx.description.3",
+        "items.stellarity.spellbooks.cooldown",
+        "Stellarity"
+      ]
+    },
+    "book_of_updraft": {
+      "name_translate_key": "item.stellarity.book_of_updraft",
+      "name_color": "#E0E0E0",
+      "lore_translate_keys": [
+        "item.stellarity.book_of_updraft.description.1",
+        "item.stellarity.book_of_updraft.description.2",
+        "item.stellarity.book_of_updraft.description.3",
+        "items.stellarity.spellbooks.cooldown",
+        "Stellarity"
+      ]
+    },
+    "book_of_return": {
+      "name_translate_key": "item.stellarity.book_of_return",
+      "name_color": "#9C369F",
+      "lore_translate_keys": [
+        "item.stellarity.book_of_return.description",
+        "items.stellarity.spellbooks.cooldown_long",
+        "Stellarity"
+      ]
+    },
+    "slayer_crossbow": {
+      "name_translate_key": "item.stellarity.slayer_crossbow",
+      "name_color": "#FFAA00",
+      "lore_translate_keys": [
+        "item.stellarity.slayer_crossbow.description.1",
+        "item.stellarity.slayer_crossbow.description.2",
+        "Stellarity"
+      ]
+    },
+    "book_of_conveyance": {
+      "name_translate_key": "item.stellarity.book_of_conveyance",
+      "name_color": "#A946E7",
+      "lore_translate_keys": [
+        "item.stellarity.book_of_conveyance.description.1",
+        "item.stellarity.book_of_conveyance.description.2",
+        "item.stellarity.book_of_conveyance.description.3",
+        "items.stellarity.spellbooks.cooldown",
+        "Stellarity"
+      ]
+    },
+    "harvester": {
+      "name_translate_key": "item.stellarity.harvester",
+      "name_color": "#4BC6FF",
+      "lore_translate_keys": [
+        "item.stellarity.harvester.description.1",
+        "item.stellarity.harvester.description.2",
+        "item.stellarity.harvester.description.3",
+        "items.stellarity.developer",
+        "Stellarity"
+      ]
+    },
+    "dragonblade": {
+      "name_translate_key": "item.stellarity.dragonblade",
+      "name_color": "#CD6AFF",
+      "lore_translate_keys": [
+        "item.stellarity.dragonblade.description",
+        "item.stellarity.dragonblade.flavor_text",
+        "item.stellarity.dragonblade.tip",
+        "Stellarity"
+      ]
+    },
+    "prismatic_punch": {
+      "name_translate_key": "item.stellarity.prismatic_punch",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "item.stellarity.prismatic_punch.description.1",
+        "item.stellarity.prismatic_punch.description.2",
+        "item.stellarity.prismatic_punch.description.3",
+        "Stellarity"
+      ]
+    },
+    "kaleidoscope": {
+      "name_translate_key": "item.stellarity.kaleidoscope",
+      "name_color": "#FFCF37",
+      "lore_translate_keys": [
+        "item.stellarity.kaleidoscope.description.1",
+        "item.stellarity.kaleidoscope.description.2",
+        "item.stellarity.kaleidoscope.description.3",
+        "Stellarity"
+      ]
+    },
+    "ancient_wooden_sword": {
+      "name_translate_key": "item.stellarity.ancient_wooden_sword",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "item.stellarity.ancient_wooden_sword.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "spectral_fury": {
+      "name_translate_key": "item.stellarity.spectral_fury",
+      "name_color": "#BDF1FF",
+      "lore_translate_keys": [
+        "item.stellarity.spectral_fury.description.1",
+        "item.stellarity.spectral_fury.description.2",
+        "item.stellarity.spectral_fury.description.3",
+        "Stellarity"
+      ]
+    },
+    "tamaris": {
+      "name_translate_key": "item.stellarity.tamaris",
+      "name_color": "#9936D6",
+      "lore_translate_keys": [
+        "item.stellarity.tamaris.description.1",
+        "item.stellarity.tamaris.description.2",
+        "item.stellarity.tamaris.flavor_text",
+        "items.stellarity.developer",
+        "Stellarity"
+      ]
+    },
+    "call_of_the_void": {
+      "name_translate_key": "item.stellarity.call_of_the_void",
+      "name_color": "#AA00AA",
+      "lore_translate_keys": [
+        "item.stellarity.call_of_the_void.description.1",
+        "item.stellarity.call_of_the_void.description.2",
+        "Stellarity"
+      ]
+    },
+    "stellar_striker": {
+      "name_translate_key": "item.stellarity.stellar_striker",
+      "name_color": "#FFF593",
+      "lore_translate_keys": [
+        "item.stellarity.stellar_striker.description.1",
+        "item.stellarity.stellar_striker.description.2",
+        "item.stellarity.stellar_striker.description.3",
+        "items.stellarity.developer",
+        "Stellarity"
+      ]
+    },
+    "starless_scythe": {
+      "name_translate_key": "item.stellarity.starless_scythe",
+      "name_color": "#FFD70C",
+      "lore_translate_keys": [
+        "item.stellarity.starless_scythe.description.1",
+        "item.stellarity.starless_scythe.description.2",
+        "Stellarity"
+      ]
+    },
+    "sharanga": {
+      "name_translate_key": "item.stellarity.sharanga",
+      "name_color": "#FF6B6B",
+      "lore_translate_keys": [
+        "item.stellarity.sharanga.description.1",
+        "item.stellarity.sharanga.description.2",
+        "Stellarity"
+      ]
+    },
+    "prismember": {
+      "name_translate_key": "item.stellarity.prismember",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "item.stellarity.prismember.description.1",
+        "item.stellarity.prismember.description.2",
+        "item.stellarity.prismember.description.3",
+        "Stellarity"
+      ]
+    },
+    "the_end": {
+      "name_translate_key": "item.stellarity.spirit_dagger.2",
+      "name_color": "#68C6F5",
+      "lore_translate_keys": [
+        "item.stellarity.spirit_dagger.description.1",
+        "item.stellarity.spirit_dagger.description.2",
+        "item.stellarity.spirit_dagger.description.3",
+        "item.stellarity.spirit_dagger.description.4",
+        "item.stellarity.spirit_dagger.flavor_text",
+        "items.stellarity.developer",
+        "Stellarity"
+      ]
+    },
+    "the_beginning": {
+      "name_translate_key": "item.stellarity.spirit_dagger.1",
+      "name_color": "#F5DC68",
+      "lore_translate_keys": [
+        "item.stellarity.spirit_dagger.description.1",
+        "item.stellarity.spirit_dagger.description.2",
+        "item.stellarity.spirit_dagger.description.3",
+        "item.stellarity.spirit_dagger.description.4",
+        "item.stellarity.spirit_dagger.flavor_text",
+        "items.stellarity.developer",
+        "Stellarity"
+      ]
+    }
+  },
+  "food": {
+    "goosh": {
+      "name_translate_key": "item.stellarity.goosh",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "item.stellarity.goosh.description.1",
+        "item.stellarity.dish.goosh.description.2",
+        "item.stellarity.goosh.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "suspicious_stew_levitation": {
+      "name_translate_key": "item.minecraft.suspicious_stew",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "suspicious_stew_absorption": {
+      "name_translate_key": "item.minecraft.suspicious_stew",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "suspicious_stew_strength": {
+      "name_translate_key": "item.minecraft.suspicious_stew",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "fleshy_piranha": {
+      "name_translate_key": "item.stellarity.fleshy_piranha",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "flarefin_koi": {
+      "name_translate_key": "item.stellarity.flarefin_koi",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "overgrown_cod": {
+      "name_translate_key": "item.stellarity.overgrown_cod",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "frost_minnow": {
+      "name_translate_key": "item.stellarity.frost_minnow",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "ender_koi": {
+      "name_translate_key": "item.stellarity.ender_koi",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "bubblefish": {
+      "name_translate_key": "item.stellarity.bubblefish",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "amethyst_budfish": {
+      "name_translate_key": "item.stellarity.amethyst_budfish",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "crystal_heartfish": {
+      "name_translate_key": "item.stellarity.crystal_heartfish",
+      "name_color": "#FF55FF",
+      "lore_translate_keys": [
+        "item.stellarity.crystal_heartfish.description.1",
+        "item.stellarity.crystal_heartfish.description.2",
+        "item.stellarity.crystal_heartfish.description.3",
+        "Stellarity"
+      ]
+    },
+    "crimson_tigerfish": {
+      "name_translate_key": "item.stellarity.crimson_tigerfish",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "prismite": {
+      "name_translate_key": "item.stellarity.prismite",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "fried_chorus_fruit": {
+      "name_translate_key": "item.stellarity.fried_chorus_fruit",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "enderman_flesh": {
+      "name_translate_key": "item.stellarity.enderman_flesh",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "golden_chorus_fruit": {
+      "name_translate_key": "item.stellarity.golden_chorus_fruit",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "frozen_carpaccio": {
+      "name_translate_key": "item.stellarity.frozen_carpaccio",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "item.stellarity.frozen_carpaccio.usage",
+        "Stellarity"
+      ]
+    },
+    "chorus_stew": {
+      "name_translate_key": "item.stellarity.chorus_stew",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "candied_chorus_fruit": {
+      "name_translate_key": "item.stellarity.candied_chorus_fruit",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "effect.minecraft.speed",
+        "Stellarity"
+      ]
+    },
+    "pufferfish": {
+      "name_translate_key": "item.minecraft.pufferfish",
+      "name_color": "#FFB826",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "chorus_pie": {
+      "name_translate_key": "item.stellarity.chorus_pie",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "chorus_juice": {
+      "name_translate_key": "item.stellarity.chorus_juice",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "loaf_of_plenty": {
+      "name_translate_key": "item.stellarity.loaf_of_plenty",
+      "name_color": "#FF55FF",
+      "lore_translate_keys": []
+    },
+    "sushi": {
+      "name_translate_key": "item.stellarity.sushi",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "shulker_body": {
+      "name_translate_key": "item.stellarity.shulker_body",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "item.stellarity.shulker_body.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "pho": {
+      "name_translate_key": "item.stellarity.pho",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "effect.minecraft.absorption",
+        "effect.minecraft.strength",
+        "effect.minecraft.regeneration",
+        "Stellarity"
+      ]
+    },
+    "grilled_enderman_flesh": {
+      "name_translate_key": "item.stellarity.grilled_enderman_flesh",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "shepherds_pie": {
+      "name_translate_key": "item.stellarity.shepherds_pie",
+      "name_color": "#FF55FF",
+      "lore_translate_keys": [
+        "effect.minecraft.instant_health",
+        "potion.potency.2",
+        "effect.minecraft.regeneration",
+        "potion.potency.1",
+        "item.stellarity.shepherds_pie.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "prismatic_sushi": {
+      "name_translate_key": "item.stellarity.prismatic_sushi",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "effect.minecraft.health_boost",
+        "Stellarity"
+      ]
+    },
+    "potassifish": {
+      "name_translate_key": "item.stellarity.potassifish",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    }
+  },
+  "misc": {
+    "endonomicon": {
+      "name_translate_key": "item.stellarity.endonomicon",
+      "name_color": "#FF55FF",
+      "lore_translate_keys": [
+        "item.stellarity.endonomicon.flavor_text",
+        "book.byAuthor",
+        "book.generation.3",
+        "Stellarity"
+      ]
+    },
+    "flavors_of_the_void": {
+      "name_translate_key": "item.stellarity.flavors_of_the_void",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "item.stellarity.flavors_of_the_void.flavor_text.1",
+        "item.stellarity.flavors_of_the_void.flavor_text.2",
+        "Stellarity"
+      ]
+    },
+    "starlight_soot": {
+      "name_translate_key": "item.stellarity.starlight_soot",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "item.stellarity.starlight_soot.description.1",
+        "item.stellarity.starlight_soot.description.2",
+        "item.stellarity.starlight_soot.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "hallowed_ingot": {
+      "name_translate_key": "item.stellarity.hallowed_ingot",
+      "name_color": "#D9E3ED",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "gilded_purpur_key": {
+      "name_translate_key": "item.stellarity.gilded_purpur_key",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "item.stellarity.gilded_purpur_key.description",
+        "Stellarity"
+      ]
+    },
+    "sand_rune": {
+      "name_translate_key": "item.stellarity.sand_rune",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "enderite_smithing_template": {
+      "name_translate_key": "item.stellarity.enderite_smithing_template",
+      "name_color": "#FF55FF",
+      "lore_translate_keys": [
+        "item.stellarity.enderite_smithing_template.upgrade",
+        "item.minecraft.smithing_template.applies_to",
+        "item.stellarity.enderite_smithing_template.applies_to",
+        "item.stellarity.enderite_smithing_template.description",
+        "item.minecraft.smithing_template.ingredients",
+        "item.stellarity.enderite_smithing_template.ingredients",
+        "item.stellarity.enderite_smithing_template.ingredients",
+        "item.stellarity.enderite_smithing_template.ingredients",
+        "item.stellarity.enderite_smithing_template.ingredients",
+        "Stellarity"
+      ]
+    },
+    "chorus_plating": {
+      "name_translate_key": "item.stellarity.chorus_plating",
+      "name_color": "#A372C3",
+      "lore_translate_keys": [
+        "item.stellarity.chorus_plating.description",
+        "Stellarity"
+      ]
+    },
+    "floating_treasure": {
+      "name_translate_key": "filled_map.stellarity.floating_treasure",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "enderite_shard": {
+      "name_translate_key": "item.stellarity.enderite_shard",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "item.stellarity.enderite_shard.description",
+        "Stellarity"
+      ]
+    },
+    "empty_enchanted_book": {
+      "name_translate_key": "item.minecraft.enchanted_book",
+      "name_color": "#FF5555",
+      "lore_translate_keys": [
+        "item.stellarity.empty_enchanted_book.description.1",
+        "item.stellarity.empty_enchanted_book.description.2",
+        "item.stellarity.empty_enchanted_book.description.3",
+        "item.stellarity.empty_enchanted_book.description.4",
+        "item.stellarity.empty_enchanted_book.description.5",
+        "Stellarity"
+      ]
+    },
+    "ender_egg": {
+      "name_translate_key": "item.stellarity.ender_egg",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "precipice_stereo": {
+      "name_translate_key": "item.minecraft.music_disc_precipice",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "items.stellarity.music_discs.requires_addon",
+        "Stellarity"
+      ]
+    },
+    "purpur_key": {
+      "name_translate_key": "item.stellarity.purpur_key",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "item.stellarity.purpur_key.description",
+        "Stellarity"
+      ]
+    },
+    "winged_key": {
+      "name_translate_key": "item.stellarity.winged_key",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "item.stellarity.winged_key.description",
+        "Stellarity"
+      ]
+    },
+    "fires_of_hokkai": {
+      "name_translate_key": "item.minecraft.music_disc_otherside",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "items.stellarity.music_discs.requires_addon",
+        "Stellarity"
+      ]
+    },
+    "deviants_light_music_box": {
+      "name_translate_key": "item.minecraft.music_disc_otherside",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "items.stellarity.music_discs.requires_addon",
+        "Stellarity"
+      ]
+    },
+    "chapel_of_light": {
+      "name_translate_key": "filled_map.stellarity.chapel_of_light",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "village": {
+      "name_translate_key": "filled_map.stellarity.end_village",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    },
+    "end_city": {
+      "name_translate_key": "filled_map.stellarity.end_city",
+      "name_color": "#55FFFF",
+      "lore_translate_keys": [
+        "Stellarity"
+      ]
+    }
+  },
+  "blocks": {
+    "ender_grass_block": {
+      "name_translate_key": "block.stellarity.ender_grass_block",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "ender_dirt_path": {
+      "name_translate_key": "block.stellarity.ender_dirt_path",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "enderite_block": {
+      "name_translate_key": "block.stellarity.enderite_block",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "rooted_ender_dirt": {
+      "name_translate_key": "block.stellarity.rooted_ender_dirt",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "ender_dirt": {
+      "name_translate_key": "block.stellarity.ender_dirt",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "altar_of_the_sacred": {
+      "name_translate_key": "block.stellarity.altar_of_the_sacred",
+      "name_color": "#FFD655",
+      "lore_translate_keys": [
+        "block.stellarity.altar_of_the_sacred.description.1",
+        "block.stellarity.altar_of_the_sacred.description.2",
+        "block.stellarity.altar_of_the_sacred.description.3",
+        "block.stellarity.altar_of_the_sacred.description.4",
+        "block.stellarity.altar_of_the_sacred.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "ashen_froglight": {
+      "name_translate_key": "block.stellarity.ashen_froglight",
+      "name_color": "#FFFFFF",
+      "lore_translate_keys": []
+    },
+    "phantom_item_frame": {
+      "name_translate_key": "item.stellarity.phantom_item_frame",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "item.stellarity.phantom_item_frame.description",
+        "Stellarity"
+      ]
+    },
+    "altar_of_the_accursed": {
+      "name_translate_key": "block.stellarity.altar_of_the_accursed",
+      "name_color": "#FFD655",
+      "lore_translate_keys": []
+    },
+    "pixie_in_a_jar_yellow": {
+      "name_translate_key": "block.stellarity.pixie_in_a_jar",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "color.minecraft.yellow"
+      ]
+    },
+    "pixie_in_a_jar_magenta": {
+      "name_translate_key": "block.stellarity.pixie_in_a_jar",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "color.minecraft.magenta"
+      ]
+    },
+    "pixie_in_a_jar_lime": {
+      "name_translate_key": "block.stellarity.pixie_in_a_jar",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "color.minecraft.lime"
+      ]
+    },
+    "pixie_in_a_jar_light_blue": {
+      "name_translate_key": "block.stellarity.pixie_in_a_jar",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "color.minecraft.light_blue"
+      ]
+    },
+    "pixie_in_a_jar_radiant": {
+      "name_translate_key": "block.stellarity.pixie_in_a_jar",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "Radiant"
+      ]
+    }
+  },
+  "armor": {
+    "reinforced_horse_armor": {
+      "name_translate_key": "item.stellarity.reinforced_horse_armor",
+      "name_color": "#976A97",
+      "lore_translate_keys": []
+    },
+    "phantom_wings": {
+      "name_translate_key": "item.stellarity.phantom_wings",
+      "name_color": "#FFFF55",
+      "lore_translate_keys": [
+        "item.stellarity.phantom_wings.description.1",
+        "Stellarity"
+      ]
+    },
+    "hallowed_leggings": {
+      "name_translate_key": "item.stellarity.hallowed_leggings",
+      "name_color": "#FFDD52",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.hallowed_armor.bonus.1",
+        "items.stellarity.hallowed_armor.bonus.2",
+        "Stellarity"
+      ]
+    },
+    "hallowed_chestplate": {
+      "name_translate_key": "item.stellarity.hallowed_chestplate",
+      "name_color": "#FFDD52",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.hallowed_armor.bonus.1",
+        "items.stellarity.hallowed_armor.bonus.2",
+        "Stellarity"
+      ]
+    },
+    "shulker_helmet": {
+      "name_translate_key": "item.stellarity.shulker_helmet",
+      "name_color": "#976A97",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.shulker_armor.bonus.1",
+        "items.stellarity.shulker_armor.bonus.2",
+        "Stellarity"
+      ]
+    },
+    "hallowed_boots": {
+      "name_translate_key": "item.stellarity.hallowed_boots",
+      "name_color": "#FFDD52",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.hallowed_armor.bonus.1",
+        "items.stellarity.hallowed_armor.bonus.2",
+        "Stellarity"
+      ]
+    },
+    "hallowed_helmet": {
+      "name_translate_key": "item.stellarity.hallowed_helmet",
+      "name_color": "#FFDD52",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.hallowed_armor.bonus.1",
+        "items.stellarity.hallowed_armor.bonus.2",
+        "Stellarity"
+      ]
+    },
+    "champion_chestplate": {
+      "name_translate_key": "item.stellarity.champion_chestplate",
+      "name_color": "#A87CC4",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.champion_armor.bonus.1",
+        "items.stellarity.champion_armor.bonus.2",
+        "items.stellarity.champion_armor.bonus.3",
+        "Stellarity"
+      ]
+    },
+    "champion_helmet": {
+      "name_translate_key": "item.stellarity.champion_helmet",
+      "name_color": "#A87CC4",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.champion_armor.bonus.1",
+        "items.stellarity.champion_armor.bonus.2",
+        "items.stellarity.champion_armor.bonus.3",
+        "Stellarity"
+      ]
+    },
+    "champion_boots": {
+      "name_translate_key": "item.stellarity.champion_boots",
+      "name_color": "#A87CC4",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.champion_armor.bonus.1",
+        "items.stellarity.champion_armor.bonus.2",
+        "items.stellarity.champion_armor.bonus.3",
+        "Stellarity"
+      ]
+    },
+    "champion_leggings": {
+      "name_translate_key": "item.stellarity.champion_leggings",
+      "name_color": "#A87CC4",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.champion_armor.bonus.1",
+        "items.stellarity.champion_armor.bonus.2",
+        "items.stellarity.champion_armor.bonus.3",
+        "Stellarity"
+      ]
+    },
+    "floral_boots": {
+      "name_translate_key": "item.stellarity.floral_boots",
+      "name_color": "#FC92D3",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.floral_armor.bonus.1",
+        "items.stellarity.floral_armor.bonus.2",
+        "items.stellarity.floral_armor.bonus.3",
+        "Stellarity"
+      ]
+    },
+    "floral_leggings": {
+      "name_translate_key": "item.stellarity.floral_leggings",
+      "name_color": "#FC92D3",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.floral_armor.bonus.1",
+        "items.stellarity.floral_armor.bonus.2",
+        "items.stellarity.floral_armor.bonus.3",
+        "items.stellarity.armor.piece_bonus",
+        "item.stellarity.floral_leggings.bonus",
+        "Stellarity"
+      ]
+    },
+    "empress_wings": {
+      "name_translate_key": "item.stellarity.empress_wings",
+      "name_color": "#FF76D0",
+      "lore_translate_keys": [
+        "item.stellarity.empress_wings.description.1",
+        "item.stellarity.empress_wings.description.2",
+        "item.stellarity.empress_wings.flavor_text",
+        "Stellarity"
+      ]
+    },
+    "dragon_wings": {
+      "name_translate_key": "item.stellarity.dragon_wings",
+      "name_color": "#9936D6",
+      "lore_translate_keys": [
+        "item.stellarity.dragon_wings.description.1",
+        "item.stellarity.dragon_wings.description.2",
+        "Stellarity"
+      ]
+    },
+    "floral_chestplate": {
+      "name_translate_key": "item.stellarity.floral_chestplate",
+      "name_color": "#FC92D3",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.floral_armor.bonus.1",
+        "items.stellarity.floral_armor.bonus.2",
+        "items.stellarity.floral_armor.bonus.3",
+        "items.stellarity.armor.piece_bonus",
+        "item.stellarity.floral_chestplate.bonus",
+        "Stellarity"
+      ]
+    },
+    "shulker_leggings": {
+      "name_translate_key": "item.stellarity.shulker_leggings",
+      "name_color": "#976A97",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.shulker_armor.bonus.1",
+        "items.stellarity.shulker_armor.bonus.2",
+        "items.stellarity.armor.piece_bonus",
+        "item.stellarity.shulker_leggings.bonus",
+        "Stellarity"
+      ]
+    },
+    "shulker_chestplate": {
+      "name_translate_key": "item.stellarity.shulker_chestplate",
+      "name_color": "#976A97",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.shulker_armor.bonus.1",
+        "items.stellarity.shulker_armor.bonus.2",
+        "items.stellarity.armor.piece_bonus",
+        "item.stellarity.shulker_chestplate.bonus",
+        "Stellarity"
+      ]
+    },
+    "floral_helmet": {
+      "name_translate_key": "item.stellarity.floral_helmet",
+      "name_color": "#FC92D3",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.floral_armor.bonus.1",
+        "items.stellarity.floral_armor.bonus.2",
+        "items.stellarity.floral_armor.bonus.3",
+        "Stellarity"
+      ]
+    },
+    "shulker_boots": {
+      "name_translate_key": "item.stellarity.shulker_boots",
+      "name_color": "#976A97",
+      "lore_translate_keys": [
+        "items.stellarity.armor.set_bonus",
+        "items.stellarity.shulker_armor.bonus.1",
+        "items.stellarity.shulker_armor.bonus.2",
+        "Stellarity"
+      ]
+    }
+  }
+}

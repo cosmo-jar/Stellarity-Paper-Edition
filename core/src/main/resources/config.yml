@@ -1,0 +1,107 @@
+# ----------------------------------------------
+# Stellarity ~ Paper Edition - Main Configuration
+# ----------------------------------------------
+
+# Enables verbose debug logging in the plugin console.
+debug-log: false
+
+features:
+  # Enables automatic compatibility with the Nullscape world generator.
+  # To use this feature, place the original Nullscape datapack into your world/datapacks folder.
+  # If true, the plugin exports the compatibility datapack to datapacks/zzz_stellarity_x_nullscape.zip.
+  # If false, the compatibility datapack is disabled.
+  nullscape-compatibility: false
+
+  # Enables replacing and generating custom Stellarity structures.
+  # Example: true - custom structures are generated, false - vanilla structures are used.
+  # Highly recommended to keep enabled.
+  stellarity-ender-structures-enabled: true
+
+  # Enables saving players from falling into the End void using a Totem of Undying.
+  void-totem-enabled: true
+
+  # Enables returning Loyalty tridents if they fall into the void in the End.
+  trident-return-enabled: true
+
+  # Enables the Void Fishing mechanic.
+  void-fishing-enabled: true
+
+  # If false, loot can be caught across the entire End with balanced general chances.
+  # If true, loot distribution strictly depends on specific Stellarity biomes.
+  void-fishing-biome-allocation: false
+
+  # Enables cauldron crafting recipes.
+  cauldron-crafting-enabled: true
+
+  # Enables consecration water transmutations.
+  consecration-enabled: true
+
+  # Enables Altar of the Accursed mechanics.
+  accursed-altar-enabled: true
+
+  # Whether to display descriptive item lore.
+  # Example: true - show descriptions, false - hide them.
+  # Even when set to false, descriptions can still be viewed via "/stellarity item info".
+  show-description-lore: true
+
+# -------------
+# Boss Settings
+# -------------
+boss:
+  # Empress of Light attributes
+  empress_of_light:
+    # Maximum boss health depending on variant
+    max-health-night: 750.0
+    max-health-daytime: 800.0
+    max-health-radiant: 850.0
+    # Base attack damage
+    base-damage: 10.0
+    # Base movement speed
+    speed: 0.15
+
+  # Shulking (Shulker King) attributes
+  shulking:
+    # Maximum boss health
+    max-health: 900.0
+    # Base attack damage
+    base-damage: 8.0
+    # Number of rods in the protective shield
+    shield-rods-count: 8
+    # Health points per shield rod
+    shield-rod-health: 50.0
+
+  # Ender Dragon attributes
+  ender_dragon:
+    max-health: 300.0
+
+# -------------------------------
+# End City Trial Spawner Settings
+# -------------------------------
+trial_spawner:
+  end_city:
+    # Drop chance for each piece of equipped mob armor
+    armor-drop-chance: 0.085
+    # Armor drop chance in Ominous trial spawners and ships
+    ominous-armor-drop-chance: 0.10
+    # Drop chance for weapons held by mobs
+    weapon-drop-chance: 0.085
+    # Weapon drop chance in Ominous trial spawners and ships
+    ominous-weapon-drop-chance: 0.10
+
+localization:
+  # Plugin message locale. The plugin loads the file messages_<LOCALE>.yml.
+  # Example: "RU" -> messages_RU.yml, "EN" -> messages_EN.yml.
+  default-locale: "RU"
+
+  # Fallback locale used if the default-locale file is missing.
+  # Example: default-locale: "EN", fallback-locale: "RU".
+  fallback-locale: "RU"
+
+# -----------------------------------------------------------------
+# Optional ProtocolLib network interceptor for protecting item lore
+# -----------------------------------------------------------------
+# Enables a fallback outgoing packet interceptor via ProtocolLib
+# to enforce restoration of TranslatableComponent item lore
+# if a third-party plugin corrupts Stellarity item translations.
+# Default: false (protection from the ECO plugin ecosystem works independently).
+fix-lore-translate-protocol-lib: false

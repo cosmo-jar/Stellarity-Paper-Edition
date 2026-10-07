@@ -1,0 +1,43 @@
+# --------------------------------------------
+# Stellarity ~ Paper Edition - weapon settings
+# --------------------------------------------
+
+book_of_conveyance:
+  enabled: true
+  cooldown-seconds: 7.0
+  projectile-speed: 1.1
+  max-distance: 25.0
+
+book_of_jinx:
+  enabled: true
+  cooldown-seconds: 7.0
+
+book_of_light:
+  enabled: true
+  cooldown-seconds: 7.0
+  beacon-duration-seconds: 20
+
+book_of_obstruct:
+  enabled: true
+  cooldown-seconds: 15.0
+  wall-duration-seconds: 10
+
+book_of_return:
+  enabled: true
+  cooldown-seconds: 7.0
+  channeling-duration-seconds: 10
+
+book_of_updraft:
+  enabled: true
+  cooldown-seconds: 7.0
+
+# Unique weapon settings
+dragonblade:
+  # If true, the shockwave and punches deal True Damage (ignores armor and Resistance)
+  # If false, damage is calculated using the classic vanilla formula (reduced by armor)
+  true-damage-enabled: true
+
+daggers:
+  # If true, The Beginning and Spirit Dagger (the end) partially penetrate armor (30% for one, 60% when dual-wielded)
+  # If false, they deal classic vanilla damage
+  armor-penetration-enabled: true

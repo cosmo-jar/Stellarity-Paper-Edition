@@ -1,0 +1,9 @@
+{
+  "feature": "stellarity:prismarine_forest/grass",
+  "placement": [
+    {
+      "type": "count_on_every_layer",
+      "count": 6
+    }
+  ]
+}

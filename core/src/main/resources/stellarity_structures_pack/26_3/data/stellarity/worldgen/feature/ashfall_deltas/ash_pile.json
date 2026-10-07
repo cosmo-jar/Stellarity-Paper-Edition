@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:block_pile",
+  "state_provider": {
+    "type": "minecraft:simple",
+    "state": {
+      "id": "minecraft:light_gray_concrete_powder"
+    }
+  }
+}

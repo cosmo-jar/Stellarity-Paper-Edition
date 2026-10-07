@@ -1,0 +1,109 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:ender_pearl",
+              "condition": {
+                "predicate": {
+                  "dimension": "minecraft:the_nether"
+                },
+                "type": "minecraft:location_check"
+              }
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:chorus_fruit"
+            }
+          ]
+        }
+      ],
+      "modifier": [
+        {
+          "type": "minecraft:set_count",
+          "count": {
+            "min": 0,
+            "max": 1,
+            "type": "minecraft:uniform"
+          }
+        },
+        {
+          "type": "minecraft:enchanted_count_increase",
+          "enchantment": "minecraft:looting",
+          "count": {
+            "min": 0,
+            "max": 1,
+            "type": "minecraft:uniform"
+          }
+        }
+      ],
+      "condition": {
+        "term": {
+          "predicate": {
+            "dimension": "minecraft:the_end"
+          },
+          "type": "minecraft:location_check"
+        },
+        "type": "minecraft:inverted"
+      }
+    },
+    {
+      "rolls": {
+        "min": 0,
+        "max": 1,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:ender_eye",
+              "condition": {
+                "chance": 0.2,
+                "type": "minecraft:random_chance"
+              }
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:ender_pearl",
+              "modifier": [
+                {
+                  "type": "minecraft:set_count",
+                  "count": {
+                    "min": 0,
+                    "max": 1,
+                    "type": "minecraft:uniform"
+                  }
+                },
+                {
+                  "type": "minecraft:enchanted_count_increase",
+                  "enchantment": "minecraft:looting",
+                  "count": {
+                    "min": 0,
+                    "max": 1,
+                    "type": "minecraft:uniform"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "condition": {
+        "predicate": {
+          "dimension": "minecraft:the_end"
+        },
+        "type": "minecraft:location_check"
+      }
+    }
+  ]
+}

@@ -1,0 +1,638 @@
+# ------------------------------------------------------------
+# Stellarity Paper - plugin messages (EN)
+# ------------------------------------------------------------
+# To add your localization, create a messages_<LOCALE>.yml.
+# The keys in different localizations must match.
+
+log:
+  plugin:
+    enabled: "Stellarity ~ Paper Edition enabled"
+    disabled: "Stellarity ~ Paper Edition disabled"
+
+command:
+  common:
+    only-player: "<red>Only players can use this command.</red>"
+    no-permission: "<red>You do not have permission to use this command!</red>"
+
+  reload:
+    success: "<red>ѕᴛᴇʟʟᴀʀɪᴛʏ</red> <gray>|</gray> <green>Configs and messages were reloaded.</green>"
+
+  uninstall:
+    start: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gray>Safely initiating server cleanup procedure.</gray>"
+    datapacks-disabled: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#a7f3d0>✔ Disabling datapacks...</#a7f3d0>"
+    datapacks-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Error disabling datapacks: %error%</#f87171>"
+    saved-chunks: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#67e8f9>✦ Active in-memory chunks and worlds committed to disk.</#67e8f9>"
+    save-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Error saving worlds: %error%</#f87171>"
+    scan-found: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gray>Discovered for purge:</gray> <#e879f9>%leveldats% level.dat</#e879f9> <gray>and</gray> <#818cf8>%mcas% region (MCA) file(s)</#818cf8><gray>...</gray>"
+    scan-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Error scanning world directories: %error%</#f87171>"
+    mca-progress: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gradient:#818cf8:#c084fc>Purging world files: [%current%/%total% MCA] (%percent%%)</gradient> <dark_gray>•</dark_gray> <#f472b6>Chunks: %chunks%</#f472b6>"
+    mca-file-cleaned: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gray>Region</gray> <#818cf8>%file%</#818cf8><gray>:</gray> <#a7f3d0>cleaned chunks:</#a7f3d0> <#f472b6>%chunks%</#f472b6>"
+    mca-summary: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gradient:#4ade80:#2dd4bf>Deep cleanup complete:</gradient> <gray>processed</gray> <#818cf8>%files%</#818cf8> <gray>region file(s), reverted</gray> <#f472b6>%chunks%</#f472b6> <gray>chunks to vanilla.</gray>"
+    hook-success: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gradient:#4ade80:#2dd4bf>Server purged of custom generators, structures, and biomes.</gradient>"
+    stop-hint: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gradient:#fbbf24:#f59e0b><bold>To finalize farewell and commit changes, stop the server:</bold></gradient> <click:suggest_command:'/stop'><hover:show_text:'<gray>Click to insert /stop into chat</gray>'><#fbbf24><bold>[ /stop ]</bold></#fbbf24></hover></click>"
+    hook-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Failed to register uninstallation hook: %error%</#f87171>"
+    console-recheck: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <gradient:#818cf8:#c084fc>Final deep verification and cleanup of worlds and chunks before server shutdown...</gradient>"
+    console-finished: "<gradient:#818cf8:#c084fc><bold>              ✦ The End restored to vanilla state ✦</bold></gradient>"
+    console-jar-hint: "<gradient:#fbbf24:#f472b6><bold>              ✦ All Stellarity traces deleted. Plugin self-deleted from server ✦</bold></gradient>"
+    jar-deleted: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#a7f3d0>Plugin file</#a7f3d0> <#818cf8>(%file%)</#818cf8> <#a7f3d0>automatically deleted from server.</#a7f3d0>"
+    jar-delete-exit: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#fbbf24>File (%file%) is locked by system and will be deleted immediately upon server process exit (deleteOnExit).</#fbbf24>"
+    datapack-deleted: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#a7f3d0>Datapack</#a7f3d0> <#818cf8>(%file%)</#818cf8> <#a7f3d0>automatically deleted from server.</#a7f3d0>"
+    datapack-delete-exit: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#fbbf24>Datapack (%file%) is locked by process and will be deleted immediately upon server stop.</#fbbf24>"
+    level-dat-cleaned: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#a7f3d0>level.dat (%world%) cleaned from custom generators.</#a7f3d0>"
+    level-dat-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Error resetting %file%: %error%</#f87171>"
+    mca-locked: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#fbbf24>⚠ Region file %file% is locked by server process. Deferred until shutdown.</#fbbf24>"
+    mca-error: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#f87171>✖ Error processing region %file%: %error%</#f87171>"
+    end-dragonfight-reset: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#67e8f9>✦ DragonFight data in %file% reset for automatic vanilla Portal and Dragon spawn.</#67e8f9>"
+    end-island-reset: "<gradient:#c084fc:#9333ea><bold>✦ Stellarity</bold></gradient> <dark_gray>»</dark_gray> <#a7f3d0>Main End island in %file% reset to vanilla generation (chunks removed: %chunks%).</#a7f3d0>"
+
+  stellarity:
+    usage-main: "<yellow>Usage: /stellarity <reload|give|enchant|item></yellow>"
+    usage-give: "<yellow>Usage: /stellarity give <player> <category> <item></yellow>"
+    usage-enchant: "<yellow>Usage: /stellarity enchant <list|apply|remove|clear> ...</yellow>"
+    unknown-subcommand: "<red>Unknown subcommand: %subcommand%</red>"
+
+  item:
+    usage: "<yellow>Usage: /stellarity item info</yellow>"
+    no-custom-item: "<red>You must hold a Stellarity item in your main hand!</red>"
+    gui-title: "Item Information"
+    gui-format: "<gray><!italic>%line%</gray>"
+    book-title: "<light_purple>Custom Enchantments</light_purple>"
+    no-enchants-lore: "<gray>This item has no custom Stellarity enchantments.</gray>"
+
+  give:
+    player-not-found: "<red>Player not found: %player%</red>"
+    unknown-category: "<red>Unknown category: %category%</red>"
+    unknown-item-in-category: "<red>Category '%category%' has no item '%item%'.</red>"
+    success: "<green>Given %category%/%item% to %player%.</green>"
+    level-suffix: " (level %level%)"
+
+  enchant:
+    list: "<gray>Available enchants: %enchants%</gray>"
+    unknown-enchant: "<red>Unknown enchant: %enchant%</red>"
+    invalid-level: "<red>Invalid enchant level.</red>"
+    incompatible-item: "<red>This enchant cannot be applied to the item in main hand: %enchant%</red>"
+    not-applied: "<yellow>Enchant is not present on the item: %enchant%</yellow>"
+    apply-success: "<green>Applied %enchant% %level% to %player%'s main hand item.</green>"
+    remove-success: "<green>Removed %enchant% from %player%'s main hand item.</green>"
+    clear-success: "<green>Cleared all Stellarity enchants from %player%'s main hand item.</green>"
+
+enchants:
+  format:
+    line: "<gray><!italic>%name%%level%</gray>"
+
+  entries:
+    armor_add_value_chest:
+      name: "Armor (chestplate)"
+      description: "<gray>Adds armor points when wearing a chestplate.</gray>"
+      levels:
+        1: "Armor: +3"
+        2: "Armor: +8"
+    armor_add_value_feet:
+      name: "Armor (boots)"
+      description: "<gray>Adds armor points when wearing boots.</gray>"
+      levels:
+        1: "Armor: +3"
+    armor_add_value_head:
+      name: "Armor (helmet)"
+      description: "<gray>Adds armor points when wearing a helmet.</gray>"
+      levels:
+        1: "Armor: +3"
+    armor_add_value_legs:
+      name: "Armor (leggings)"
+      description: "<gray>Adds armor points when wearing leggings.</gray>"
+      levels:
+        1: "Armor: +6"
+    armor_toughness_add_value_chest:
+      name: "Armor Toughness (chestplate)"
+      description: "<gray>Increases armor toughness when wearing a chestplate.</gray>"
+      levels:
+        1: "Armor Toughness: +2"
+        2: "Armor Toughness: +3"
+        3: "Armor Toughness: +4"
+    armor_toughness_add_value_feet:
+      name: "Armor Toughness (boots)"
+      description: "<gray>Increases armor toughness when wearing boots.</gray>"
+      levels:
+        1: "Armor Toughness: +2"
+        2: "Armor Toughness: +3"
+        3: "Armor Toughness: +4"
+    armor_toughness_add_value_head:
+      name: "Armor Toughness (helmet)"
+      description: "<gray>Increases armor toughness when wearing a helmet.</gray>"
+      levels:
+        1: "Armor Toughness: +2"
+        2: "Armor Toughness: +3"
+        3: "Armor Toughness: +4"
+    armor_toughness_add_value_legs:
+      name: "Armor Toughness (leggings)"
+      description: "<gray>Increases armor toughness when wearing leggings.</gray>"
+      levels:
+        1: "Armor Toughness: +2"
+        2: "Armor Toughness: +3"
+        3: "Armor Toughness: +4"
+    attack_damage_add_multiplied_base_chest:
+      name: "Attack Damage (chestplate)"
+      description: "<gray>Changes base damage percentage when wearing a chestplate.</gray>"
+      levels:
+        1: "Attack Damage: +2.5%"
+        2: "Attack Damage: -5%"
+    attack_damage_add_multiplied_base_feet:
+      name: "Attack Damage (boots)"
+      description: "<gray>Changes base damage percentage when wearing boots.</gray>"
+      levels:
+        1: "Attack Damage: +2.5%"
+        2: "Attack Damage: -5%"
+    attack_damage_add_multiplied_base_head:
+      name: "Attack Damage (helmet)"
+      description: "<gray>Changes base damage percentage when wearing a helmet.</gray>"
+      levels:
+        1: "Attack Damage: +2.5%"
+        2: "Attack Damage: -5%"
+    attack_damage_add_multiplied_base_legs:
+      name: "Attack Damage (leggings)"
+      description: "<gray>Changes base damage percentage when wearing leggings.</gray>"
+      levels:
+        1: "Attack Damage: +2.5%"
+        2: "Attack Damage: -5%"
+    attack_damage_add_multiplied_total_hand:
+      name: "Attack Damage (hand)"
+      description: "<gray>Increases total damage dealt when holding the item in hand.</gray>"
+      levels:
+        1: "Attack Damage: +5%"
+    attack_damage_add_value_mainhand:
+      name: "Attack Damage (main hand)"
+      description: "<gray>Increases base weapon damage in the main hand.</gray>"
+      levels:
+        1: "Melee Damage: +0.5"
+        2: "Melee Damage: +3"
+        3: "Melee Damage: +4"
+        4: "Melee Damage: +4.5"
+        5: "Melee Damage: +5"
+        6: "Melee Damage: +5.5"
+        7: "Melee Damage: +6"
+        8: "Melee Damage: +7"
+        9: "Melee Damage: +7.5"
+        10: "Melee Damage: +8"
+        11: "Melee Damage: +9"
+        12: "Melee Damage: +9.5"
+        13: "Melee Damage: +14"
+        14: "Melee Damage: -2"
+    attack_damage_add_value_offhand:
+      name: "Attack Damage (off hand)"
+      description: "<gray>Adds surprise attack damage in the offhand.</gray>"
+      levels:
+        1: "Offhand Attack Damage: +1"
+    attack_speed_add_multiplied_base_chest:
+      name: "Attack Speed (chestplate)"
+      description: "<gray>Increases base attack speed when wearing a chestplate.</gray>"
+      levels:
+        1: "Attack Speed: +15%"
+    attack_speed_add_multiplied_total_mainhand:
+      name: "Attack Speed (main hand)"
+      description: "<gray>Increases overall attack speed in the main hand.</gray>"
+      levels:
+        1: "Attack Speed: +10%"
+    attack_speed_add_value_mainhand:
+      name: "Attack Speed (main hand)"
+      description: "<gray>Significantly increases attack speed in the main hand (Hurricane Swings).</gray>"
+      levels:
+        1: "Hurricane Swings"
+    attack_speed_add_multiplied_total_chest:
+      name: "Attack Speed (chestplate)"
+      description: "<gray>Slightly reduces overall attack speed when wearing a chestplate.</gray>"
+      levels:
+        1: "Attack Speed: -3%"
+    attack_speed_add_multiplied_total_feet:
+      name: "Attack Speed (boots)"
+      description: "<gray>Slightly reduces overall attack speed when wearing boots.</gray>"
+      levels:
+        1: "Attack Speed: -3%"
+    attack_speed_add_multiplied_total_head:
+      name: "Attack Speed (helmet)"
+      description: "<gray>Slightly reduces overall attack speed when wearing a helmet.</gray>"
+      levels:
+        1: "Attack Speed: -3%"
+    attack_speed_add_multiplied_total_legs:
+      name: "Attack Speed (leggings)"
+      description: "<gray>Slightly reduces overall attack speed when wearing leggings.</gray>"
+      levels:
+        1: "Attack Speed: -3%"
+    attack_speed_bonus_mainhand:
+      name: "Attack Speed (main hand)"
+      description: "<gray>Adds a flat attack speed bonus in the main hand.</gray>"
+      levels:
+        1: "Attack Speed: +0.4"
+    block_break_speed_add_multiplied_total_mainhand:
+      name: "Block Break Speed (main hand)"
+      description: "<gray>Increases overall block breaking speed in the main hand.</gray>"
+      levels:
+        1: "Mining Speed: +20%"
+    block_interaction_range_add_value_hand:
+      name: "Block Interaction Range (hand)"
+      description: "<gray>Increases block interaction range.</gray>"
+      levels:
+        1: "Build Range: +3 blocks"
+    entity_interaction_range_add_value_mainhand:
+      name: "Entity Interaction Range (main hand)"
+      description: "<gray>Changes entity attack range in the main hand.</gray>"
+      levels:
+        1: "Attack Reach: -0.3 blocks"
+        2: "Attack Reach: +0.3 blocks"
+        3: "Attack Reach: +0.5 blocks"
+    fall_damage_multiplier_add_multiplied_total_chest:
+      name: "Fall Damage Multiplier (chestplate)"
+      description: "<gray>Reduces fall damage taken when wearing a chestplate.</gray>"
+      levels:
+        1: "Fall Damage: -25%"
+    gravity_add_multiplied_total_chest:
+      name: "Gravity (chestplate)"
+      description: "<gray>Changes gravity affecting the player when wearing a chestplate.</gray>"
+      levels:
+        1: "Gravity: -35%"
+        2: "Gravity: +65%"
+    jump_strength_add_multiplied_base_legs:
+      name: "Jump Strength (leggings)"
+      description: "<gray>Increases jump strength when wearing leggings.</gray>"
+      levels:
+        1: "Jump Strength: +15%"
+    knockback_resistance_add_value_chest:
+      name: "Knockback Resistance (chestplate)"
+      description: "<gray>Increases knockback resistance when wearing a chestplate.</gray>"
+      levels:
+        1: "Knockback Resistance: +8%"
+        2: "Knockback Resistance: +10%"
+        3: "Knockback Resistance: +20%"
+    knockback_resistance_add_value_feet:
+      name: "Knockback Resistance (boots)"
+      description: "<gray>Increases knockback resistance when wearing boots.</gray>"
+      levels:
+        1: "Knockback Resistance: +8%"
+        2: "Knockback Resistance: +10%"
+        3: "Knockback Resistance: +20%"
+    knockback_resistance_add_value_head:
+      name: "Knockback Resistance (helmet)"
+      description: "<gray>Increases knockback resistance when wearing a helmet.</gray>"
+      levels:
+        1: "Knockback Resistance: +8%"
+        2: "Knockback Resistance: +10%"
+        3: "Knockback Resistance: +20%"
+    knockback_resistance_add_value_legs:
+      name: "Knockback Resistance (leggings)"
+      description: "<gray>Increases knockback resistance when wearing leggings.</gray>"
+      levels:
+        1: "Knockback Resistance: +8%"
+        2: "Knockback Resistance: +10%"
+        3: "Knockback Resistance: +20%"
+    luck_add_multiplied_base_offhand:
+      name: "Luck +10% (off hand)"
+      description: "<gray>Increases player luck by 10% when held in the offhand.</gray>"
+    luck_add_value_offhand:
+      name: "Luck +1 (off hand)"
+      description: "<gray>Adds +1 to player luck when held in the offhand.</gray>"
+    movement_speed_add_multiplied_base_chest:
+      name: "Movement Speed (chestplate)"
+      description: "<gray>Changes base movement speed when wearing a chestplate.</gray>"
+      levels:
+        1: "Movement Speed: -8%"
+        2: "Movement Speed: +10%"
+    movement_speed_add_multiplied_base_body:
+      name: "Movement Speed (horse)"
+      description: "<gray>Increases horse movement speed when riding.</gray>"
+      levels:
+        1: "Horse Speed: +30%"
+    movement_speed_add_multiplied_base_feet:
+      name: "Movement Speed (boots)"
+      description: "<gray>Increases base movement speed when wearing boots.</gray>"
+      levels:
+        1: "Movement Speed: +7%"
+        2: "Movement Speed: +10%"
+    movement_speed_add_multiplied_total_chest:
+      name: "Movement Speed (chestplate)"
+      description: "<gray>Slightly changes total movement speed when wearing a chestplate.</gray>"
+      levels:
+        1: "Movement Speed: -3%"
+    movement_speed_add_multiplied_total_feet:
+      name: "Movement Speed (boots)"
+      description: "<gray>Slightly reduces total movement speed when wearing boots.</gray>"
+      levels:
+        1: "Movement Speed: -3%"
+    movement_speed_add_multiplied_total_head:
+      name: "Movement Speed (helmet)"
+      description: "<gray>Slightly reduces total movement speed when wearing a helmet.</gray>"
+      levels:
+        1: "Movement Speed: -3%"
+    movement_speed_add_multiplied_total_legs:
+      name: "Movement Speed (leggings)"
+      description: "<gray>Slightly reduces total movement speed when wearing leggings.</gray>"
+      levels:
+        1: "Movement Speed: -3%"
+    movement_speed_add_multiplied_total_mainhand:
+      name: "Movement Speed (main hand)"
+      description: "<gray>Increases movement speed when held in the main hand.</gray>"
+      levels:
+        1: "Movement Speed: +15%"
+    movement_speed_add_multiplied_total_offhand:
+      name: "Movement Speed (off hand)"
+      description: "<gray>Increases movement speed when held in the offhand.</gray>"
+      levels:
+        1: "Movement Speed: +5%"
+    safe_fall_distance_add_value_chest:
+      name: "Safe Fall Distance (chestplate)"
+      description: "<gray>Increases safe fall distance when wearing a chestplate.</gray>"
+      levels:
+        1: "Safe Fall: +1 block"
+        2: "Safe Fall: +4 blocks"
+    safe_fall_distance_add_value_head:
+      name: "Safe Fall Distance (helmet)"
+      description: "<gray>Increases safe fall distance when wearing a helmet.</gray>"
+      levels:
+        1: "Safe Fall: +1 block"
+    sneaking_speed_add_multiplied_base_legs:
+      name: "Sneaking Speed (leggings)"
+      description: "<gray>Increases sneaking speed when wearing leggings.</gray>"
+      levels:
+        1: "Sneaking Speed: +25%"
+    step_height_add_value_feet:
+      name: "Step Height (boots)"
+      description: "<gray>Allows auto-stepping onto blocks up to 1 block high when wearing boots.</gray>"
+      levels:
+        1: "Step Height: +0.5 blocks"
+    sweeping_damage_ratio_add_value_legs:
+      name: "Sweeping Damage Ratio (leggings)"
+      description: "<gray>Increases sweep attack damage of swords when wearing leggings.</gray>"
+      levels:
+        1: "Sweeping Damage: +15%"
+    sweeping_damage_ratio_add_value_mainhand:
+      name: "Sweeping Damage Ratio (main hand)"
+      description: "<gray>Increases sweep attack damage in the main hand.</gray>"
+      levels:
+        1: "Sweeping Damage: +50%"
+        2: "Sweeping Damage: +60%"
+    critical_strike:
+      name: "<gradient:#7F3FFF:#B85499>Critical Strike</gradient>"
+      description: "<gray>Increases critical strike damage.</gray>"
+      levels-description:
+        1: "<gray>Deals <green>1.25x</green> critical strike damage.</gray>"
+        2: "<gray>Deals <green>1.5x</green> critical strike damage.</gray>"
+        3: "<gray>Deals <green>2x</green> critical strike damage.</gray>"
+    levitation_shot:
+      name: "<gradient:#7F3FFF:#B85499>Levitation Shot</gradient>"
+      description: "<gray>Inflicts levitation on hit targets.</gray>"
+      levels-description:
+        1: "<gray>Inflicts levitation for <green>1 second</green>.</gray>"
+        2: "<gray>Inflicts levitation for <green>1.5 seconds</green>.</gray>"
+        3: "<gray>Inflicts levitation for <green>2 seconds</green>.</gray>"
+    plated:
+      name: "<gradient:#7F3FFF:#B85499>Plated</gradient>"
+      description: "<gray>Increases armor value on elytras.</gray>"
+      levels-description:
+        1: "<gray>Increases armor by <green>+2</green>.</gray>"
+        2: "<gray>Increases armor by <green>+4</green>.</gray>"
+        3: "<gray>Increases armor by <green>+6</green>.</gray>"
+        4: "<gray>Increases armor by <green>+8</green>.</gray>"
+    soaring:
+      name: "<gradient:#7F3FFF:#B85499>Soaring</gradient>"
+      description: "<gray>Increases flight speed on elytras.</gray>"
+      levels-description:
+        1: "<gray>Increases flight speed by <green>10%</green>.</gray>"
+        2: "<gray>Increases flight speed by <green>20%</green>.</gray>"
+        3: "<gray>Increases flight speed by <green>30%</green>.</gray>"
+    void_strike:
+      name: "<gradient:#7F3FFF:#B85499>Void Strike</gradient>"
+      description: "<gray>Multiplies damage based on target's missing health.</gray>"
+      levels-description:
+        1: "<gray>Deals up to <green>1.15x</green> damage.</gray>"
+        2: "<gray>Deals up to <green>1.3x</green> damage.</gray>"
+        3: "<gray>Deals up to <green>1.5x</green> damage.</gray>"
+    void_shot:
+      name: "<gradient:#7F3FFF:#B85499>Void Shot</gradient>"
+      description: "<gray>Multiplies ranged damage based on target's missing health.</gray>"
+      levels-description:
+        1: "<gray>Deals up to <green>1.15x</green> damage.</gray>"
+        2: "<gray>Deals up to <green>1.3x</green> damage.</gray>"
+        3: "<gray>Deals up to <green>1.5x</green> damage.</gray>"
+    ambush:
+      name: "<gradient:#7F3FFF:#B85499>Ambush</gradient>"
+      description: "<gray>Deals extra damage when attacking targets from behind.</gray>"
+    dune_speed:
+      name: "<gradient:#7F3FFF:#B85499>Dune Speed</gradient>"
+      description: "<gray>Increases movement speed on sand and red sand.</gray>"
+    technical_daybroken:
+      name: "<gradient:#7F3FFF:#B85499>Daybroken</gradient>"
+      description: "<gray>Causes solar flares to strike down on targets.</gray>"
+      levels-description:
+        1: "<gray>Striking causes small explosions. Up to 3 strikes per trigger.</gray>"
+        2: "<gray>Striking causes small explosions. Up to 5 strikes per trigger.</gray>"
+    technical_draconic:
+      name: "<gradient:#7647D4:#916CC4>Draconic</gradient>"
+      description: "<gray>Turns all normal attacks into horizontal sweeping strikes.</gray>"
+      levels-description:
+        1: "<gray>Strikes up to 3 targets.</gray>"
+        2: "<gray>Strikes up to 4 targets.</gray>"
+        3: "<gray>Strikes up to 5 targets.</gray>"
+    technical_infernal_infusion:
+      name: "<gradient:#7F3FFF:#B85499>Infernal Infusion</gradient>"
+      description: "<gray>Crouching while holding the weapon spins it around, dealing minor damage and applying fire.</gray>"
+    technical_mighty_wind:
+      name: "<gradient:#7F3FFF:#B85499>Mighty Wind</gradient>"
+      description: "<gray>Strikes pull in nearby targets. Striking 3 times summons a massive lightning bolt.</gray>"
+    technical_soul_harvest:
+      name: "<gradient:#7F3FFF:#B85499>Soul Harvest</gradient>"
+      description: "<gray>Killing targets drops soul orbs. Collecting them grants temporary buffs.</gray>"
+    technical_void_pendant_amethyst:
+      name: "Vision (Amethyst)"
+      description: "<gray>Permanent night vision. Sneaking highlights nearby entities (45s cd).</gray>"
+    technical_void_pendant_copper:
+      name: "Power (Copper)"
+      description: "<gray>Attacks sometimes create electric arcs that deal extra damage.</gray>"
+    technical_void_pendant_diamond:
+      name: "Furor (Diamond)"
+      description: "<gray>+6% multiplicative Attack Speed.</gray>"
+    technical_void_pendant_emerald:
+      name: "Fortune (Emerald)"
+      description: "<gray>+1 Luck.</gray>"
+    technical_void_pendant_gold:
+      name: "Spelunking (Gold)"
+      description: "<gray>+15% Mining Speed and +5 Mining Efficiency.</gray>"
+    technical_void_pendant_iron:
+      name: "Fortitude (Iron)"
+      description: "<gray>+1 Armor Toughness.</gray>"
+    technical_void_pendant_lapis:
+      name: "Wisdom (Lapis)"
+      description: "<gray>5% chance to drop EXP when attacked by mobs.</gray>"
+    technical_void_pendant_netherite:
+      name: "Rage (Netherite)"
+      description: "<gray>+2 Attack Damage and +35% Sweeping Damage Ratio.</gray>"
+    technical_void_pendant_quartz:
+      name: "Agility (Quartz)"
+      description: "<gray>+4% Movement Speed, +4% Jump Strength, and +40% Movement Efficiency.</gray>"
+
+spellbooks:
+  disabled: "<red>This spell is disabled in the server settings!</red>"
+  ready: "<green>Spellbook is ready!</green>"
+  cooldown_actionbar: "<red>Cooldown: %seconds%s</red>"
+  obstruct:
+    too_close: "<red>Too close to another shulker wall!</red>"
+  return:
+    start: "<yellow>Teleportation started... Stand still for %duration% seconds.</yellow>"
+    cancelled: "<red>Teleportation cancelled: you moved!</red>"
+    actionbar_progress: "<light_purple>Return channeling: %progress%%</light_purple>"
+    success: "<green>You have successfully returned to spawn!</green>"
+
+trinkets:
+  satchel_of_voids:
+    already_active: "<red>You already have an active Void Altar!</red>"
+    too_close: "<red>You cannot use the Void Altar so close to another altar!</red>"
+  void_pendant:
+    amethyst_ready: "<gray>Void Pendant ability ready: <bold><light_purple>Vision</light_purple></bold></gray>"
+
+loaf_of_plenty:
+  description:
+    1: "Well, how do I say it..."
+    2: "It's just never going to run out"
+    3: "Did you eat it to test it or"
+    4: "were you actually hungry?"
+    5: "You keep going, huh"
+    6: "I am telling you, it IS infinite"
+    7: "Still infinite :3"
+    8: "Alright, at this point you are just"
+    9: "trying to see what I'll say"
+    10: "Don't push your luck too far"
+    11: "Aren't you scared that something"
+    12: "bad might happen if you keep going?"
+    13: "Like, this is Stellarity. this bread"
+    14: "could as well explode at random"
+    15: "Are you 100% SURE you want to keep going?"
+    16: "Those were warnings btw, but idk,"
+    17: "maybe you just can't read"
+    18: "Alright, I am done with you"
+    19: "Eat it again and I'll show you"
+    20: "Yeah, surprise surprise"
+    21: "There's nothing"
+    22: "But your greed sickens me"
+    23: "to say the least"
+    24: "Alright, it's getting boring"
+    25: "I'm not going to more stuff"
+
+altar_of_the_sacred:
+  invalid_world: "<red>The Altar of the Sacred refuses to accept this offering in this world.</red>"
+  too_close_to_private: "<red>You cannot summon the boss here as there is a claimed region within 10 blocks!</red>"
+  mob_spawning_denied: "<red>You cannot summon the boss here as mob spawning is disabled in this region!</red>"
+  spawn_started: "<#FF69B4>An ancient ritual has begun! %boss% is awakening...</#FF69B4>"
+  already_summoned: "<red>A boss summoned at this altar is already alive!</red>"
+
+altar_of_the_accursed:
+  locked: "<dark_purple>Altar of the Accursed is locked...</dark_purple>"
+  unlocked: "<dark_purple>Altar of The Accursed has been unlocked!</dark_purple>"
+
+boss:
+  shulking:
+    name: "⚔ Shulker King"
+    despawn: "<#FF69B4>Shulker King flew away angry as no warrior dared to face him!</#FF69B4>"
+  empress_of_light:
+    name: "✦ Empress of Light"
+    despawn: "<#FF69B4>Empress of Light flew away angry as no warrior dared to face her!</#FF69B4>"
+    death: "\n<#AF4BFF>✦ Empress of Light has been defeated!</#AF4BFF>\n"
+  radiant_empress_of_light:
+    name: "✦ Radiant Empress of Light"
+    despawn: "<#FF4B4B>The Radiant Empress of Light flew away angry as no warrior dared to face her!</#FF4B4B>"
+    death: "\n<#FF4B4B>✦ The Radiant Empress of Light has been defeated!</#FF4B4B>\n"
+
+
+mechanics:
+  vault:
+    already_opened: "<red>This vault has already been opened</red>"
+    wrong_key: "<red>This key does not fit this vault!</red>"
+    locked_by_crystals: "<red>The vault is shielded by End City crystals!</red>"
+    unlocked_somewhere: "<gradient:#c084fc:#e879f9><bold>✦ A vault has unlocked somewhere... ✦</bold></gradient>"
+
+dragon:
+  spawn: "<light_purple>ѕᴛᴇʟʟᴀʀɪᴛʏ |</light_purple> <dark_purple>Ender Dragon awakened!</dark_purple>"
+  death: "<light_purple>ѕᴛᴇʟʟᴀʀɪᴛʏ |</light_purple> <light_purple>Ender Dragon defeated!</light_purple>"
+  crystals_left: "<light_purple>Crystals remaining: <white>%count%</white></light_purple>"
+
+# ------------------------------------------------------------
+# Endonomicon
+# ------------------------------------------------------------
+endonomicon:
+  main_menu:
+    title: "<light_purple><bold>Endonomicon:</bold></light_purple> <gold>Accursed Altar Grimoire</gold>"
+    header: "Select a category, view recent or use search to browse all Accursed Altar rituals."
+    categories:
+      weapons_tools: "<gold>⚔ Weapons & Tools</gold>"
+      armor: "<gold>🛡 Armor Sets</gold>"
+      artifacts: "<light_purple>🔮 Artifacts & Spells</light_purple>"
+      upgrades: "<green>🧪 Elytra & Modifications</green>"
+    personal:
+      favorites: "<yellow>⭐ Favorite Recipes (%count%)</yellow>"
+      recent: "<gray>🕓 Recently Viewed (%count%)</gray>"
+    search: "<aqua>🔍 Search Recipes</aqua>"
+    tooltips:
+      weapons_tools: "Weapon and tool recipes"
+      armor: "Armor sets and equipment recipes"
+      artifacts: "Ancient artifacts and spellbooks recipes"
+      upgrades: "Elytra and trail effects recipes"
+      favorites: "Your saved recipes"
+      recent: "Your recently opened recipes"
+      search: "Search by name, tags or ingredients"
+      back: "Back to category"
+      main_menu: "Return to Main Menu"
+      close: "Close Endonomicon"
+    buttons:
+      back: "<gold>← Back</gold>"
+      main_menu: "<gold>🏠 Main Menu</gold>"
+      close: "<red>❌ Close</red>"
+      prev_page: "<gold>← Back</gold>"
+      next_page: "<gold>Next →</gold>"
+      add_favorite: "<yellow>⭐ Add to Favorites</yellow>"
+      remove_favorite: "<yellow>⭐ Remove from Favorites</yellow>"
+
+  category:
+    title:
+      weapons_tools: "<gold><bold>⚔ Weapons & Tools</bold></gold> <yellow>(%page%/%total%)</yellow>"
+      armor: "<gold><bold>🛡 Armor Sets</bold></gold> <yellow>(%page%/%total%)</yellow>"
+      artifacts: "<light_purple><bold>🔮 Artifacts</bold></light_purple> <yellow>(%page%/%total%)</yellow>"
+      upgrades: "<green><bold>🧪 Elytra</bold></green> <yellow>(%page%/%total%)</yellow>"
+
+  favorites:
+    title: "<yellow><bold>⭐ Favorite Recipes</bold></yellow> <yellow>(%page%/%total%)</yellow>"
+    empty: "<gray>You have no saved favorite recipes yet.</gray>"
+
+  recent:
+    title: "<gray><bold>🕓 Recently Viewed</bold></gray> <yellow>(%page%/%total%)</yellow>"
+    empty: "<gray>You haven't viewed any recipes yet.</gray>"
+
+  search:
+    prompt_title: "<aqua><bold>🔍 Search Recipes</bold></aqua>"
+    prompt_message: "Enter item name, tag (e.g. #weapon) or ingredient:"
+    query_label: "Query"
+    results_title: "<aqua><bold>🔍 Search Results:</bold> \"%query%\"</aqua> <yellow>(%page%/%total%)</yellow>"
+    no_results: "<red>No recipes found matching your query.</red>"
+
+  recipe:
+    header: "<white>Recipe: </white><light_purple><bold><name></bold></light_purple> <gold>| Difficulty: <stars></gold>\n\n<light_purple><bold>🔮 INGREDIENTS:</bold></light_purple>"
+    ingredient_ok: "<green> • ✔ %current%/%required% </green>"
+    ingredient_missing: "<red> • ✖ %current%/%required% </red>"
+    ingredient_missing_suffix: "<red> (Missing %missing% pcs.)</red>"
+    result_header: "\n<gold><bold>➜ CRAFT RESULT:</bold></gold>\n<gold>1x </gold><gold><bold><name></bold></gold>"
+    used_in: "\n<gold>🔗 Used for: <used_in></gold>"
+
+  elytra_dyeing:
+    title: "<gold><bold>🧪 Elytra Trail Dyeing</bold></gold>"
+    header: "<white>Recipe: </white><light_purple><bold>Elytra Trail Dyeing</bold></light_purple> <gold>| Difficulty: ⭐⭐⭐☆☆</gold>\n\n<light_purple><bold>🔮 INGREDIENTS:</bold></light_purple>"
+    elytra_ok: "<green> • ✔ %current%/1 Elytra (or Empress Wings)</green>"
+    elytra_missing: "<red> • ✖ 0/1 Elytra (or Empress Wings) (Missing 1 pc.)</red>"
+    dye_ok: "<green> • ✔ %current%/1 Any Dye</green>"
+    dye_missing: "<red> • ✖ 0/1 Any Dye (Missing 1 pc.)</red>"
+    description: "<dark_aqua>\n💡 When flying during daytime, elytra leave a colored particle trail of the matching hue.\nAt night, the trail automatically glows in rainbow colors!\n💧 Trail color can be cleared by throwing elytra with a water bucket.\n\n</dark_aqua><gold><bold>➜ CRAFT RESULT:</bold></gold>\n<gold>1x </gold><gold><bold>Elytra with Colored Particle Trail</bold></bold>"
+
+  items:
+    elytra_dyeing: "<gold>Elytra Trail Dyeing</gold>"
+    elytra_undyeing: "<gray>Elytra Trail Undyeing</gray>"
+    misc_empty_enchanted_book: "<yellow>Enchanted Book (or Empty Enchanted Book)</yellow>"
+    default_item_fallback: "<gray>Item</gray>"
+
+mechanic:
+  void-totem:
+    actionbar: "<gradient:#E77CC6:#E7917C>Here be dragons...</gradient>"
+

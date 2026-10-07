@@ -1,0 +1,53 @@
+# ----------------------------------------------
+# Stellarity ~ Paper Edition - Trinkets settings
+# ----------------------------------------------
+
+crest_of_the_end:
+  enabled: true
+  wrath-decay-time-ms: 4000 # Wrath charges reset time in milliseconds
+  damage-increase-per-stack: 0.15 # +15% damage per stack
+
+dragons_eye:
+  neutrality: true # Disables Enderman and Phantom aggression
+  cleanse: true # Removes negative effects every second
+
+duskberry:
+  enabled: true
+
+copper_elektra_shield:
+  enabled: true
+  dash-distance: 7.0 # Dash distance in blocks
+  dash-duration-ticks: 4 # Dash duration in ticks (grants invulnerability for this period)
+  damage: 3.0 # AoE electrical damage
+  charge-cooldown-ms: 3000 # Cooldown time per charge in milliseconds
+
+life_crystal:
+  enabled: true
+  healing-rate: 3.0 # Maximum healing (hearts per second) at peak immobility
+
+living_flesh:
+  enabled: true
+
+prismatic_pearl:
+  enabled: true
+  cooldown-ms: 5000 # Throw cooldown in milliseconds
+  velocity-multiplier: 1.25
+
+satchel_of_voids:
+  enabled: true
+  altar-duration-seconds: 30
+
+soaring_insignia:
+  enabled: true
+
+starstruck_shield:
+  enabled: true
+  cooldown-ms: 6000 # Star summon cooldown in milliseconds
+  stars-amount-min: 1
+  stars-amount-max: 3
+  star-damage: 3.0
+  star-explosion-radius: 2.5
+  star-speed: 1.24
+
+radiant_jewel:
+  enabled: true

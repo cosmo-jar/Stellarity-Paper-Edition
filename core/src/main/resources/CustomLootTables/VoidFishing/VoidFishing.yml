@@ -1,0 +1,83 @@
+# --------------------------------------------------------------------
+# Stellarity ~ Paper Edition - Custom Loot Configuration: Void Fishing
+# --------------------------------------------------------------------
+enabled: true
+
+# Global pools (used when features.void-fishing-biome-allocation is false)
+global_fish:
+  - item: "ender_koi"
+    weight: 15
+  - item: "potassifish"
+    weight: 12
+  - item: "fleshy_piranha"
+    weight: 10
+  - item: "amethyst_budfish"
+    weight: 16
+  - item: "flarefin_koi"
+    weight: 20
+  - item: "crimson_tigerfish"
+    weight: 27
+  - item: "frost_minnow"
+    weight: 7
+  - item: "overgrown_cod"
+    weight: 8
+  - item: "bubblefish"
+    weight: 12
+  - item: "prismite"
+    weight: 25
+  - item: "goosh"
+    weight: 10
+  - item: "crystal_heartfish"
+    weight: 4
+
+global_treasure:
+  - item: "fisher_of_voids"
+    weight: 1
+  - item: "winged_key"
+    weight: 11
+  - item: "enderite_smithing_template"
+    weight: 11
+  - item: "enchantments_books:soaring:1"
+    weight: 5
+  - item: "enchantments_books:void_strike:1"
+    weight: 5
+  - item: "flavors_of_the_void"
+    weight: 8
+
+# Biome pools (used dynamically when features.void-fishing-biome-allocation is true)
+biomes:
+  the_hallow:
+    - item: "prismite"
+      weight: 25
+    - item: "starlight_soot"
+      weight: 9
+  flesh_tundra:
+    - item: "crimson_tigerfish"
+      weight: 27
+    - item: "fleshy_piranha"
+      weight: 19
+  amethyst_forest:
+    - item: "amethyst_budfish"
+      weight: 16
+  fiery_hills:
+    - item: "flarefin_koi"
+      weight: 20
+  warped_marsh:
+    - item: "goosh"
+      weight: 10
+  endless_dunes:
+    - item: "potassifish"
+      weight: 4
+  frozen_spikes:
+    - item: "frost_minnow"
+      weight: 7
+  prismarine_forest:
+    - item: "bubblefish"
+      weight: 12
+  original_biomes:
+    - item: "ender_koi"
+      weight: 15
+    - item: "overgrown_cod"
+      weight: 8
+    - item: "crystal_heartfish"
+      weight: 4

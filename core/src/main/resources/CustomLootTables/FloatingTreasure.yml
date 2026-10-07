@@ -1,0 +1,53 @@
+# -------------------------------------------------------------------------
+# Stellarity ~ Paper Edition - Custom Loot Configuration: Floating Treasure
+# -------------------------------------------------------------------------
+enabled: true
+
+settings:
+  max_custom_items: 4
+  prevent_duplicates: true
+
+# Abstract Container Categories: CHEST, BARREL, DECORATED_POT, SPAWNER, VAULT
+
+containers:
+  CHEST:
+    - item: "enderman_hand"
+      chance: 15.0
+    - item: "hallowed_ingot"
+      chance: 25.0
+    - item: "enderite_shard"
+      chance: 25.0
+    - item: "fried_chorus_fruit"
+      chance: 35.0
+    - item: "book_of_conveyance"
+      chance: 15.0
+    - item: "book_of_jinx"
+      chance: 15.0
+    - item: "book_of_return"
+      chance: 15.0
+    - item: "book_of_light"
+      chance: 15.0
+    - item: "book_of_obstruct"
+      chance: 15.0
+    - item: "book_of_updraft"
+      chance: 15.0
+    - item: "gilded_purpur_key"
+      chance: 50.0
+    - item: "diamond_sword"
+      chance: 12.0
+    - item: "diamond_pickaxe"
+      chance: 12.0
+    - item: "diamond_axe"
+      chance: 10.0
+    - item: "diamond_shovel"
+      chance: 10.0
+    - item: "diamond_hoe"
+      chance: 8.0
+    - item: "diamond_helmet"
+      chance: 10.0
+    - item: "diamond_chestplate"
+      chance: 8.0
+    - item: "diamond_leggings"
+      chance: 8.0
+    - item: "diamond_boots"
+      chance: 10.0

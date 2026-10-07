@@ -1,0 +1,9 @@
+{
+  "feature": "stellarity:ash/grass",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 30
+    }
+  ]
+}

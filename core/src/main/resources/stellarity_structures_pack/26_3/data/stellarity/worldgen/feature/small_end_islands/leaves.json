@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "weight": 6,
+        "data": {
+          "id": "minecraft:oak_leaves",
+          "properties": {
+            "distance": "1",
+            "persistent": "true",
+            "waterlogged": "false"
+          }
+        }
+      },
+      {
+        "weight": 1,
+        "data": {
+          "id": "minecraft:jungle_leaves",
+          "properties": {
+            "distance": "1",
+            "persistent": "true",
+            "waterlogged": "false"
+          }
+        }
+      }
+    ]
+  }
+}

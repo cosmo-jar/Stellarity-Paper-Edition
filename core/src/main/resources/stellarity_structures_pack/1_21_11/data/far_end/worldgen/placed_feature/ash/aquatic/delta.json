@@ -1,0 +1,9 @@
+{
+  "feature": "far_end:ash/aquatic/delta",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 2
+    }
+  ]
+}

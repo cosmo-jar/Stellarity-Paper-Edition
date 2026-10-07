@@ -1,0 +1,28 @@
+# -----------------------------------------------
+# Stellarity ~ Paper Edition - Armor set settings
+# -----------------------------------------------
+
+floral:
+  invisibility: true
+  arrows-modification: true
+  bloom-effect: true
+
+hallowed:
+  shield: true
+  shield-cooldown-ticks: 540 # 27 seconds
+  shield-invulnerability-duration-ticks: 40 # 2 seconds
+  speed-duration-ticks: 80 # 4 секунды
+  fire-resistance-duration-ticks: 120 # 6 seconds
+  water-breathing-duration-ticks: 120 # 6 seconds
+
+champion:
+  combo: true
+  combo-expiry-ms: 2000 # 2 seconds
+  damage-per-combo-level: 0.06 # +6% Damage per Combo Level (up to 4 levels)
+  sweeping-ratio-at-max-combo: 0.2
+
+shulker:
+  immunities: true # Immunity to levitation (leggings) and weakness (chestplate)
+  bulwark: true # Additional resistance based on nearby enemies
+  bullets: true # Defensive shulker bullets upon taking damage
+  bullet-chance: 0.50 # Chance to spawn shulker bullets upon taking damage

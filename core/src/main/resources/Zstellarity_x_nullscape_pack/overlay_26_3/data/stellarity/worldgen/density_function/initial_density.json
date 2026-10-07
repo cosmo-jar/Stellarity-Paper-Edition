@@ -1,0 +1,15 @@
+{
+  "left": 4,
+  "right": {
+    "input": {
+      "left": "nullscape:base/depth",
+      "right": {
+        "input": "nullscape:base/factor",
+        "type": "minecraft:cache"
+      },
+      "type": "minecraft:mul"
+    },
+    "type": "minecraft:quarter_negative"
+  },
+  "type": "minecraft:mul"
+}

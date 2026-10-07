@@ -1,0 +1,815 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:red_sandstone",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 1,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:badlands",
+                    "minecraft:eroded_badlands",
+                    "minecraft:wooded_badlands"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sandstone",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 2,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:desert"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oak_leaves",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 3,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:forest"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spruce_leaves",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 4,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:taiga",
+                    "minecraft:old_growth_pine_taiga",
+                    "minecraft:old_growth_spruce_taiga"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:red_mushroom_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 5,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:mushroom_fields"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 6,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:cold_ocean",
+                    "minecraft:deep_cold_ocean",
+                    "minecraft:ocean",
+                    "minecraft:deep_ocean",
+                    "minecraft:frozen_ocean",
+                    "minecraft:deep_frozen_ocean",
+                    "minecraft:river"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:horn_coral_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 7,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:lukewarm_ocean",
+                    "minecraft:deep_lukewarm_ocean",
+                    "minecraft:warm_ocean"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:acacia_leaves",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 8,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:savanna",
+                    "minecraft:savanna_plateau",
+                    "minecraft:windswept_savanna"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stone",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 9,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:windswept_hills",
+                    "minecraft:windswept_forest",
+                    "minecraft:windswept_gravelly_hills",
+                    "minecraft:stony_shore",
+                    "minecraft:stony_peaks"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:snow_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 10,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:frozen_peaks",
+                    "minecraft:frozen_river",
+                    "minecraft:snowy_plains",
+                    "minecraft:ice_spikes",
+                    "minecraft:snowy_taiga",
+                    "minecraft:jagged_peaks",
+                    "minecraft:snowy_slopes",
+                    "minecraft:grove"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dripstone_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 11,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:dripstone_caves"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:moss_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 12,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:lush_caves"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:grass_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 13,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:meadow",
+                    "minecraft:plains",
+                    "minecraft:sunflower_plains"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:honey_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 14,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:flower_forest"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:jungle_leaves",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 15,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:jungle",
+                    "minecraft:bamboo_jungle",
+                    "minecraft:sparse_jungle"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:birch_leaves",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 16,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:birch_forest",
+                    "minecraft:old_growth_birch_forest"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sand",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 17,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:beach"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mangrove_leaves",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 18,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:swamp",
+                    "minecraft:mangrove_swamp"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sculk",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 19,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:deep_dark"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cherry_leaves",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": 20,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:cherry_grove"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherrack",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": -10,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:nether_wastes"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nether_wart_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": -11,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:crimson_forest"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_wart_block",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": -12,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:warped_forest"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:soul_sand",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": -13,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:soul_sand_valley"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:basalt",
+          "modifier": [
+            {
+              "type": "minecraft:set_attributes",
+              "modifiers": [
+                {
+                  "attribute": "minecraft:max_health",
+                  "id": "stellarity:pandoras_barrel_biome",
+                  "amount": -14,
+                  "operation": "add_value",
+                  "slot": "mainhand"
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "terms": [
+              {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:basalt_deltas"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              }
+            ],
+            "type": "minecraft:any_of"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 6,
+        "max": 8,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "name": "minecraft:short_grass",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 9,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:group",
+          "children": [
+            {
+              "type": "minecraft:tag",
+              "weight": 8,
+              "expand": true,
+              "modifier": [
+                {
+                  "type": "minecraft:set_count",
+                  "count": {
+                    "min": 2,
+                    "max": 4,
+                    "type": "minecraft:uniform"
+                  },
+                  "add": false
+                }
+              ],
+              "condition": {
+                "terms": [
+                  {
+                    "predicate": {
+                      "biomes": [
+                        "minecraft:plains",
+                        "minecraft:meadow"
+                      ]
+                    },
+                    "type": "minecraft:location_check"
+                  }
+                ],
+                "type": "minecraft:any_of"
+              },
+              "items": "#stellarity:pandoras_barrel/flowers/plains"
+            },
+            {
+              "type": "minecraft:tag",
+              "weight": 10,
+              "expand": true,
+              "modifier": [
+                {
+                  "type": "minecraft:set_count",
+                  "count": {
+                    "min": 2,
+                    "max": 4,
+                    "type": "minecraft:uniform"
+                  },
+                  "add": false
+                }
+              ],
+              "condition": {
+                "predicate": {
+                  "biomes": [
+                    "minecraft:sunflower_plains"
+                  ]
+                },
+                "type": "minecraft:location_check"
+              },
+              "items": "#stellarity:pandoras_barrel/flowers/sunflower_plains"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "name": "minecraft:tall_grass",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 6,
+                "type": "minecraft:uniform"
+              },
+              "add": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

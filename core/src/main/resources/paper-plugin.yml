@@ -1,0 +1,53 @@
+name: StellarityPaperEdition
+version: 1.0.0
+main: dev.cosmojar.stellaritypaper.StellarityPaperPlugin
+api-version: '1.21'
+author: cosmo
+description: Server-side implementation of Stellarity
+website: https://github.com/cosmo-jar/Stellarity-Paper-Edition
+load: STARTUP
+bootstrapper: dev.cosmojar.stellaritypaper.bootstrap.PaperBootstrap
+
+permissions:
+  stellarity.command:
+    description: Access to the basic command /stellarity
+    default: true
+  stellarity.command.reload:
+    description: Access to plugin reload
+    default: op
+  stellarity.command.give:
+    description: Access to item issuance command
+    default: op
+  stellarity.command.enchant:
+    description: Access to item enchanting command
+    default: op
+  stellarity.command.item.info:
+    description: Access to viewing information about an item in the GUI
+    default: true
+  stellarity.command.uninstall:
+    description: Access to complete plugin uninstallation from all worlds
+    default: op
+  stellarity.updates:
+    description: Receive notifications about new plugin updates
+    default: op
+
+dependencies:
+  server:
+    ProtocolLib:
+      required: false
+      join-classpath: true
+    eco:
+      required: false
+      join-classpath: true
+    EcoEnchants:
+      required: false
+      join-classpath: true
+    libreforge:
+      required: false
+      join-classpath: true
+    WorldGuard:
+      required: false
+      join-classpath: true
+    WorldEdit:
+      required: false
+      join-classpath: true

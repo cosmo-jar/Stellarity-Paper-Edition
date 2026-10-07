@@ -1,0 +1,9 @@
+{
+  "feature": "far_end:ash/surface/grass_delta",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 2
+    }
+  ]
+}

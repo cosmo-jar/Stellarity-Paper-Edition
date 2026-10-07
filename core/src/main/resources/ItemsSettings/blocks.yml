@@ -1,0 +1,12 @@
+# --------------------------------------------------
+# Stellarity ~ Paper Edition - Custom block settings
+# --------------------------------------------------
+
+altar_of_the_sacred:
+  # Whether bosses (Empress of Light and Shulker King) can be summoned in any world?
+  allow-boss-spawn-in-any-world: true
+  # List of worlds where summoning bosses is allowed (if the previous parameter is set to false)
+  allowed-boss-spawn-worlds:
+    - "world_the_end"
+    - "world"
+

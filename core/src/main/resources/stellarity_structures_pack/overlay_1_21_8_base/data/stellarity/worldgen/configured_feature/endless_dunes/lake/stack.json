@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:simple_random_selector",
+	"config": {
+		"features": [
+			{
+				"feature": "stellarity:endless_dunes/lake/lake",
+				"placement": []
+			},
+			{
+				"feature": "stellarity:endless_dunes/lake/vegetation",
+				"placement": []
+			},
+			{
+				"feature": "stellarity:endless_dunes/lake/vegetation_water",
+				"placement": []
+			}
+		]
+	}
+}

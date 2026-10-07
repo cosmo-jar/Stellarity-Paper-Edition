@@ -1,0 +1,241 @@
+# ----------------------------------------------------------------
+# Stellarity ~ Paper Edition - Custom Loot Configuration: End City
+# ----------------------------------------------------------------
+enabled: true
+
+settings:
+  max_custom_items: 12
+  prevent_duplicates: true
+
+# Abstract Container Categories: CHEST, BARREL, DECORATED_POT, SPAWNER, VAULT
+
+containers:
+  CHEST:
+    - item: "enchantments_books:levitation_shot:1"
+      chance: 15.0
+    - item: "enchantments_books:levitation_shot:2"
+      chance: 8.0
+    - item: "enchantments_books:void_shot:1"
+      chance: 12.0
+    - item: "enchantments_books:soaring:1"
+      chance: 15.0
+    - item: "starlight_soot"
+      chance: 45.0
+    - item: "duskberry"
+      chance: 20.0
+    - item: "book_of_return"
+      chance: 15.0
+    - item: "shulker_spear"
+      chance: 15.0
+    - item: "diamond_spear"
+      chance: 20.0
+    - item: "enderite_spear"
+      chance: 10.0
+
+  BARREL:
+    - item: "duskberry"
+      chance: 30.0
+    - item: "fried_chorus_fruit"
+      chance: 40.0
+    - item: "starlight_soot"
+      chance: 35.0
+
+  DECORATED_POT:
+    - item: "purpur_key"
+      chance: 20.0
+    - item: "food_suspicious_stew_levitation"
+      chance: 30.0
+    - item: "enderite_shard"
+      chance: 15.0
+
+vaults:
+  VAULT:
+    key_item: "purpur_key"
+    loot:
+      # Guaranteed resource (100%)
+      - item: "enderite_shard:3"
+        chance: 100.0
+      # Main Loot and Materials
+      - item: "hallowed_ingot:3"
+        chance: 35.0
+      - item: "chorus_plating:3"
+        chance: 35.0
+      - item: "spectral_arrow:5"
+        chance: 30.0
+      - item: "tipped_arrow_levitation:4"
+        chance: 25.0
+      - item: "golden_carrot:2"
+        chance: 25.0
+      - item: "golden_apple"
+        chance: 20.0
+      - item: "diamond:2"
+        chance: 20.0
+      - item: "emerald:3"
+        chance: 20.0
+      - item: "gold_ingot:4"
+        chance: 25.0
+      - item: "iron_ingot:4"
+        chance: 25.0
+      - item: "ominous_bottle"
+        chance: 20.0
+      - item: "shulker_spear"
+        chance: 15.0
+      - item: "diamond_spear"
+        chance: 15.0
+      # Equipment
+      - item: "trimmed_armor:diamond_boots:spire"
+        chance: 15.0
+      - item: "trimmed_armor:diamond_leggings:spire"
+        chance: 15.0
+      - item: "trimmed_armor:diamond_chestplate:spire"
+        chance: 15.0
+      - item: "trimmed_armor:diamond_helmet:spire"
+        chance: 15.0
+      - item: "trimmed_armor:iron_boots:spire"
+        chance: 10.0
+      - item: "trimmed_armor:iron_leggings:spire"
+        chance: 10.0
+      - item: "trimmed_armor:iron_chestplate:spire"
+        chance: 10.0
+      - item: "trimmed_armor:iron_helmet:spire"
+        chance: 10.0
+      - item: "enchanted_equipment:diamond_sword"
+        chance: 15.0
+      - item: "enchanted_equipment:diamond_pickaxe"
+        chance: 15.0
+      - item: "enchanted_equipment:diamond_axe"
+        chance: 15.0
+      - item: "enchanted_equipment:bow"
+        chance: 15.0
+      # Enchanted books
+      - item: "enchantments_books:critical_strike:1"
+        chance: 15.0
+      - item: "enchantments_books:void_strike:1"
+        chance: 15.0
+      - item: "enchantments_books:void_shot:1"
+        chance: 15.0
+      - item: "enchantments_books:mending:1"
+        chance: 12.0
+      # Rare items
+      - item: "book_of_return"
+        chance: 20.0
+      - item: "enderite_smithing_template"
+        chance: 25.0
+      - item: "spire_armor_trim_smithing_template"
+        chance: 25.0
+      - item: "music_disc_fires_of_hokkai"
+        chance: 25.0
+
+  VAULT_OMINOUS:
+    key_item: "gilded_purpur_key"
+    loot:
+      # Guaranteed resource (100%)
+      - item: "enderite_shard:5"
+        chance: 100.0
+      - item: "enderite_smithing_template"
+        chance: 50.0
+      - item: "spire_armor_trim_smithing_template"
+        chance: 35.0
+      # Main Loot and Materials
+      - item: "hallowed_ingot:4"
+        chance: 45.0
+      - item: "chorus_plating:4"
+        chance: 45.0
+      - item: "royal_jelly"
+        chance: 20.0
+      - item: "shulker_spear"
+        chance: 20.0
+      - item: "enderite_spear"
+        chance: 15.0
+      - item: "enchanted_golden_apple"
+        chance: 15.0
+      - item: "diamond:3"
+        chance: 30.0
+      - item: "emerald:4"
+        chance: 30.0
+      - item: "music_disc_deviants_light_music_box"
+        chance: 25.0
+      # Equipment
+      - item: "trimmed_armor:netherite_boots:spire"
+        chance: 12.0
+      - item: "trimmed_armor:netherite_leggings:spire"
+        chance: 12.0
+      - item: "trimmed_armor:netherite_chestplate:spire"
+        chance: 12.0
+      - item: "trimmed_armor:netherite_helmet:spire"
+        chance: 12.0
+      - item: "trimmed_armor:diamond_boots:spire"
+        chance: 18.0
+      - item: "trimmed_armor:diamond_leggings:spire"
+        chance: 18.0
+      - item: "trimmed_armor:diamond_chestplate:spire"
+        chance: 18.0
+      - item: "trimmed_armor:diamond_helmet:spire"
+        chance: 18.0
+      - item: "enchanted_equipment:netherite_sword"
+        chance: 12.0
+      - item: "enchanted_equipment:netherite_axe"
+        chance: 12.0
+      - item: "enchanted_equipment:diamond_sword"
+        chance: 18.0
+      - item: "enchanted_equipment:diamond_axe"
+        chance: 18.0
+      - item: "enchanted_equipment:bow"
+        chance: 20.0
+      - item: "tipped_arrow_levitation:8"
+        chance: 30.0
+      # Unique legendary weapon
+      - item: "starless_scythe"
+        chance: 4.0
+      - item: "weapons_the_beginning"
+        chance: 4.0
+      - item: "spirit_dagger"
+        chance: 4.0
+      - item: "book_of_return"
+        chance: 10.0
+
+  VAULT_ELYTRA:
+    key_item: "winged_key"
+    loot:
+      - item: "elytra"
+        chance: 100.0
+      - item: "firework_rocket:5"
+        chance: 100.0
+      - item: "enchantments_books:soaring:1"
+        chance: 35.0
+      - item: "enchantments_books:plated:1"
+        chance: 35.0
+
+trial_spawners:
+  ship:
+    items:
+      - item: "winged_key"
+        chance: 50.0
+      - item: "chorus_pie:2"
+        chance: 25.0
+      - item: "frozen_carpaccio:2"
+        chance: 25.0
+
+  city:
+    normal:
+      items:
+        - item: "purpur_key"
+          chance: 50.0
+        - item: "chorus_pie:2"
+          chance: 20.0
+        - item: "frozen_carpaccio:2"
+          chance: 20.0
+        - item: "endurance_potion"
+          chance: 10.0
+    ominous:
+      items:
+        - item: "gilded_purpur_key"
+          chance: 75.0
+        - item: "candied_chorus_fruit:2"
+          chance: 15.0
+        - item: "chorus_juice"
+          chance: 15.0
+        - item: "lifeforce_potion"
+          chance: 15.0
+        - item: "endurance_potion"
+          chance: 15.0

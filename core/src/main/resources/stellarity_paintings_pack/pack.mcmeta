@@ -1,0 +1,12 @@
+{
+  "pack": {
+    "pack_format": 48,
+    "supported_formats": [
+      48,
+      121
+    ],
+    "min_format": 48,
+    "max_format": 121,
+    "description": "Stellarity ~ Paper Edition Custom Paintings mini-Datapack"
+  }
+}

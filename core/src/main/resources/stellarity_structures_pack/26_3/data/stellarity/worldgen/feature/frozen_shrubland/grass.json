@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "weight": 19,
+        "data": {
+          "id": "minecraft:fern"
+        }
+      },
+      {
+        "weight": 1,
+        "data": {
+          "id": "minecraft:acacia_leaves",
+          "properties": {
+            "persistent": "true"
+          }
+        }
+      }
+    ]
+  }
+}

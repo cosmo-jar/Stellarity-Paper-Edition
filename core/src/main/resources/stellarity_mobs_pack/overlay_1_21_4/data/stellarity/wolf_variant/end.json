@@ -1,0 +1,9 @@
+{
+  "biomes": "#minecraft:is_end",
+  "wild_texture": "stellarity:entity/wolf/ender_wolf",
+  "tame_texture": "stellarity:entity/wolf/ender_wolf_tame",
+  "angry_texture": "stellarity:entity/wolf/ender_wolf_angry",
+  "baby_wild_texture": "stellarity:entity/wolf/ender_wolf_baby",
+  "baby_tame_texture": "stellarity:entity/wolf/ender_wolf_tame_baby",
+  "baby_angry_texture": "stellarity:entity/wolf/ender_wolf_angry_baby"
+}
