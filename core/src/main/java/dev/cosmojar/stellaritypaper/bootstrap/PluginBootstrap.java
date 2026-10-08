@@ -127,13 +127,15 @@ public final class PluginBootstrap {
     }
 
     public void enable() {
+        StartupBanner.print(plugin.getPluginMeta().getVersion());
+
         try {
             final ServerVersion currentVersion = ServerVersion.getCurrent();
             VersionManager.initialize(currentVersion);
             plugin.getLogger().info("Adapter " + VersionManager.getAdapter().getAdapterName() + " has been successfully loaded." + " (server version: " + Bukkit.getMinecraftVersion() + ")");
         } catch (final UnsupportedServerVersionException e) {
             plugin.getLogger().severe("=================================================");
-            plugin.getLogger().severe("[Error] Server version '" + Bukkit.getMinecraftVersion() + "' not supported!");
+            plugin.getLogger().severe("Error. Server version '" + Bukkit.getMinecraftVersion() + "' not supported!");
             plugin.getLogger().severe("Enabling Stellarity has been cancelled.");
             plugin.getLogger().severe("=================================================");
             plugin.getServer().getPluginManager().disablePlugin(plugin);

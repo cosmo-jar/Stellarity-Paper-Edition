@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
  * Intercepts display/revert calls and blocks them for all Stellarity items,
  * so that ECO couldn’t even lay a finger on the lore and break the TranslatableComponent 😡😡😡.
  */
+@SuppressWarnings("UnstableApiUsage")
 public final class ZashchitnikOtEcoEnchants extends DisplayModule {
 
     private final DisplayModule delegat;
