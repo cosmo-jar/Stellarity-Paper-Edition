@@ -44,5 +44,6 @@ public final class StartupBanner {
                 mm.deserialize("  <gradient:#A855F7:#F472B6>Stellarity ~ Paper Edition</gradient> <dark_gray>v" + version + "</dark_gray>")
         );
         Bukkit.getConsoleSender().sendMessage(mm.deserialize(""));
+
     }
 }
