@@ -96,7 +96,7 @@ public final class UpdateCheckerService {
                     plugin.getLogger().fine("Update check completed: plugin is running the latest version (" + currentVersion + ").");
                 }
             } else {
-                plugin.getLogger().info("Update check completed: remote repositories are not reachable or plugin is not yet published.");
+                plugin.getLogger().info("Update check completed: remote repositories are not reachable.");
             }
         } catch (final Throwable throwable) {
             plugin.getLogger().info("Update check skipped: unable to connect to remote update servers (" + throwable.getMessage() + ").");

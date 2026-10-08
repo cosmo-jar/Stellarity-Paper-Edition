@@ -16,6 +16,7 @@ allprojects {
         maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
         maven { url = uri("https://repo.papermc.io/repository/maven-snapshots/") }
         maven { url = uri("https://maven.enginehub.org/repo/") }
+        maven { url = uri("https://repo.auxilor.io/repository/maven-public/") }
 
     }
 

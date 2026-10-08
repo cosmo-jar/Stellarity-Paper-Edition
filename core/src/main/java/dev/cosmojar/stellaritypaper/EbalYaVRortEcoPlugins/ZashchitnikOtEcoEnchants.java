@@ -1,5 +1,6 @@
 package dev.cosmojar.stellaritypaper.EbalYaVRortEcoPlugins;
 
+import com.willfp.eco.core.display.DisplayContext;
 import com.willfp.eco.core.display.DisplayModule;
 import com.willfp.eco.core.display.DisplayProperties;
 import org.bukkit.entity.Player;
@@ -8,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 /**
  * A protective class for Eco modules (EnchantDisplay, ItemFlagDisplay и др.).
  * Intercepts display/revert calls and blocks them for all Stellarity items,
- * So that ECO couldn’t even lay a finger on the lore and break the TranslatableComponent 😡😡😡
+ * so that ECO couldn’t even lay a finger on the lore and break the TranslatableComponent 😡😡😡.
  */
 public final class ZashchitnikOtEcoEnchants extends DisplayModule {
 
@@ -19,7 +20,22 @@ public final class ZashchitnikOtEcoEnchants extends DisplayModule {
         this.delegat = delegat;
     }
 
+    /**
+     * Modern Eco display method (2026.39+).
+     */
     @Override
+    public void display(final DisplayContext context) {
+        if (context != null && ecohook.etoPredmetStellarity(context.getItemStack())) {
+            return;
+        }
+        delegat.display(context);
+    }
+
+    /**
+     * Legacy Eco display method without player context (scheduled for removal in 2027.39).
+     */
+    @Override
+    @SuppressWarnings({"deprecation", "removal"})
     public void display(final ItemStack item, final Object... args) {
         if (ecohook.etoPredmetStellarity(item)) {
             return;
@@ -27,7 +43,11 @@ public final class ZashchitnikOtEcoEnchants extends DisplayModule {
         delegat.display(item, args);
     }
 
+    /**
+     * Legacy Eco display method with player context (scheduled for removal in 2027.39).
+     */
     @Override
+    @SuppressWarnings({"deprecation", "removal"})
     public void display(final ItemStack item, final Player player, final Object... args) {
         if (ecohook.etoPredmetStellarity(item)) {
             return;
@@ -35,7 +55,11 @@ public final class ZashchitnikOtEcoEnchants extends DisplayModule {
         delegat.display(item, player, args);
     }
 
+    /**
+     * Legacy Eco display method with player context and properties (scheduled for removal in 2027.39).
+     */
     @Override
+    @SuppressWarnings({"deprecation", "removal"})
     public void display(final ItemStack item, final Player player, final DisplayProperties props, final Object... args) {
         if (ecohook.etoPredmetStellarity(item)) {
             return;
@@ -43,7 +67,11 @@ public final class ZashchitnikOtEcoEnchants extends DisplayModule {
         delegat.display(item, player, props, args);
     }
 
+    /**
+     * Legacy Eco revert method (scheduled for removal in 2027.39).
+     */
     @Override
+    @SuppressWarnings({"deprecation", "removal"})
     public void revert(final ItemStack item) {
         if (ecohook.etoPredmetStellarity(item)) {
             return;

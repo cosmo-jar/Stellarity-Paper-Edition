@@ -16,7 +16,7 @@ dependencies {
     compileOnly("com.sk89q.worldguard:worldguard-core:7.0.9")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.9")
     compileOnly("net.dmulloy2:ProtocolLib:5.4.0")
-    compileOnly(files("../Важное/eco-2026.33-modrinth.jar"))
+    compileOnly("com.willfp:eco:2026.40")
 }
 
 java {

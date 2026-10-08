@@ -3,5 +3,6 @@
 build/
 target/
 .idea/
+hhh/
 **/.gradle/
 **/.build/
