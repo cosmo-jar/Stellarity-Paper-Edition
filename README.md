@@ -30,7 +30,7 @@ Over time, that small experiment expanded into a full-scale passion project — 
 
 I love original Stellarity datapack, but Minecraft datapacks and server plugins operate very differently under the hood:
 
-* **The Main Thread Bottleneck:** In datapacks, all commands and `.mcfunction` files execute strictly synchronously — one after another, on the server's single Main Thread... and there’s no need to continue further...
+* **Datapack Execution Specifics:** In datapacks, all commands and `.mcfunction` files execute strictly synchronously — one after another, on the server's single Main Thread... and there’s no need to continue further...
 * **The Plugin Advantage:** My plugin provides true architectural flexibility. Logic is **mostly event-driven**, heavy tasks run on **asynchronous worker threads**, and states are managed directly in memory without stalling the main game loop.
 The only potentially heavy spot might be World Generation, and I’ll explain a bit later how to significantly reduce the load during generation.
 
