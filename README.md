@@ -13,7 +13,7 @@
 
 ## Overview & Project Story
 
-**Stellarity ~ Paper Edition** is a server-side Java port and architectural re-engineering of the iconic **Stellarity** datapack, tailored specifically for **Paper** and **Purpur** servers.
+**Stellarity ~ Paper Edition** is a server-side Java port and architectural re-engineering of the iconic [Stellarity datapack](https://modrinth.com/datapack/stellarity), tailored specifically for **Paper** and **Purpur** servers.
 
 This project is not just a direct carbon copy of the datapack. I carefully analyzed, evaluated, and designed individual mechanics from scratch, specifically taking asynchronous computation, thread safety into account and perfomence.
 
@@ -44,17 +44,21 @@ The only potentially heavy spot might be World Generation, and I’ll explain a 
 
 ---
 
-## ✨ For those unfamiliar with Stellarity, here is a quick overview of its key features and content:
+## ✨ For those unfamiliar with Stellarity:
 
 ### Overhauled World Generation & Structures
 * **Many new End biomes:** Lush amethyst reaches, shadowed crystal valleys, and ash-strewn void plains.
 * **Many new and reimagined structures:** Massive End Cities, End Villages, treacherous Strongholds, and much more.
 * **Ominous End City Trial Spawners & Vaults:** Face waves of specialized mobs and unlock rewarding loot caches.
 
+![End city](https://cdn.modrinth.com/data/cached_images/b2247062f7e4ade15b43a5161a15244665918823.jpeg)
+
+![Village](https://cdn.modrinth.com/data/cached_images/c457cd52a5b55b0485a7a6b30f6b02c1db1ef74d.jpeg)
+
 ### Legendary Weapons, Armor & Artifacts
 * **The Dragonblade:** Unlocks devastating aerial and slash techniques.
 * **The Harvester:** Siphons souls from slain enemies to unleash soul burst abilities.
-* **Twin Daggers (*The Beginning* & *The End*):** Rapid, lethal dual-wield daggers acquired through End exploration.
+* **Daggers (*The Beginning* & *The End*):** Rapid, lethal dual-wield daggers acquired through End exploration.
 * **Totem of the Void:** Holding a Totem of Undying in your offhand automatically rescues you from falling into the End void, teleporting you safely to solid ground with zero fall damage.
 * **Custom Armors & Trinkets:** Set bonuses, mobility perks, and passive resistances.
 
@@ -63,11 +67,17 @@ The only potentially heavy spot might be World Generation, and I’ll explain a 
 * **The Shulking:** Protected by a dynamic ring of rotating shield rods that must be shattered before damaging the Shulking.
 * **Overhauled Ender Dragon:** A cinematic multi-phase encounter with customized breath attacks, shockwaves, and ambient arena effects.
 
+![Boss](https://cdn.modrinth.com/data/cached_images/5c87ef311b755ecc8081f0f432e3108f8d77579a.jpeg)
+
 ### Mystical Mechanics & The Endonomicon
 * **The Endonomicon:** an interactive encyclopedia of crafting recipes for items.
 * **Altars:** Sacred Altars for boss summoning and Accursed Altars for craft items.
 * **Cauldron Crafting & Consecration:** Brew custom recipes in boiling cauldrons and transmute items in the The Hallow biome..
 * **Void Fishing:** Cast your line into the End void to retrieve unique treasures and biome-specific loot.
+
+<p align="center">
+  <img width="480" height="270" alt="hg" src="https://github.com/user-attachments/assets/9a403079-935b-4080-952e-b71ced5e0d54" />
+</p>
 
 ---
 
@@ -209,9 +219,6 @@ If you are a datapack developer, worldgen enthusiast, or Java coder who shares a
   * and more..
 
 ---
-
-<img width="480" height="270" alt="hg" src="https://github.com/user-attachments/assets/9a403079-935b-4080-952e-b71ced5e0d54" />
-
 
 <p align="center">
   <b>Elevate your End dimension with blazing-fast performance.</b><br>
