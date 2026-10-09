@@ -210,6 +210,9 @@ If you are a datapack developer, worldgen enthusiast, or Java coder who shares a
 
 ---
 
+<img width="480" height="270" alt="hg" src="https://github.com/user-attachments/assets/9a403079-935b-4080-952e-b71ced5e0d54" />
+
+
 <p align="center">
   <b>Elevate your End dimension with blazing-fast performance.</b><br>
   <i>Stellarity ~ Paper Edition</i>
