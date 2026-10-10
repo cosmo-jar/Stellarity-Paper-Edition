@@ -216,6 +216,7 @@ If you are a datapack developer, worldgen enthusiast, or Java coder who shares a
   * 🌟 [BushMoss](https://modrinth.com/user/BushMoss) — Member
   * 🎨 [MidasDaEpik](https://modrinth.com/user/MidasDaEpik) — Artist
   * 🎨 [Alligatorgamer](https://modrinth.com/user/Alligatorgamer) — Artist
+  * 💻 [amber](https://modrinth.com/user/Coder2195) — Developer
   * and more..
 
 ---
