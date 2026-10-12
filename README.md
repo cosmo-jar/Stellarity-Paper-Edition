@@ -154,6 +154,12 @@ Your world is left 100% clean, vanilla-compatible, and crash-free.
 ## ❓(FAQ)
 
 <details>
+<summary><b>Why is the plugin file size so large?</b></summary>
+
+This is due to the world generation files that support multiple game versions. These files make up more than half of the total size, while the core plugin itself is actually very lightweight.
+</details>
+
+<details>
 <summary><b>Can I add this to an existing world?</b></summary>
 
 **Yes, absolutely.** Existing worlds are fully supported. However, new biomes, terrain overhauls, and structures will only generate in newly explored (unopened) chunks of The End. For the complete, seamless experience on an existing server, I strongly recommend deleting or resetting the `the_end` dimension folder before starting.
