@@ -3,6 +3,7 @@ package dev.cosmojar.stellaritypaper.enchants;
 import dev.cosmojar.stellaritypaper.data.ItemStateRepository;
 import dev.cosmojar.stellaritypaper.data.PlayerStateRepository;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
@@ -52,9 +53,6 @@ public final class HarvesterAbilityUnlockService {
         if (killer == null || !killer.isOnline()) {
             return;
         }
-        if (event.getEntity().getLocation().distance(killer.getLocation()) > MAX_KILL_DISTANCE) {
-            return;
-        }
 
         final ItemStack item = killer.getInventory().getItemInMainHand();
         if (item == null || item.getType().isAir()) {
@@ -64,6 +62,15 @@ public final class HarvesterAbilityUnlockService {
             return;
         }
         if (activeService.highestLevel(activeService.fromItem(item, "mainhand"), EnchantIds.TECHNICAL_SOUL_HARVEST) <= 0) {
+            return;
+        }
+
+        final Location victimLoc = event.getEntity().getLocation();
+        final Location killerLoc = killer.getLocation();
+        if (victimLoc.getWorld() == null || killerLoc.getWorld() == null || !victimLoc.getWorld().equals(killerLoc.getWorld())) {
+            return;
+        }
+        if (victimLoc.distance(killerLoc) > MAX_KILL_DISTANCE) {
             return;
         }
 

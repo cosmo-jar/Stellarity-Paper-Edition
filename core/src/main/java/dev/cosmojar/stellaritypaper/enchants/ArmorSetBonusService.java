@@ -3,11 +3,13 @@ package dev.cosmojar.stellaritypaper.enchants;
 import dev.cosmojar.stellaritypaper.config.ItemsConfigService;
 import dev.cosmojar.stellaritypaper.items.CustomItemMatcher;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
@@ -144,7 +146,8 @@ public final class ArmorSetBonusService {
                 }
                 return true;
             }
-            entity.getWorld().spawnParticle(
+            spawnParticleSafe(
+                    entity.getWorld(),
                     Particle.HAPPY_VILLAGER,
                     entity.getEyeLocation().add(0.0D, 0.4D, 0.0D),
                     3, 0.1D, 0.1D, 0.1D, 0.0D
@@ -186,16 +189,19 @@ public final class ArmorSetBonusService {
                     championCombos.remove(uuid);
                 } else if (combo.combo > 0 && player.getTicksLived() % 2 == 0 && isMoving(player)) {
                     if ("kohara_".equalsIgnoreCase(player.getName())) {
-                        player.getWorld().spawnParticle(
+                        spawnParticleSafe(
+                                player.getWorld(),
                                 Particle.CHERRY_LEAVES,
                                 player.getLocation().add(0.0D, 1.0D, 0.0D),
                                 5, 0.25D, 0.44D, 0.25D, 0.01D
                         );
                     } else {
-                        player.getWorld().spawnParticle(
+                        spawnParticleSafe(
+                                player.getWorld(),
                                 Particle.DRAGON_BREATH,
                                 player.getLocation().add(0.0D, 1.0D, 0.0D),
-                                8, 0.25D, 0.44D, 0.25D, 0.015D
+                                8, 0.25D, 0.44D, 0.25D, 0.015D,
+                                1.0F
                         );
                     }
                 }
@@ -206,7 +212,7 @@ public final class ArmorSetBonusService {
                 final HallowedState state = hallowedStates.computeIfAbsent(uuid, k -> new HallowedState());
                 if (!state.shieldActive && now >= cooldownUntil) {
                     state.shieldActive = true;
-                    player.getWorld().spawnParticle(Particle.END_ROD, player.getLocation().add(0.0D, 1.1D, 0.0D), 15, 0.0D, 0.0D, 0.0D, 0.046D);
+                    spawnParticleSafe(player.getWorld(), Particle.END_ROD, player.getLocation().add(0.0D, 1.1D, 0.0D), 15, 0.0D, 0.0D, 0.0D, 0.046D);
                     player.getWorld().playSound(player.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_CHARGE, 0.25F, 2.0F);
                 }
             } else {
@@ -313,10 +319,10 @@ public final class ArmorSetBonusService {
 
                 victim.removePotionEffect(PotionEffectType.RESISTANCE);
 
-                victim.getWorld().spawnParticle(Particle.END_ROD, victim.getLocation().add(0.0D, 1.0D, 0.0D), 12, 0.11D, 0.11D, 0.11D, 0.0D);
-                victim.getWorld().spawnParticle(Particle.FIREWORK, victim.getLocation().add(0.0D, 1.0D, 0.0D), 12, 0.11D, 0.11D, 0.11D, 0.0D);
-                victim.getWorld().spawnParticle(Particle.FLASH, victim.getLocation().add(0.0D, 1.0D, 0.0D), 1, 0.0D, 0.0D, 0.0D, 0.0D, org.bukkit.Color.WHITE);
-                victim.getWorld().spawnParticle(Particle.POOF, victim.getLocation().add(0.0D, 1.0D, 0.0D), 22, 0.3D, 0.5D, 0.3D, 0.0D);
+                spawnParticleSafe(victim.getWorld(), Particle.END_ROD, victim.getLocation().add(0.0D, 1.0D, 0.0D), 12, 0.11D, 0.11D, 0.11D, 0.0D);
+                spawnParticleSafe(victim.getWorld(), Particle.FIREWORK, victim.getLocation().add(0.0D, 1.0D, 0.0D), 12, 0.11D, 0.11D, 0.11D, 0.0D);
+                spawnParticleSafe(victim.getWorld(), Particle.FLASH, victim.getLocation().add(0.0D, 1.0D, 0.0D), 1, 0.0D, 0.0D, 0.0D, 0.0D, Color.WHITE);
+                spawnParticleSafe(victim.getWorld(), Particle.POOF, victim.getLocation().add(0.0D, 1.0D, 0.0D), 22, 0.3D, 0.5D, 0.3D, 0.0D);
 
                 victim.getWorld().playSound(victim.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_DEPLETE, 0.6F, 1.3F);
                 victim.getWorld().playSound(victim.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 0.333F, 1.2F);
@@ -441,7 +447,7 @@ public final class ArmorSetBonusService {
             final BloomState newState = new BloomState(targetUuid, shooterUuid, 4.0D, now + 3500L);
             bloomStates.put(targetUuid, newState);
             victim.getWorld().playSound(victim.getLocation(), Sound.BLOCK_BEEHIVE_WORK, 0.9F, 1.2F);
-            victim.getWorld().spawnParticle(Particle.HAPPY_VILLAGER, victim.getEyeLocation().add(0.0D, 0.4D, 0.0D), 8, 0.2D, 0.2D, 0.2D, 0.0D);
+            spawnParticleSafe(victim.getWorld(), Particle.HAPPY_VILLAGER, victim.getEyeLocation().add(0.0D, 0.4D, 0.0D), 8, 0.2D, 0.2D, 0.2D, 0.0D);
         } else {
             if (now - state.lastHitTime >= 800) {
                 state.currentDamage = Math.min(50.0D, state.currentDamage + 2.0D);
@@ -449,7 +455,7 @@ public final class ArmorSetBonusService {
                 state.lastHitTime = now;
 
                 victim.getWorld().playSound(victim.getLocation(), Sound.BLOCK_BEEHIVE_WORK, 1.0F, 1.5F);
-                victim.getWorld().spawnParticle(Particle.HAPPY_VILLAGER, victim.getEyeLocation().add(0.0D, 0.4D, 0.0D), 12, 0.25D, 0.25D, 0.25D, 0.0D);
+                spawnParticleSafe(victim.getWorld(), Particle.HAPPY_VILLAGER, victim.getEyeLocation().add(0.0D, 0.4D, 0.0D), 12, 0.25D, 0.25D, 0.25D, 0.0D);
 
                 if (state.currentDamage >= 50.0D) {
                     triggerBloomExplosion(victim, state);
@@ -465,8 +471,8 @@ public final class ArmorSetBonusService {
 
         victim.getWorld().playSound(victim.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LARGE_BLAST, 1.0F, 1.0F);
         victim.getWorld().playSound(victim.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 0.8F, 1.2F);
-        victim.getWorld().spawnParticle(Particle.EXPLOSION, victim.getLocation().add(0.0D, 1.0D, 0.0D), 3, 0.3D, 0.3D, 0.3D, 0.0D);
-        victim.getWorld().spawnParticle(Particle.HAPPY_VILLAGER, victim.getLocation().add(0.0D, 1.0D, 0.0D), 20, 0.4D, 0.4D, 0.4D, 0.05D);
+        spawnParticleSafe(victim.getWorld(), Particle.EXPLOSION, victim.getLocation().add(0.0D, 1.0D, 0.0D), 3, 0.3D, 0.3D, 0.3D, 0.0D);
+        spawnParticleSafe(victim.getWorld(), Particle.HAPPY_VILLAGER, victim.getLocation().add(0.0D, 1.0D, 0.0D), 20, 0.4D, 0.4D, 0.4D, 0.05D);
     }
 
     private boolean isFullSetWorn(final Player player, final String setName) {
@@ -544,5 +550,38 @@ public final class ArmorSetBonusService {
 
     private static final class HallowedState {
         private boolean shieldActive = false;
+    }
+
+    private static void spawnParticleSafe(final World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed, final Object preferredData) {
+        if (world == null || loc == null || particle == null) {
+            return;
+        }
+        try {
+            final Class<?> dataType = particle.getDataType();
+            if (dataType == Void.class) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            } else if (preferredData != null && dataType.isInstance(preferredData)) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, preferredData);
+            } else if (dataType == Float.class) {
+                final float val = (preferredData instanceof Number n) ? n.floatValue() : 1.0F;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, val);
+            } else if (dataType == Color.class) {
+                final Color col = (preferredData instanceof Color c) ? c : (preferredData instanceof Particle.DustOptions d) ? d.getColor() : Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, col);
+            } else if (dataType == Particle.DustOptions.class) {
+                final Color col = (preferredData instanceof Color c) ? c : Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustOptions(col, 1.0F));
+            } else if (dataType == Particle.DustTransition.class) {
+                final Color col = (preferredData instanceof Color c) ? c : Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustTransition(col, Color.WHITE, 1.0F));
+            } else {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            }
+        } catch (final Throwable ignored) {
+        }
+    }
+
+    private static void spawnParticleSafe(final World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed) {
+        spawnParticleSafe(world, particle, loc, count, ox, oy, oz, speed, null);
     }
 }

@@ -257,7 +257,7 @@ public final class Shulking implements StellarityBoss {
         for (final ShulkheadMinion minion : minions) {
             final LivingEntity target = minion.vex.getTarget();
             if (target instanceof Player player) {
-                if (player.getGameMode() == org.bukkit.GameMode.SURVIVAL || player.getGameMode() == org.bukkit.GameMode.ADVENTURE) {
+                if (player.getWorld().equals(minion.vex.getWorld()) && (player.getGameMode() == org.bukkit.GameMode.SURVIVAL || player.getGameMode() == org.bukkit.GameMode.ADVENTURE)) {
                     if (minion.vex.getLocation().distance(player.getLocation()) <= 2.2D) {
                         if (now - minion.lastAttackTime >= 1000L) {
                             minion.lastAttackTime = now;
@@ -290,7 +290,7 @@ public final class Shulking implements StellarityBoss {
                 for (int i = 0; i < minions.size(); i++) {
                     final ShulkheadMinion minion = minions.get(i);
                     
-                    if (minion.vex.getLocation().distance(allay.getLocation()) > 30.0D) {
+                    if (minion.vex.getWorld().equals(allay.getWorld()) && minion.vex.getLocation().distance(allay.getLocation()) > 30.0D) {
                         BossManager.teleportWithPassengers(minion.vex, allay.getLocation().add((Math.random() - 0.5D) * 6.0D, 1.5D, (Math.random() - 0.5D) * 6.0D));
                     }
 
@@ -302,7 +302,7 @@ public final class Shulking implements StellarityBoss {
             } else {
                 for (final ShulkheadMinion minion : minions) {
                     minion.vex.setTarget(null);
-                    if (minion.vex.getLocation().distance(allay.getLocation()) > 15.0D) {
+                    if (minion.vex.getWorld().equals(allay.getWorld()) && minion.vex.getLocation().distance(allay.getLocation()) > 15.0D) {
                         BossManager.teleportWithPassengers(minion.vex, allay.getLocation().add((Math.random() - 0.5D) * 4.0D, 1.5D, (Math.random() - 0.5D) * 4.0D));
                     }
                 }
@@ -422,8 +422,8 @@ public final class Shulking implements StellarityBoss {
             final Location loc = allay.getLocation().add(0, 1.5, 0);
             loc.getWorld().playSound(loc, Sound.ITEM_SHIELD_BREAK, 1.5F, 0.9F);
             loc.getWorld().playSound(loc, Sound.BLOCK_AMETHYST_BLOCK_BREAK, 1.5F, 0.7F);
-            loc.getWorld().spawnParticle(Particle.EXPLOSION_EMITTER, loc, 1, 0.0, 0.0, 0.0, 0.0);
-            loc.getWorld().spawnParticle(Particle.END_ROD, loc, 60, 0.5, 0.5, 0.5, 0.15);
+            spawnParticleSafe(loc.getWorld(), Particle.EXPLOSION_EMITTER, loc, 1, 0.0, 0.0, 0.0, 0.0, 1.0F);
+            spawnParticleSafe(loc.getWorld(), Particle.END_ROD, loc, 60, 0.5, 0.5, 0.5, 0.15);
         }
     }
 
@@ -560,5 +560,38 @@ public final class Shulking implements StellarityBoss {
             } catch (final Throwable ignored) {}
             allay.getWorld().playSound(bodyShulker.getLocation(), Sound.ENTITY_SHULKER_HURT, 1.0F, 0.8F);
         }
+    }
+
+    private static void spawnParticleSafe(final org.bukkit.World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed, final Object preferredData) {
+        if (world == null || loc == null || particle == null) {
+            return;
+        }
+        try {
+            final Class<?> dataType = particle.getDataType();
+            if (dataType == Void.class) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            } else if (preferredData != null && dataType.isInstance(preferredData)) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, preferredData);
+            } else if (dataType == Float.class) {
+                final float val = (preferredData instanceof Number n) ? n.floatValue() : 1.0F;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, val);
+            } else if (dataType == org.bukkit.Color.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : (preferredData instanceof Particle.DustOptions d) ? d.getColor() : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, col);
+            } else if (dataType == Particle.DustOptions.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustOptions(col, 1.0F));
+            } else if (dataType == Particle.DustTransition.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustTransition(col, org.bukkit.Color.WHITE, 1.0F));
+            } else {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            }
+        } catch (final Throwable ignored) {
+        }
+    }
+
+    private static void spawnParticleSafe(final org.bukkit.World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed) {
+        spawnParticleSafe(world, particle, loc, count, ox, oy, oz, speed, null);
     }
 }

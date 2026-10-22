@@ -20,7 +20,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -154,8 +153,8 @@ public final class CauldronCraftService implements Listener {
             final Location center = cauldronLoc.clone().add(0.5, 0.45, 0.5);
             world.playSound(center, Sound.ITEM_BOTTLE_EMPTY, 1.0F, 1.0F);
             world.playSound(center, Sound.ITEM_BOTTLE_FILL_DRAGONBREATH, 0.75F, 1.0F);
-            world.spawnParticle(Particle.POOF, center, 10, 0.25, 0.0, 0.25, 0.0);
-            world.spawnParticle(Particle.DRAGON_BREATH, center, 12, 0.2, 0.2, 0.2, 0.01);
+            spawnParticleSafe(world, Particle.POOF, center, 10, 0.25, 0.0, 0.25, 0.0);
+            spawnParticleSafe(world, Particle.DRAGON_BREATH, center, 12, 0.2, 0.2, 0.2, 0.01);
         }
 
         return true;
@@ -434,7 +433,7 @@ public final class CauldronCraftService implements Listener {
 
         final int breathLeft = activeCauldrons.getOrDefault(cauldronLoc, 0);
         final int particleCount = Math.max(1, Math.min(breathLeft, 5));
-        world.spawnParticle(Particle.DRAGON_BREATH, cauldronLoc.clone().add(0.5, 0.55, 0.5),
+        spawnParticleSafe(world, Particle.DRAGON_BREATH, cauldronLoc.clone().add(0.5, 0.55, 0.5),
                 particleCount, 0.25, 0.05, 0.25, 0.00577, 1.0F);
     }
 
@@ -540,5 +539,38 @@ public final class CauldronCraftService implements Listener {
                 tryActivateOrRechargeCauldron(itemEntity);
             }
         }, 10L);
+    }
+
+    private static void spawnParticleSafe(final World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed, final Object preferredData) {
+        if (world == null || loc == null || particle == null) {
+            return;
+        }
+        try {
+            final Class<?> dataType = particle.getDataType();
+            if (dataType == Void.class) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            } else if (preferredData != null && dataType.isInstance(preferredData)) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, preferredData);
+            } else if (dataType == Float.class) {
+                final float val = (preferredData instanceof Number n) ? n.floatValue() : 1.0F;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, val);
+            } else if (dataType == org.bukkit.Color.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : (preferredData instanceof Particle.DustOptions d) ? d.getColor() : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, col);
+            } else if (dataType == Particle.DustOptions.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustOptions(col, 1.0F));
+            } else if (dataType == Particle.DustTransition.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustTransition(col, org.bukkit.Color.WHITE, 1.0F));
+            } else {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            }
+        } catch (final Throwable ignored) {
+        }
+    }
+
+    private static void spawnParticleSafe(final World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed) {
+        spawnParticleSafe(world, particle, loc, count, ox, oy, oz, speed, null);
     }
 }

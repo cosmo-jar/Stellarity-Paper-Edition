@@ -211,7 +211,12 @@ public final class HarvesterMechanicService {
         if (!isHarvesterInMainHand(killer)) {
             return;
         }
-        if (event.getEntity().getLocation().distance(killer.getLocation()) > KILL_MAX_DISTANCE) {
+        final Location victimLoc = event.getEntity().getLocation();
+        final Location killerLoc = killer.getLocation();
+        if (victimLoc.getWorld() == null || killerLoc.getWorld() == null || !victimLoc.getWorld().equals(killerLoc.getWorld())) {
+            return;
+        }
+        if (victimLoc.distance(killerLoc) > KILL_MAX_DISTANCE) {
             return;
         }
 
@@ -638,7 +643,7 @@ public final class HarvesterMechanicService {
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 45 * 20, 1, true, false, false));
             player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 45 * 20, 0, true, false, false));
 
-            player.getWorld().spawnParticle(Particle.EXPLOSION_EMITTER, player.getLocation().add(0.0D, 0.5D, 0.0D), 1);
+            spawnParticleSafe(player.getWorld(), Particle.EXPLOSION_EMITTER, player.getLocation().add(0.0D, 0.5D, 0.0D), 1, 0.0D, 0.0D, 0.0D, 0.0D);
             player.playSound(player.getLocation(), Sound.BLOCK_GLASS_BREAK, 1.0F, 0.6F);
             player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_BREAK, 1.0F, 0.6F);
             player.playSound(player.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_DEPLETE, 1.0F, 0.8F);
@@ -911,9 +916,9 @@ public final class HarvesterMechanicService {
                 world.spawnParticle(Particle.DUST, loc.clone().add(0, 1.0, 0), 1, 0.45, 0.72, 0.45, 0.0, pinkDust);
             }
             if (random.nextDouble() < 0.75) {
-                world.spawnParticle(Particle.ENCHANT, loc.clone().add(0, 1.5, 0), 1, 0.0, 0.0, 0.0, 1.0);
+                spawnParticleSafe(world, Particle.ENCHANT, loc.clone().add(0, 1.5, 0), 1, 0.0, 0.0, 0.0, 1.0);
             }
-            world.spawnParticle(Particle.ENCHANT, loc.clone().add(0, 1.5, 0), 1, 0.0, 0.0, 0.0, 1.0);
+            spawnParticleSafe(world, Particle.ENCHANT, loc.clone().add(0, 1.5, 0), 1, 0.0, 0.0, 0.0, 1.0);
         }
     }
 
@@ -927,5 +932,38 @@ public final class HarvesterMechanicService {
             return meta.getPersistentDataContainer().getOrDefault(key, org.bukkit.persistence.PersistentDataType.INTEGER, 0);
         }
         return 0;
+    }
+
+    private static void spawnParticleSafe(final org.bukkit.World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed, final Object preferredData) {
+        if (world == null || loc == null || particle == null) {
+            return;
+        }
+        try {
+            final Class<?> dataType = particle.getDataType();
+            if (dataType == Void.class) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            } else if (preferredData != null && dataType.isInstance(preferredData)) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, preferredData);
+            } else if (dataType == Float.class) {
+                final float val = (preferredData instanceof Number n) ? n.floatValue() : 1.0F;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, val);
+            } else if (dataType == Color.class) {
+                final Color col = (preferredData instanceof Color c) ? c : (preferredData instanceof Particle.DustOptions d) ? d.getColor() : Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, col);
+            } else if (dataType == Particle.DustOptions.class) {
+                final Color col = (preferredData instanceof Color c) ? c : Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustOptions(col, 1.0F));
+            } else if (dataType == Particle.DustTransition.class) {
+                final Color col = (preferredData instanceof Color c) ? c : Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustTransition(col, Color.WHITE, 1.0F));
+            } else {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            }
+        } catch (final Throwable ignored) {
+        }
+    }
+
+    private static void spawnParticleSafe(final org.bukkit.World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed) {
+        spawnParticleSafe(world, particle, loc, count, ox, oy, oz, speed, null);
     }
 }

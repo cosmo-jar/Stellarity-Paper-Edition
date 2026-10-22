@@ -221,7 +221,7 @@ public final class DragonbladeMechanicService implements org.bukkit.event.Listen
         }
 
         target.teleport(cursor.clone().add(0.0D, -0.5D, 0.0D));
-        target.getWorld().spawnParticle(Particle.DRAGON_BREATH, target.getLocation().add(0.0D, 1.0D, 0.0D), 6, 0.2D, 0.2D, 0.2D, 0.01D);
+        spawnParticleSafe(target.getWorld(), Particle.DRAGON_BREATH, target.getLocation().add(0.0D, 1.0D, 0.0D), 6, 0.2D, 0.2D, 0.2D, 0.01D);
         soundService.play(target, "stellarity:item.dragonblade.punch", 1.0F, 1.0F, null);
 
         if (hitBlock) {
@@ -319,6 +319,9 @@ public final class DragonbladeMechanicService implements org.bukkit.event.Listen
             if (level <= 0) {
                 continue;
             }
+            if (!target.getWorld().equals(player.getWorld())) {
+                continue;
+            }
             final double distance = target.getLocation().distanceSquared(player.getLocation());
             if (distance < bestDistance) {
                 bestDistance = distance;
@@ -382,10 +385,10 @@ public final class DragonbladeMechanicService implements org.bukkit.event.Listen
                     final Location loc = itemEntity.getLocation();
                     final org.bukkit.World world = itemEntity.getWorld();
                     if (itemEntity.isOnGround()) {
-                        world.spawnParticle(Particle.END_ROD, loc.clone().add(0, 0.1, 0), 1, 0.25, 0.05, 0.25, 0.02);
-                        world.spawnParticle(Particle.ENCHANT, loc.clone().add(0, 0.1, 0), 2, 0.35, 0.05, 0.35, 0.02);
+                        spawnParticleSafe(world, Particle.END_ROD, loc.clone().add(0, 0.1, 0), 1, 0.25, 0.05, 0.25, 0.02);
+                        spawnParticleSafe(world, Particle.ENCHANT, loc.clone().add(0, 0.1, 0), 2, 0.35, 0.05, 0.35, 0.02);
                     } else {
-                        world.spawnParticle(Particle.END_ROD, loc.clone().add(0, 0.2, 0), 1, 0.05, 0.05, 0.05, 0.01);
+                        spawnParticleSafe(world, Particle.END_ROD, loc.clone().add(0, 0.2, 0), 1, 0.05, 0.05, 0.05, 0.01);
                     }
                 }
             }.runTaskTimer(plugin, 0L, 5L);
@@ -400,5 +403,38 @@ public final class DragonbladeMechanicService implements org.bukkit.event.Listen
         private int untilPunchResetTicks = 0;
         private int cooldownTicks = 0;
         private int punchTickGate = 0;
+    }
+
+    private static void spawnParticleSafe(final org.bukkit.World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed, final Object preferredData) {
+        if (world == null || loc == null || particle == null) {
+            return;
+        }
+        try {
+            final Class<?> dataType = particle.getDataType();
+            if (dataType == Void.class) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            } else if (preferredData != null && dataType.isInstance(preferredData)) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, preferredData);
+            } else if (dataType == Float.class) {
+                final float val = (preferredData instanceof Number n) ? n.floatValue() : 1.0F;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, val);
+            } else if (dataType == org.bukkit.Color.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : (preferredData instanceof Particle.DustOptions d) ? d.getColor() : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, col);
+            } else if (dataType == Particle.DustOptions.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustOptions(col, 1.0F));
+            } else if (dataType == Particle.DustTransition.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustTransition(col, org.bukkit.Color.WHITE, 1.0F));
+            } else {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            }
+        } catch (final Throwable ignored) {
+        }
+    }
+
+    private static void spawnParticleSafe(final org.bukkit.World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed) {
+        spawnParticleSafe(world, particle, loc, count, ox, oy, oz, speed, null);
     }
 }

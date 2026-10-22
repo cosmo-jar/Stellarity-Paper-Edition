@@ -468,16 +468,16 @@ public final class EndCityCrystalService {
 
                 final Location particleLoc = crystal.getLocation().add(0, 1.0, 0);
                 if (ticks <= 15) {
-                    world.spawnParticle(Particle.ENCHANT, particleLoc, 8, 0.4, 0.4, 0.4, 0.5);
-                    world.spawnParticle(Particle.PORTAL, particleLoc, 8, 0.4, 0.4, 0.4, 0.5);
+                    spawnParticleSafe(world, Particle.ENCHANT, particleLoc, 8, 0.4, 0.4, 0.4, 0.5);
+                    spawnParticleSafe(world, Particle.PORTAL, particleLoc, 8, 0.4, 0.4, 0.4, 0.5);
                 }
 
                 if (ticks >= 20) {
                     cancel();
                     final Location finalLoc = crystal.getLocation();
 
-                    world.spawnParticle(Particle.FLASH, finalLoc, 1, 0, 0, 0, 0, Color.WHITE);
-                    world.spawnParticle(Particle.EXPLOSION_EMITTER, finalLoc, 1, 0, 0, 0, 0);
+                    spawnParticleSafe(world, Particle.FLASH, finalLoc, 1, 0, 0, 0, 0, Color.WHITE);
+                    spawnParticleSafe(world, Particle.EXPLOSION_EMITTER, finalLoc, 1, 0, 0, 0, 0);
                     world.playSound(finalLoc, Sound.ENTITY_GENERIC_EXPLODE, 1.0f, 0.75f);
                     world.playSound(finalLoc, Sound.BLOCK_RESPAWN_ANCHOR_DEPLETE, 1.0f, 0.0f);
 
@@ -553,5 +553,38 @@ public final class EndCityCrystalService {
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
+    }
+
+    private static void spawnParticleSafe(final World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed, final Object preferredData) {
+        if (world == null || loc == null || particle == null) {
+            return;
+        }
+        try {
+            final Class<?> dataType = particle.getDataType();
+            if (dataType == Void.class) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            } else if (preferredData != null && dataType.isInstance(preferredData)) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, preferredData);
+            } else if (dataType == Float.class) {
+                final float val = (preferredData instanceof Number n) ? n.floatValue() : 1.0F;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, val);
+            } else if (dataType == Color.class) {
+                final Color col = (preferredData instanceof Color c) ? c : (preferredData instanceof Particle.DustOptions d) ? d.getColor() : Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, col);
+            } else if (dataType == Particle.DustOptions.class) {
+                final Color col = (preferredData instanceof Color c) ? c : Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustOptions(col, 1.0F));
+            } else if (dataType == Particle.DustTransition.class) {
+                final Color col = (preferredData instanceof Color c) ? c : Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustTransition(col, Color.WHITE, 1.0F));
+            } else {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            }
+        } catch (final Throwable ignored) {
+        }
+    }
+
+    private static void spawnParticleSafe(final World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed) {
+        spawnParticleSafe(world, particle, loc, count, ox, oy, oz, speed, null);
     }
 }

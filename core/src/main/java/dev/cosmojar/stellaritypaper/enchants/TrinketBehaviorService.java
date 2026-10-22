@@ -852,7 +852,7 @@ public final class TrinketBehaviorService {
         setModifier(defender, Attribute.ATTACK_DAMAGE, crestAttackKey, mult, AttributeModifier.Operation.ADD_SCALAR);
 
         defender.getWorld().playSound(defender.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 0.4F, 1.2F + (0.15F * wrath.stacks));
-        defender.getWorld().spawnParticle(Particle.DRAGON_BREATH, defender.getLocation().add(0.0D, 1.0D, 0.0D), 6 * wrath.stacks, 0.2D, 0.2D, 0.2D, 0.02D);
+        spawnParticleSafe(defender.getWorld(), Particle.DRAGON_BREATH, defender.getLocation().add(0.0D, 1.0D, 0.0D), 6 * wrath.stacks, 0.2D, 0.2D, 0.2D, 0.02D);
     }
 
     public void onPlayerMeleeAttack(final EntityDamageByEntityEvent event, final Player attacker, final LivingEntity victim) {
@@ -870,7 +870,7 @@ public final class TrinketBehaviorService {
 
             attacker.getWorld().playSound(attacker.getLocation(), Sound.ENTITY_WIND_CHARGE_WIND_BURST, 1.0F, 1.2F);
             attacker.getWorld().playSound(attacker.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LARGE_BLAST, 0.8F, 1.0F);
-            attacker.getWorld().spawnParticle(Particle.DRAGON_BREATH, victim.getLocation().add(0.0D, 1.0D, 0.0D), 18, 0.3D, 0.3D, 0.3D, 0.05D);
+            spawnParticleSafe(attacker.getWorld(), Particle.DRAGON_BREATH, victim.getLocation().add(0.0D, 1.0D, 0.0D), 18, 0.3D, 0.3D, 0.3D, 0.05D);
         }
     }
 
@@ -1099,4 +1099,37 @@ public final class TrinketBehaviorService {
             org.bukkit.entity.ItemDisplay display,
             BukkitTask particleTask
     ) {}
+
+    private static void spawnParticleSafe(final org.bukkit.World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed, final Object preferredData) {
+        if (world == null || loc == null || particle == null) {
+            return;
+        }
+        try {
+            final Class<?> dataType = particle.getDataType();
+            if (dataType == Void.class) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            } else if (preferredData != null && dataType.isInstance(preferredData)) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, preferredData);
+            } else if (dataType == Float.class) {
+                final float val = (preferredData instanceof Number n) ? n.floatValue() : 1.0F;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, val);
+            } else if (dataType == org.bukkit.Color.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : (preferredData instanceof Particle.DustOptions d) ? d.getColor() : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, col);
+            } else if (dataType == Particle.DustOptions.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustOptions(col, 1.0F));
+            } else if (dataType == Particle.DustTransition.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustTransition(col, org.bukkit.Color.WHITE, 1.0F));
+            } else {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            }
+        } catch (final Throwable ignored) {
+        }
+    }
+
+    private static void spawnParticleSafe(final org.bukkit.World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed) {
+        spawnParticleSafe(world, particle, loc, count, ox, oy, oz, speed, null);
+    }
 }

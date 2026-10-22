@@ -304,7 +304,7 @@ public final class WeaponMechanicService {
                             this.cancel();
                             return;
                         }
-                        projectile.getWorld().spawnParticle(Particle.DRAGON_BREATH, projectile.getLocation(), 1, 0.0D, 0.0D, 0.0D, 0.01D);
+                        spawnParticleSafe(projectile.getWorld(), Particle.DRAGON_BREATH, projectile.getLocation(), 1, 0.0D, 0.0D, 0.0D, 0.01D);
                     }
                 }.runTaskTimer(plugin, 1L, 1L);
             }
@@ -1660,5 +1660,38 @@ public final class WeaponMechanicService {
         int tamarisTicks;
         int harvesterAmbientTicks;
         boolean tamarisNoWarn;
+    }
+
+    private static void spawnParticleSafe(final org.bukkit.World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed, final Object preferredData) {
+        if (world == null || loc == null || particle == null) {
+            return;
+        }
+        try {
+            final Class<?> dataType = particle.getDataType();
+            if (dataType == Void.class) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            } else if (preferredData != null && dataType.isInstance(preferredData)) {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, preferredData);
+            } else if (dataType == Float.class) {
+                final float val = (preferredData instanceof Number n) ? n.floatValue() : 1.0F;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, val);
+            } else if (dataType == org.bukkit.Color.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : (preferredData instanceof Particle.DustOptions d) ? d.getColor() : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, col);
+            } else if (dataType == Particle.DustOptions.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustOptions(col, 1.0F));
+            } else if (dataType == Particle.DustTransition.class) {
+                final org.bukkit.Color col = (preferredData instanceof org.bukkit.Color c) ? c : org.bukkit.Color.WHITE;
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed, new Particle.DustTransition(col, org.bukkit.Color.WHITE, 1.0F));
+            } else {
+                world.spawnParticle(particle, loc, count, ox, oy, oz, speed);
+            }
+        } catch (final Throwable ignored) {
+        }
+    }
+
+    private static void spawnParticleSafe(final org.bukkit.World world, final Particle particle, final Location loc, final int count, final double ox, final double oy, final double oz, final double speed) {
+        spawnParticleSafe(world, particle, loc, count, ox, oy, oz, speed, null);
     }
 }
