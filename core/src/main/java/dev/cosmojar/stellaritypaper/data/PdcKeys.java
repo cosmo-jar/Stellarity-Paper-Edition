@@ -12,6 +12,7 @@ public final class PdcKeys {
     private final NamespacedKey harvesterAbilities;
     private final NamespacedKey harvesterAbilityProgress;
     private final NamespacedKey sessionId;
+    private final NamespacedKey crystalHeartfishConsumed;
 
     public PdcKeys(final KeyFactory keyFactory) {
         this.itemId = keyFactory.stellarity("item_id");
@@ -21,6 +22,7 @@ public final class PdcKeys {
         this.harvesterAbilities = keyFactory.stellarity("harvester_abilities");
         this.harvesterAbilityProgress = keyFactory.stellarity("harvester_ability_progress");
         this.sessionId = keyFactory.stellarity("session_id");
+        this.crystalHeartfishConsumed = keyFactory.stellarity("crystal_heartfish_consumed");
     }
 
     public NamespacedKey itemId() {
@@ -49,5 +51,9 @@ public final class PdcKeys {
 
     public NamespacedKey sessionId() {
         return sessionId;
+    }
+
+    public NamespacedKey crystalHeartfishConsumed() {
+        return crystalHeartfishConsumed;
     }
 }

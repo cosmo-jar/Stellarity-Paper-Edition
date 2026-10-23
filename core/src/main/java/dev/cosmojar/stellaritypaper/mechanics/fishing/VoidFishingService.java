@@ -160,9 +160,6 @@ public final class VoidFishingService {
 
         if (advancementService != null) {
             advancementService.grant(player, "stellarity:void_fishing/void_reels");
-            if (itemStateRepository.getItemId(loot).isPresent()) {
-                advancementService.grant(player, "stellarity:void_fishing/topped_off");
-            }
         }
     }
 

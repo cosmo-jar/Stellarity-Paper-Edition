@@ -57,6 +57,15 @@ public final class ItemInfoGuiService implements Listener {
         this.codec = codec;
     }
 
+    public boolean hasCustomEnchants(final ItemStack item) {
+        if (item == null || item.getType().isAir()) {
+            return false;
+        }
+        return itemStateRepository.getEnchantsData(item)
+                .map(data -> !codec.decode(data).isEmpty())
+                .orElse(false);
+    }
+
     public void open(final Player player, final ItemStack itemInHand, final CustomItemDefinition definition) {
         final Component title = messageService.message("command.item.gui-title");
         final ItemInfoGuiHolder holder = new ItemInfoGuiHolder(definition);
@@ -68,19 +77,20 @@ public final class ItemInfoGuiService implements Listener {
         }
 
         final ItemStack centralItem = itemInHand.clone();
-        final List<Component> baseLore = loreBuilder.buildAlways(definition);
-        final List<Component> formattedLore = new ArrayList<>();
-
-        for (final Component component : baseLore) {
-            final Component styledLine = component
-                    .color(net.kyori.adventure.text.format.NamedTextColor.GRAY)
-                    .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false);
-            formattedLore.add(styledLine);
-        }
-
         final ItemMeta meta = centralItem.getItemMeta();
         if (meta != null) {
-            meta.lore(formattedLore);
+            if (definition != null) {
+                final List<Component> baseLore = loreBuilder.buildAlways(definition);
+                final List<Component> formattedLore = new ArrayList<>();
+
+                for (final Component component : baseLore) {
+                    final Component styledLine = component
+                            .color(net.kyori.adventure.text.format.NamedTextColor.GRAY)
+                            .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false);
+                    formattedLore.add(styledLine);
+                }
+                meta.lore(formattedLore);
+            }
             meta.addItemFlags(org.bukkit.inventory.ItemFlag.values());
             centralItem.setItemMeta(meta);
         }

@@ -8,15 +8,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class ItemsConfigService {
 
     private final Plugin plugin;
     private final Map<String, YamlConfiguration> configs = new HashMap<>();
+    private final List<Runnable> reloadListeners = new CopyOnWriteArrayList<>();
 
     public ItemsConfigService(final Plugin plugin) {
         this.plugin = plugin;
+    }
+
+    public void addReloadListener(final Runnable listener) {
+        if (listener != null) {
+            reloadListeners.add(listener);
+        }
     }
 
     public void load() {
@@ -26,7 +35,7 @@ public final class ItemsConfigService {
             folder.mkdirs();
         }
 
-        final String[] files = {"armor.yml", "trinkets.yml", "weapons.yml", "tools.yml", "misc.yml", "blocks.yml"};
+        final String[] files = {"armor.yml", "trinkets.yml", "weapons.yml", "tools.yml", "misc.yml", "blocks.yml", "food.yml"};
         for (final String file : files) {
             final String resourcePath = "ItemsSettings/" + file;
             final File targetFile = new File(folder, file);
@@ -44,6 +53,13 @@ public final class ItemsConfigService {
             }
 
             configs.put(file, config);
+        }
+
+        for (final Runnable listener : reloadListeners) {
+            try {
+                listener.run();
+            } catch (final Throwable ignored) {
+            }
         }
     }
 
@@ -69,5 +85,9 @@ public final class ItemsConfigService {
 
     public YamlConfiguration getBlocksConfig() {
         return configs.get("blocks.yml");
+    }
+
+    public YamlConfiguration getFoodConfig() {
+        return configs.get("food.yml");
     }
 }

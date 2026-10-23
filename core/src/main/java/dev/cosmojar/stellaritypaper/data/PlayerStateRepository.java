@@ -27,4 +27,20 @@ public final class PlayerStateRepository {
         );
         return Optional.ofNullable(value);
     }
+
+    public void setCrystalHeartfishConsumed(final Player player, final int count) {
+        player.getPersistentDataContainer().set(
+                keys.crystalHeartfishConsumed(),
+                org.bukkit.persistence.PersistentDataType.INTEGER,
+                count
+        );
+    }
+
+    public int getCrystalHeartfishConsumed(final Player player) {
+        return player.getPersistentDataContainer().getOrDefault(
+                keys.crystalHeartfishConsumed(),
+                org.bukkit.persistence.PersistentDataType.INTEGER,
+                0
+        );
+    }
 }

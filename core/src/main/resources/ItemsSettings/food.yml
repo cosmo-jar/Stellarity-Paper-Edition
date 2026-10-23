@@ -1,0 +1,14 @@
+# ------------------------------------------
+# Stellarity ~ Paper Edition - Food settings
+# ------------------------------------------
+
+crystal_heartfish:
+  enabled: true
+  max-consumed: 5
+  health-per-fish: 2.0 # 1 full heart = 2.0 HP
+
+  # List of player nicknames to forcibly reset eaten heartfish count and extra hearts.
+  # When names are listed here, running '/stellarity reload' or when those players join
+  # will instantly reset their bonus to 0.
+  reset-players:
+    - ""

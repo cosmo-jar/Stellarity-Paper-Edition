@@ -91,7 +91,7 @@ trial_spawner:
 localization:
   # Plugin message locale. The plugin loads the file messages_<LOCALE>.yml.
   # Example: "RU" -> messages_RU.yml, "EN" -> messages_EN.yml.
-  default-locale: "RU"
+  default-locale: "EN"
 
   # Fallback locale used if the default-locale file is missing.
   # Example: default-locale: "EN", fallback-locale: "RU".

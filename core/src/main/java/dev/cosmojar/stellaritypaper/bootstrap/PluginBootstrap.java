@@ -876,7 +876,10 @@ public final class PluginBootstrap {
                         plugin,
                         services.require(CustomItemMatcher.class),
                         services.require(MessageService.class),
-                        services.require(ItemLoreBuilder.class)
+                        services.require(ItemLoreBuilder.class),
+                        services.require(PlayerStateRepository.class),
+                        services.require(dev.cosmojar.stellaritypaper.mechanics.advancements.AdvancementService.class),
+                        services.require(ItemsConfigService.class)
                 ),
                 new CustomSpawnEggListener(
                         services.require(CustomItemMatcher.class),

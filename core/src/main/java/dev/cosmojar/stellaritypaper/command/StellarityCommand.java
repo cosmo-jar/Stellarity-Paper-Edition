@@ -109,14 +109,18 @@ public final class StellarityCommand implements CommandExecutor, TabCompleter {
             }
 
             final org.bukkit.inventory.ItemStack item = player.getInventory().getItemInMainHand();
-            final String customId = itemStateRepository.getItemId(item).orElse(null);
-            if (customId == null) {
+            if (item.getType().isAir()) {
                 player.sendMessage(messageService.message("command.item.no-custom-item"));
                 return true;
             }
 
-            final dev.cosmojar.stellaritypaper.items.CustomItemDefinition definition = itemRegistry.findByPdcItemId(customId).orElse(null);
-            if (definition == null) {
+            final String customId = itemStateRepository.getItemId(item).orElse(null);
+            final dev.cosmojar.stellaritypaper.items.CustomItemDefinition definition =
+                    (customId != null) ? itemRegistry.findByPdcItemId(customId).orElse(null) : null;
+
+            final boolean hasCustomEnchants = itemInfoGuiService.hasCustomEnchants(item);
+
+            if (definition == null && !hasCustomEnchants) {
                 player.sendMessage(messageService.message("command.item.no-custom-item"));
                 return true;
             }
