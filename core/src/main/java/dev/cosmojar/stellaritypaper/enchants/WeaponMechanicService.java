@@ -45,11 +45,7 @@ import org.bukkit.util.Transformation;
 import org.joml.Vector3f;
 import org.joml.Quaternionf;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -103,6 +99,9 @@ public final class WeaponMechanicService {
 
     private final Map<UUID, BukkitTask> activeReturnCasts = new HashMap<>();
     private final Map<UUID, List<List<Shulker>>> activeObstructWalls = new HashMap<>();
+    private final Map<UUID, BukkitTask> activeUpdraftTasks = new HashMap<>();
+    private final Map<UUID, Long> updraftCastTime = new HashMap<>();
+    private final Map<UUID, Long> updraftFallProtectedUntil = new HashMap<>();
     private final ThreadLocal<Boolean> isProcessingSweep = ThreadLocal.withInitial(() -> false);
     private final RadiantJewelService radiantJewelService;
 
@@ -138,6 +137,13 @@ public final class WeaponMechanicService {
         if (radiantJewelService != null) {
             radiantJewelService.rescan(player);
         }
+        final AttributeInstance gravity = player.getAttribute(Attribute.GRAVITY);
+        if (!activeUpdraftTasks.containsKey(player.getUniqueId())
+                && (player.getPersistentDataContainer().has(updraftFloatKey, PersistentDataType.BOOLEAN)
+                || (gravity != null && gravity.getModifier(updraftGravityKey) != null))) {
+            endUpdraftFloat(player, false);
+        }
+
         final String itemId = itemId(player);
         final boolean loop = ITEM_STELLAR_STRIKER.equalsIgnoreCase(itemId) 
                 || ITEM_PRISMEMBER.equalsIgnoreCase(itemId)
@@ -158,6 +164,15 @@ public final class WeaponMechanicService {
         tamarisVictimSafeCooldown.remove(uuid);
         fluffyCooldown.remove(uuid);
         spellbookCooldown.remove(uuid);
+
+        final BukkitTask updraftTask = activeUpdraftTasks.remove(uuid);
+        if (updraftTask != null) {
+            updraftTask.cancel();
+        }
+        updraftCastTime.remove(uuid);
+        updraftFallProtectedUntil.remove(uuid);
+        player.getPersistentDataContainer().remove(updraftFloatKey);
+        player.removePotionEffect(PotionEffectType.SLOW_FALLING);
 
         final BukkitTask castTask = activeReturnCasts.remove(uuid);
         if (castTask != null) {
@@ -186,6 +201,13 @@ public final class WeaponMechanicService {
         tamarisVictimSafeCooldown.clear();
         fluffyCooldown.clear();
         spellbookCooldown.clear();
+
+        for (final BukkitTask updraftTask : activeUpdraftTasks.values()) {
+            updraftTask.cancel();
+        }
+        activeUpdraftTasks.clear();
+        updraftCastTime.clear();
+        updraftFallProtectedUntil.clear();
 
         for (final BukkitTask castTask : activeReturnCasts.values()) {
             castTask.cancel();
@@ -1475,13 +1497,29 @@ public final class WeaponMechanicService {
         }
 
         if (ITEM_BOOK_UPDRAFT.equalsIgnoreCase(itemId)) {
+            final BukkitTask prevTask = activeUpdraftTasks.remove(uuid);
+            if (prevTask != null) {
+                prevTask.cancel();
+            }
+
             player.setVelocity(player.getVelocity().setY(1.0D));
             player.getWorld().playSound(player.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 0.8F, 1.0F);
             player.getWorld().playSound(player.getLocation(), Sound.ITEM_TRIDENT_RIPTIDE_1, 1.0F, 0.8F);
 
-            setModifier(player, Attribute.GRAVITY, updraftGravityKey, -0.95D, AttributeModifier.Operation.ADD_SCALAR);
-            setModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, updraftFallDamageKey, -1.0D, AttributeModifier.Operation.ADD_SCALAR);
-            player.getPersistentDataContainer().set(updraftFloatKey, PersistentDataType.BOOLEAN, true);
+            if (!player.isGliding()) {
+                player.getPersistentDataContainer().set(updraftFloatKey, PersistentDataType.BOOLEAN, true);
+                updraftCastTime.put(uuid, System.currentTimeMillis());
+                updraftFallProtectedUntil.put(uuid, System.currentTimeMillis() + 12_000L);
+                player.setFallDistance(0.0F);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 160, 0, false, false, false));
+
+                final BukkitTask timeoutTask = Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                    if (player.isOnline()) {
+                        endUpdraftFloat(player, false);
+                    }
+                }, 160L);
+                activeUpdraftTasks.put(uuid, timeoutTask);
+            }
 
             for (int wave = 1; wave <= 3; wave++) {
                 final double radius = 3.0D + (1.5D * (wave - 1));
@@ -1490,14 +1528,9 @@ public final class WeaponMechanicService {
 
                     player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WIND_CHARGE_WIND_BURST, 0.6F, 1.3F);
                     player.getWorld().spawnParticle(Particle.CLOUD, player.getLocation(), 15, radius * 0.5D, 0.2D, radius * 0.5D, 0.05D, null);
-
-                    for (final Entity entity : player.getNearbyEntities(radius, 3.0D, radius)) {
-                        if (entity instanceof LivingEntity living && !living.getUniqueId().equals(player.getUniqueId())) {
-                            living.setVelocity(living.getVelocity().setY(0.7D));
-                        }
-                    }
                 }, wave * 2L);
             }
+            return;
         }
     }
 
@@ -1525,24 +1558,65 @@ public final class WeaponMechanicService {
         }
     }
 
+    public void endUpdraftFloat(final Player player, final boolean playSound) {
+        if (player == null) return;
+        final UUID uuid = player.getUniqueId();
+        final BukkitTask task = activeUpdraftTasks.remove(uuid);
+        if (task != null) {
+            task.cancel();
+        }
+        updraftCastTime.remove(uuid);
+
+        final Boolean isFloating = player.getPersistentDataContainer().get(updraftFloatKey, PersistentDataType.BOOLEAN);
+        final boolean hasSlowFalling = player.hasPotionEffect(PotionEffectType.SLOW_FALLING);
+        final AttributeInstance gravityAttr = player.getAttribute(Attribute.GRAVITY);
+        final boolean hasGravityMod = gravityAttr != null && gravityAttr.getModifier(updraftGravityKey) != null;
+
+        if (isFloating == null && !hasSlowFalling && !hasGravityMod) {
+            return;
+        }
+
+        player.getPersistentDataContainer().remove(updraftFloatKey);
+        player.removePotionEffect(PotionEffectType.SLOW_FALLING);
+        removeModifier(player, Attribute.GRAVITY, updraftGravityKey);
+        removeModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, updraftFallDamageKey);
+        player.setFallDistance(0.0F);
+
+        updraftFallProtectedUntil.put(uuid, System.currentTimeMillis() + 3000L);
+
+        if (playSound && player.isOnline()) {
+            player.getWorld().playSound(player.getLocation(), Sound.BLOCK_GRASS_STEP, 0.8F, 1.2F);
+        }
+    }
+
     public void onPlayerMove(final PlayerMoveEvent event) {
         final Player player = event.getPlayer();
         final Boolean isFloating = player.getPersistentDataContainer().get(updraftFloatKey, PersistentDataType.BOOLEAN);
         if (Boolean.TRUE.equals(isFloating)) {
-            if (player.isOnGround() || player.getLocation().getBlock().isLiquid()) {
-                player.getPersistentDataContainer().set(updraftFloatKey, PersistentDataType.BOOLEAN, false);
-                Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                    if (player.isOnline()) {
-                        removeModifier(player, Attribute.GRAVITY, updraftGravityKey);
-                        player.getWorld().playSound(player.getLocation(), Sound.BLOCK_GRASS_STEP, 0.8F, 1.2F);
-                    }
-                }, 2L);
-                Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                    if (player.isOnline()) {
-                        player.getPersistentDataContainer().remove(updraftFloatKey);
-                        removeModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, updraftFallDamageKey);
-                    }
-                }, 20L);
+            if (player.isGliding()) {
+                endUpdraftFloat(player, false);
+                return;
+            }
+
+            player.setFallDistance(0.0F);
+
+            final long castTime = updraftCastTime.getOrDefault(player.getUniqueId(), 0L);
+            if (System.currentTimeMillis() - castTime < 500L) {
+                return;
+            }
+
+            if (player.isSneaking()) {
+                endUpdraftFloat(player, false);
+                return;
+            }
+
+            final boolean onGround = player.isOnGround();
+            final boolean inLiquid = player.getLocation().getBlock().isLiquid();
+            final boolean climbing = player.isClimbing();
+            final boolean inVehicle = player.isInsideVehicle();
+
+            if (onGround || inLiquid || climbing || inVehicle) {
+                endUpdraftFloat(player, true);
             }
         }
     }
@@ -1551,15 +1625,14 @@ public final class WeaponMechanicService {
         if (!(event.getEntity() instanceof Player player)) {
             return;
         }
-        if (event.getCause() == EntityDamageEvent.DamageCause.FALL && Boolean.TRUE.equals(player.getPersistentDataContainer().get(updraftFloatKey, PersistentDataType.BOOLEAN))) {
-            event.setCancelled(true);
-            player.getPersistentDataContainer().remove(updraftFloatKey);
-            Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                if (player.isOnline()) {
-                    removeModifier(player, Attribute.GRAVITY, updraftGravityKey);
-                    removeModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, updraftFallDamageKey);
-                }
-            }, 20L);
+        if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
+            final long protectUntil = updraftFallProtectedUntil.getOrDefault(player.getUniqueId(), 0L);
+            if (System.currentTimeMillis() < protectUntil
+                    || Boolean.TRUE.equals(player.getPersistentDataContainer().get(updraftFloatKey, PersistentDataType.BOOLEAN))) {
+                event.setCancelled(true);
+                player.setFallDistance(0.0F);
+                endUpdraftFloat(player, false);
+            }
         }
     }
 

@@ -22,6 +22,7 @@ import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -118,6 +119,11 @@ public final class EnchantRuntimeListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onToggleGlide(final org.bukkit.event.entity.EntityToggleGlideEvent event) {
+        enchantRuntimeService.onToggleGlide(event);
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onShootBow(final EntityShootBowEvent event) {
         enchantRuntimeService.onShootBow(event);
     }
@@ -171,6 +177,17 @@ public final class EnchantRuntimeListener implements Listener {
             scheduleRecalculate(player);
         }
         enchantRuntimeService.onEntityResurrect(event);
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onRespawn(final PlayerRespawnEvent event) {
+        final Player player = event.getPlayer();
+        Bukkit.getScheduler().runTask(plugin, () -> {
+            if (player.isOnline()) {
+                enchantItemService.ensurePlayerEquipmentUpToDate(player);
+                scheduleRecalculate(player);
+            }
+        });
     }
 
     private void scheduleRecalculate(final Player player) {

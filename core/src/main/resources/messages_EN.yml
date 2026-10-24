@@ -485,6 +485,8 @@ trinkets:
     too_close: "<red>You cannot use the Void Altar so close to another altar!</red>"
   void_pendant:
     amethyst_ready: "<gray>Void Pendant ability ready: <bold><light_purple>Vision</light_purple></bold></gray>"
+  soaring_insignia:
+    expired: "<gray>Soaring Insignia effect has expired.</gray>"
 
 loaf_of_plenty:
   description:

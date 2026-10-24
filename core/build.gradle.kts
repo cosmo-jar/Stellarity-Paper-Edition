@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "dev.cosmojar.StellarityPaper"
-version = "1.0.2"
+version = "1.0.3"
 
 dependencies {
     implementation("org.bstats:bstats-bukkit:3.2.1")

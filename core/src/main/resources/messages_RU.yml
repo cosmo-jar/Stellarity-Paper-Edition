@@ -485,6 +485,8 @@ trinkets:
     too_close: "<red>Вы не можете использовать Алтарь Бездны так близко к другому алтарю!</red>"
   void_pendant:
     amethyst_ready: "<gray>Способность Медальона Бездны готова: <bold><light_purple>Зрение</light_purple></bold></gray>"
+  soaring_insignia:
+    expired: "<gray>Действие Эмблемы Парения закончилось.</gray>"
 
 loaf_of_plenty:
   description:

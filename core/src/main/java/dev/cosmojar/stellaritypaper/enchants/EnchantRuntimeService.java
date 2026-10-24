@@ -1,12 +1,12 @@
 package dev.cosmojar.stellaritypaper.enchants;
 
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -78,6 +78,7 @@ public final class EnchantRuntimeService {
         voidPendantBehaviorService.clear(player);
         customStatusEffectService.clear(player);
         kaleidoscopeMechanicService.clear(player);
+        dragonbladeMechanicService.clear(player);
         harvesterMechanicService.clearPlayer(player);
         weaponMechanicService.clear(player);
         armorSetBonusService.clear(player);
@@ -108,6 +109,13 @@ public final class EnchantRuntimeService {
     public void onPlayerMove(final PlayerMoveEvent event) {
         mobilityBehaviorService.onPlayerMove(event);
         weaponMechanicService.onPlayerMove(event);
+    }
+
+    public void onToggleGlide(final EntityToggleGlideEvent event) {
+        if (event.isGliding() && event.getEntity() instanceof Player player) {
+            weaponMechanicService.endUpdraftFloat(player, false);
+            trinketBehaviorService.stopSoaringFlight(player, false);
+        }
     }
 
     public void onProjectileLaunch(final ProjectileLaunchEvent event) {

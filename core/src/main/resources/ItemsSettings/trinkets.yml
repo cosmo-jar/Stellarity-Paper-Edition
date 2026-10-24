@@ -39,6 +39,8 @@ satchel_of_voids:
 
 soaring_insignia:
   enabled: true
+  cooldown: true # If true, flight duration is limited
+  second: 7 # Flight duration in seconds before player begins descending
 
 starstruck_shield:
   enabled: true

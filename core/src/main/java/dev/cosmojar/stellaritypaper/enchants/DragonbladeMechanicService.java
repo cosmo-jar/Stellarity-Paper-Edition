@@ -62,6 +62,13 @@ public final class DragonbladeMechanicService implements org.bukkit.event.Listen
         this.trueDamageKey = new org.bukkit.NamespacedKey(plugin, "stellarity_true_damage");
     }
 
+    public void clear(final Player player) {
+        if (player == null) {
+            return;
+        }
+        states.remove(player.getUniqueId());
+    }
+
     public void clearAll() {
         states.clear();
         if (tickTask != null) {

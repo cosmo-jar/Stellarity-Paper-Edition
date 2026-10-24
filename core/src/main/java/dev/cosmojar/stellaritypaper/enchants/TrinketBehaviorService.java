@@ -30,6 +30,7 @@ import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
@@ -64,6 +65,9 @@ public final class TrinketBehaviorService {
     private final Map<PlayerItemKey, Long> elektraLastChargeTime = new HashMap<>();
     private final Map<UUID, LifeCrystalState> lifeCrystalStates = new HashMap<>();
     private final Set<UUID> activeSoaringPlayers = new HashSet<>();
+    private final Map<UUID, Long> soaringFlightStart = new HashMap<>();
+    private final Map<UUID, Long> soaringCooldownUntil = new HashMap<>();
+    private final Map<UUID, Long> soaringFallProtectedUntil = new HashMap<>();
     private final Map<UUID, ActiveAltar> activeAltars = new HashMap<>();
     private final Map<Location, AreaEffectCloud> infectedBushes = new HashMap<>();
     private final Map<UUID, Long> starstruckCooldowns = new HashMap<>();
@@ -123,6 +127,9 @@ public final class TrinketBehaviorService {
         elektraLastChargeTime.clear();
         lifeCrystalStates.clear();
         activeSoaringPlayers.clear();
+        soaringFlightStart.clear();
+        soaringCooldownUntil.clear();
+        soaringFallProtectedUntil.clear();
         for (final ActiveAltar altar : activeAltars.values()) {
             if (altar.marker() != null && altar.marker().isValid()) altar.marker().remove();
             if (altar.display() != null && altar.display().isValid()) altar.display().remove();
@@ -142,6 +149,11 @@ public final class TrinketBehaviorService {
     public boolean isPrismaticPearlEnabled() { return itemsConfig.getTrinketsConfig().getBoolean("prismatic_pearl.enabled", true); }
     public boolean isSatchelOfVoidsEnabled() { return itemsConfig.getTrinketsConfig().getBoolean("satchel_of_voids.enabled", true); }
     public boolean isSoaringInsigniaEnabled() { return itemsConfig.getTrinketsConfig().getBoolean("soaring_insignia.enabled", true); }
+    public boolean isSoaringCooldownEnabled() { return itemsConfig.getTrinketsConfig().getBoolean("soaring_insignia.cooldown", true); }
+    public int getSoaringCooldownSeconds() {
+        return itemsConfig.getTrinketsConfig().getInt("soaring_insignia.second",
+                itemsConfig.getTrinketsConfig().getInt("soaring_insignia.cooldown.second", 7));
+    }
     public boolean isStarstruckShieldEnabled() { return itemsConfig.getTrinketsConfig().getBoolean("starstruck_shield.enabled", true); }
 
     public void syncPlayer(final Player player) {
@@ -150,14 +162,16 @@ public final class TrinketBehaviorService {
             crestWraths.remove(player.getUniqueId());
         }
         if (!isHoldingTrinket(player, "soaring_insignia")) {
-            activeSoaringPlayers.remove(player.getUniqueId());
-            removeModifier(player, Attribute.GRAVITY, soaringGravityKey);
-            removeModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, soaringFallDamageKey);
+            stopSoaringFlight(player, false);
         }
     }
 
     public void clear(final Player player) {
         final UUID uuid = player.getUniqueId();
+        stopSoaringFlight(player, false);
+        soaringFlightStart.remove(uuid);
+        soaringCooldownUntil.remove(uuid);
+        soaringFallProtectedUntil.remove(uuid);
         removeModifier(player, Attribute.ATTACK_DAMAGE, crestAttackKey);
         removeModifier(player, Attribute.GRAVITY, soaringGravityKey);
         removeModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, soaringFallDamageKey);
@@ -392,29 +406,97 @@ public final class TrinketBehaviorService {
         player.sendActionBar(net.kyori.adventure.text.Component.text(sb.toString(), net.kyori.adventure.text.format.TextColor.fromHexString("#55FFFF")));
     }
 
+    public void stopSoaringFlight(final Player player, final boolean giveSlowFalling) {
+        if (player == null) return;
+        final UUID uuid = player.getUniqueId();
+        final boolean wasFlying = activeSoaringPlayers.remove(uuid);
+        soaringFlightStart.remove(uuid);
+
+        final AttributeInstance gravityAttr = player.getAttribute(Attribute.GRAVITY);
+        final boolean hasGravity = gravityAttr != null && gravityAttr.getModifier(soaringGravityKey) != null;
+
+        if (!wasFlying && !hasGravity) {
+            return;
+        }
+
+        removeModifier(player, Attribute.GRAVITY, soaringGravityKey);
+        removeModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, soaringFallDamageKey);
+        player.setFallDistance(0.0F);
+
+        soaringFallProtectedUntil.put(uuid, System.currentTimeMillis() + 3000L);
+
+        if (giveSlowFalling && player.isOnline() && !player.isOnGround()) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 100, 0, false, false, false));
+        }
+
+        if (isSoaringCooldownEnabled()) {
+            final int cooldownSec = getSoaringCooldownSeconds();
+            soaringCooldownUntil.put(uuid, System.currentTimeMillis() + (cooldownSec * 1000L));
+        }
+    }
+
+    public void onPlayerMove(final PlayerMoveEvent event) {
+        final Player player = event.getPlayer();
+        if (activeSoaringPlayers.contains(player.getUniqueId())) {
+            if (player.isGliding()) {
+                stopSoaringFlight(player, false);
+                return;
+            }
+            player.setFallDistance(0.0F);
+
+            if (player.isOnGround() || player.getLocation().getBlock().isLiquid() || player.isClimbing() || player.isInsideVehicle()) {
+                stopSoaringFlight(player, false);
+            }
+        }
+    }
+
     private void processSoaringInsigniaFlight(final Player player) {
         final UUID uuid = player.getUniqueId();
-        
+
+        if (player.isGliding()) {
+            stopSoaringFlight(player, false);
+            return;
+        }
+
         if (player.isOnGround() || player.getLocation().getBlock().isLiquid()) {
-            if (activeSoaringPlayers.remove(uuid)) {
-                removeModifier(player, Attribute.GRAVITY, soaringGravityKey);
-                removeModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, soaringFallDamageKey);
-            }
+            stopSoaringFlight(player, false);
+            return;
+        }
+
+        if (!isHoldingTrinket(player, "soaring_insignia")) {
+            stopSoaringFlight(player, true);
             return;
         }
 
         final boolean isFlying = activeSoaringPlayers.contains(uuid);
+        final long now = System.currentTimeMillis();
 
         if (!isFlying) {
-            if (player.isSneaking() && isHoldingTrinket(player, "soaring_insignia")) {
-                if (player.getLocation().getPitch() <= -15.0D) {
-                    activeSoaringPlayers.add(uuid);
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, 1, 0, true, false, false));
-                    setModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, soaringFallDamageKey, -1.0D, AttributeModifier.Operation.ADD_SCALAR);
-                    setModifier(player, Attribute.GRAVITY, soaringGravityKey, -1.1D, AttributeModifier.Operation.ADD_SCALAR);
+            if (player.isSneaking() && player.getLocation().getPitch() <= -15.0D) {
+                if (isSoaringCooldownEnabled() && now < soaringCooldownUntil.getOrDefault(uuid, 0L)) {
+                    return;
                 }
+
+                activeSoaringPlayers.add(uuid);
+                soaringFlightStart.put(uuid, now);
+                soaringFallProtectedUntil.put(uuid, now + 60_000L);
+                player.setFallDistance(0.0F);
+
+                player.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, 15, 0, true, false, false));
+                setModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, soaringFallDamageKey, -1.0D, AttributeModifier.Operation.ADD_SCALAR);
+                setModifier(player, Attribute.GRAVITY, soaringGravityKey, -1.1D, AttributeModifier.Operation.ADD_SCALAR);
             }
         } else {
+            if (isSoaringCooldownEnabled()) {
+                final long flightStart = soaringFlightStart.getOrDefault(uuid, now);
+                if (now - flightStart >= getSoaringCooldownSeconds() * 1000L) {
+                    stopSoaringFlight(player, true);
+                    player.sendActionBar(messageService.message("trinkets.soaring_insignia.expired"));
+                    return;
+                }
+            }
+
+            player.setFallDistance(0.0F);
             setModifier(player, Attribute.FALL_DAMAGE_MULTIPLIER, soaringFallDamageKey, -1.0D, AttributeModifier.Operation.ADD_SCALAR);
 
             if (player.isSneaking()) {
@@ -826,6 +908,16 @@ public final class TrinketBehaviorService {
         if (!(event.getEntity() instanceof Player player)) {
             return;
         }
+
+        if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
+            final long protectUntil = soaringFallProtectedUntil.getOrDefault(player.getUniqueId(), 0L);
+            if (System.currentTimeMillis() < protectUntil || activeSoaringPlayers.contains(player.getUniqueId())) {
+                event.setCancelled(true);
+                player.setFallDistance(0.0F);
+                return;
+            }
+        }
+
         if (isHoldingTrinket(player, "living_flesh") && isLivingFleshEnabled()) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 1));
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 1));
@@ -1066,7 +1158,6 @@ public final class TrinketBehaviorService {
             try {
                 return UUID.fromString(saved);
             } catch (final IllegalArgumentException ignored) {
-                // Fallback to generating a fresh UUID if saved data is invalid
             }
         }
         final UUID newUuid = UUID.randomUUID();

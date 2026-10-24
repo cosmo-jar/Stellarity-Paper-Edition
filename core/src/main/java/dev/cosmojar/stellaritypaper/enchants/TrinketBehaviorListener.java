@@ -9,7 +9,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
+import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -68,5 +70,17 @@ public final class TrinketBehaviorListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onBlockPlace(final org.bukkit.event.block.BlockPlaceEvent event) {
         trinketBehaviorService.onBlockPlace(event);
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onPlayerMove(final PlayerMoveEvent event) {
+        trinketBehaviorService.onPlayerMove(event);
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onToggleGlide(final EntityToggleGlideEvent event) {
+        if (event.isGliding() && event.getEntity() instanceof Player player) {
+            trinketBehaviorService.stopSoaringFlight(player, false);
+        }
     }
 }
