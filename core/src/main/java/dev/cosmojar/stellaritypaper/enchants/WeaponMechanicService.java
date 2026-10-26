@@ -281,6 +281,11 @@ public final class WeaponMechanicService {
                             final Location loc = arrow.getLocation();
                             boolean isMoving = true;
                             if (lastLoc != null) {
+                                if (loc.getWorld() == null || lastLoc.getWorld() == null || !loc.getWorld().equals(lastLoc.getWorld())) {
+                                    lastLoc = loc.clone();
+                                    stillTicks = 0;
+                                    return;
+                                }
                                 final double distSq = loc.distanceSquared(lastLoc);
                                 if (distSq < 0.0001D) {
                                     stillTicks++;
@@ -1011,7 +1016,7 @@ public final class WeaponMechanicService {
                 final float yaw = (t * 20.0F) % 360.0F;
                 display.setRotation(yaw, 90.0F);
                 
-                if (t % 5 == 1) {
+                if (t % 5 == 1 && base.getWorld().equals(player.getWorld())) {
                     player.getWorld().playSound(base.getLocation(), Sound.ENTITY_PLAYER_ATTACK_SWEEP, 0.8F, 1.1F);
                     player.getWorld().spawnParticle(Particle.SWEEP_ATTACK, base.getLocation().add(0, 0.2, 0), 1, 0D, 0D, 0D, 0D);
                 }
@@ -1024,10 +1029,15 @@ public final class WeaponMechanicService {
                     
                     base.teleport(base.getLocation().add(currentDir.clone().multiply(step)));
                     
-                    if (base.getLocation().distanceSquared(startLoc) >= 1600.0D || t >= maxOutTicks) {
+                    if (base.getWorld() == null || startLoc.getWorld() == null || !base.getWorld().equals(startLoc.getWorld())
+                            || base.getLocation().distanceSquared(startLoc) >= 1600.0D || t >= maxOutTicks) {
                         returning = true;
                     }
                 } else {
+                    if (player.getWorld() == null || base.getWorld() == null || !player.getWorld().equals(base.getWorld())) {
+                        cleanup();
+                        return;
+                    }
                     final Vector toPlayer = player.getEyeLocation().toVector().subtract(base.getLocation().toVector());
                     final double distSq = toPlayer.lengthSquared();
                     
@@ -1222,7 +1232,8 @@ public final class WeaponMechanicService {
                     
                     currentLoc.add(currentDir.clone().multiply(projSpeed));
 
-                    if (currentLoc.distanceSquared(startLoc) > maxDistanceSq) {
+                    if (currentLoc.getWorld() == null || startLoc.getWorld() == null || !currentLoc.getWorld().equals(startLoc.getWorld())
+                            || currentLoc.distanceSquared(startLoc) > maxDistanceSq) {
                         if (taskHolder[0] != null) taskHolder[0].cancel();
                         return;
                     }
@@ -1238,9 +1249,11 @@ public final class WeaponMechanicService {
                         tpLoc.setDirection(player.getLocation().getDirection());
 
                         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 20, 0, true, false, true));
-                        player.getWorld().playSound(player.getLocation(), Sound.ITEM_CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
-                        player.teleport(tpLoc);
-                        player.getWorld().playSound(tpLoc, Sound.ITEM_CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
+                        if (player.getWorld().equals(tpLoc.getWorld())) {
+                            player.getWorld().playSound(player.getLocation(), Sound.ITEM_CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
+                            player.teleport(tpLoc);
+                            player.getWorld().playSound(tpLoc, Sound.ITEM_CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
+                        }
                         
                         final Particle.DustTransition hitTransition = new Particle.DustTransition(fromColor, toColor, 1.0F);
                         tpLoc.getWorld().spawnParticle(Particle.DUST_COLOR_TRANSITION, tpLoc.clone().add(0.0D, 1.0D, 0.0D), 80, 0.3D, 0.55D, 0.3D, 0.0D, hitTransition);
@@ -1450,8 +1463,8 @@ public final class WeaponMechanicService {
                         return;
                     }
 
-                    final double dist = player.getLocation().distanceSquared(startLoc);
-                    if (dist > 0.01D) {
+                    if (player.getWorld() == null || startLoc.getWorld() == null || !player.getWorld().equals(startLoc.getWorld())
+                            || player.getLocation().distanceSquared(startLoc) > 0.01D) {
                         player.sendMessage(messageService.message("spellbooks.return.cancelled"));
 						float randomPitch = 0.8F + java.util.concurrent.ThreadLocalRandom.current().nextFloat() * 0.4F;
                         player.getWorld().playSound(player.getLocation(), Sound.BLOCK_REDSTONE_TORCH_BURNOUT, 1.0F, randomPitch);

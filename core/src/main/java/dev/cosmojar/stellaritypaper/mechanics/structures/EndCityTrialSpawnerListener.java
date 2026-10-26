@@ -113,7 +113,8 @@ public final class EndCityTrialSpawnerListener implements Listener {
         for (final org.bukkit.block.BlockState state : chunk.getTileEntities(false)) {
             if (state instanceof TileState tileState && state.getType() == Material.TRIAL_SPAWNER) {
                 final Location loc = tileState.getLocation();
-                if (loc.distanceSquared(player.getLocation()) <= TRIGGER_RADIUS * TRIGGER_RADIUS) {
+                if (loc.getWorld() != null && loc.getWorld().equals(player.getWorld())
+                        && loc.distanceSquared(player.getLocation()) <= TRIGGER_RADIUS * TRIGGER_RADIUS) {
                     if (world.hasStructureAt(loc, Structure.END_CITY)) {
                         checkAndTriggerSpawner(tileState.getBlock(), player);
                     }
