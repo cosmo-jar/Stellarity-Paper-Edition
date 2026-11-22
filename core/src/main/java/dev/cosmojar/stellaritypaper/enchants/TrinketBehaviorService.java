@@ -72,6 +72,7 @@ public final class TrinketBehaviorService {
     private final Map<Location, AreaEffectCloud> infectedBushes = new HashMap<>();
     private final Map<UUID, Long> starstruckCooldowns = new HashMap<>();
     private final Map<UUID, Set<LivingEntity>> playerHighlightedEntities = new HashMap<>();
+    private final Set<UUID> playersWithDragonsEye = new HashSet<>();
 
     private final NamespacedKey crestAttackKey;
     private final NamespacedKey soaringGravityKey;
@@ -138,6 +139,7 @@ public final class TrinketBehaviorService {
         activeAltars.clear();
         infectedBushes.clear();
         playerHighlightedEntities.clear();
+        playersWithDragonsEye.clear();
     }
 
     public boolean isCrestOfTheEndEnabled() { return itemsConfig.getTrinketsConfig().getBoolean("crest_of_the_end.enabled", true); }
@@ -157,9 +159,15 @@ public final class TrinketBehaviorService {
     public boolean isStarstruckShieldEnabled() { return itemsConfig.getTrinketsConfig().getBoolean("starstruck_shield.enabled", true); }
 
     public void syncPlayer(final Player player) {
+        final UUID uuid = player.getUniqueId();
+        if (hasInInventory(player, "dragons_eye")) {
+            playersWithDragonsEye.add(uuid);
+        } else {
+            playersWithDragonsEye.remove(uuid);
+        }
         if (!isHoldingTrinket(player, "crest_of_the_end")) {
             removeModifier(player, Attribute.ATTACK_DAMAGE, crestAttackKey);
-            crestWraths.remove(player.getUniqueId());
+            crestWraths.remove(uuid);
         }
         if (!isHoldingTrinket(player, "soaring_insignia")) {
             stopSoaringFlight(player, false);
@@ -168,6 +176,7 @@ public final class TrinketBehaviorService {
 
     public void clear(final Player player) {
         final UUID uuid = player.getUniqueId();
+        playersWithDragonsEye.remove(uuid);
         stopSoaringFlight(player, false);
         soaringFlightStart.remove(uuid);
         soaringCooldownUntil.remove(uuid);
@@ -251,10 +260,8 @@ public final class TrinketBehaviorService {
         for (final Player player : Bukkit.getOnlinePlayers()) {
             final UUID uuid = player.getUniqueId();
 
-            if (hasInInventory(player, "dragons_eye") && isDragonsEyeEnabled()) {
-                if (player.getTicksLived() % 20 == 0) {
-                    cleanseDragonsEyeDebuffs(player);
-                }
+            if (playersWithDragonsEye.contains(uuid) && player.getTicksLived() % 20 == 0 && isDragonsEyeEnabled()) {
+                cleanseDragonsEyeDebuffs(player);
             }
 
             if (isHoldingTrinket(player, "life_crystal") && isLifeCrystalEnabled()) {
@@ -527,7 +534,7 @@ public final class TrinketBehaviorService {
             return;
         }
         if (event.getEntity() instanceof Enderman || event.getEntity() instanceof Phantom) {
-            if (hasInInventory(player, "dragons_eye") && isDragonsEyeEnabled()) {
+            if (playersWithDragonsEye.contains(player.getUniqueId()) && isDragonsEyeEnabled()) {
                 event.setCancelled(true);
                 event.setTarget(null);
             }
@@ -1104,13 +1111,18 @@ public final class TrinketBehaviorService {
         if (instance == null) {
             return;
         }
-        for (final AttributeModifier modifier : List.copyOf(instance.getModifiers())) {
-            if (key.equals(modifier.getKey())) {
-                instance.removeModifier(modifier);
-            }
-        }
+        final AttributeModifier existing = instance.getModifier(key);
         if (Math.abs(amount) < 1.0E-9D) {
+            if (existing != null) {
+                instance.removeModifier(existing);
+            }
             return;
+        }
+        if (existing != null) {
+            if (existing.getOperation() == operation && Math.abs(existing.getAmount() - amount) < 1.0E-9D) {
+                return;
+            }
+            instance.removeModifier(existing);
         }
         instance.addModifier(new AttributeModifier(key, amount, operation));
     }
@@ -1120,10 +1132,9 @@ public final class TrinketBehaviorService {
         if (instance == null) {
             return;
         }
-        for (final AttributeModifier modifier : List.copyOf(instance.getModifiers())) {
-            if (key.equals(modifier.getKey())) {
-                instance.removeModifier(modifier);
-            }
+        final AttributeModifier existing = instance.getModifier(key);
+        if (existing != null) {
+            instance.removeModifier(existing);
         }
     }
 

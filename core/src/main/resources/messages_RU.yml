@@ -522,6 +522,7 @@ altar_of_the_sacred:
   mob_spawning_denied: "<red>Вы не можете призвать босса здесь, так как в этом регионе запрещён спавн мобов!</red>"
   spawn_started: "<#FF69B4>Древний ритуал начался! %boss% пробуждается...</#FF69B4>"
   already_summoned: "<red>На этом алтаре уже был призван босс, который всё ещё жив!</red>"
+  boss_cooldown: "<red>%boss% восстанавливается и будет доступен через %time%.</red>"
 
 altar_of_the_accursed:
   locked: "<dark_purple>Алтарь Проклятых заперт...</dark_purple>"
@@ -637,4 +638,10 @@ endonomicon:
 mechanic:
   void-totem:
     actionbar: "<gradient:#E77CC6:#E7917C>Там живут драконы...</gradient>"
+
+time:
+  day: "д."
+  hour: "ч."
+  minute: "мин."
+  second: "сек."
 

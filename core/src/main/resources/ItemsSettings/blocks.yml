@@ -4,6 +4,8 @@
 
 altar_of_the_sacred:
   # Whether bosses (Empress of Light and Shulker King) can be summoned in any world?
+  # IMPORTANT: Dedicated regions configured in config.yml (boss.<boss>.dedicated-regions)
+  # take top priority over these world restrictions if dedicated-regions-enabled is true!
   allow-boss-spawn-in-any-world: true
   # List of worlds where summoning bosses is allowed (if the previous parameter is set to false)
   allowed-boss-spawn-worlds:

@@ -48,6 +48,12 @@ features:
 # Boss Settings
 # -------------
 boss:
+  # Enables dedicated region rules for boss summoning.
+  # When true, boss summoning inside configured dedicated-regions bypasses WorldGuard build rights / claim
+  # protection, mob-spawning restrictions, and blocks.yml allowed-boss-spawn-worlds (dedicated regions take top priority!).
+  # Default: false
+  dedicated-regions-enabled: false
+
   # Empress of Light attributes
   empress_of_light:
     # Maximum boss health depending on variant
@@ -58,6 +64,17 @@ boss:
     base-damage: 10.0
     # Base movement speed
     speed: 0.15
+    # Global summoning cooldown in seconds (0 = disabled).
+    # Applied to summons outside dedicated regions (or everywhere if dedicated-regions-enabled is false).
+    # Cooldown is individual per boss (summoning Empress does not affect Shulker King).
+    summon-cooldown-seconds: 0
+    # Dedicated regions where summoning restrictions (claims, mob spawning, and blocks.yml limits) are bypassed.
+    # Takes priority over altar_of_the_sacred settings in blocks.yml!
+    # Each region has its own local cooldown in seconds, which operates in bypass of the global cooldown.
+    dedicated-regions:
+      - world: "world_the_end"
+        region: "empress_arena"
+        cooldown-seconds: 3600
 
   # Shulking (Shulker King) attributes
   shulking:
@@ -69,6 +86,17 @@ boss:
     shield-rods-count: 8
     # Health points per shield rod
     shield-rod-health: 50.0
+    # Global summoning cooldown in seconds (0 = disabled).
+    # Applied to summons outside dedicated regions (or everywhere if dedicated-regions-enabled is false).
+    # Cooldown is individual per boss (summoning Shulker King does not affect Empress).
+    summon-cooldown-seconds: 0
+    # Dedicated regions where summoning restrictions (claims, mob spawning, and blocks.yml limits) are bypassed.
+    # Takes priority over altar_of_the_sacred settings in blocks.yml!
+    # Each region has its own local cooldown in seconds, which operates in bypass of the global cooldown.
+    dedicated-regions:
+      - world: "world_the_end"
+        region: "shulking_arena"
+        cooldown-seconds: 3600
 
   # Ender Dragon attributes
   ender_dragon:

@@ -46,11 +46,14 @@ public final class EnchantItemService {
     }
 
     public boolean ensureUpToDate(final ItemStack item) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
+            return false;
+        }
         return ensureUpToDate(item, currentLocale());
     }
 
     public boolean ensureUpToDate(final ItemStack item, final String locale) {
-        if (item == null || item.getType().isAir()) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return false;
         }
 
@@ -58,7 +61,8 @@ public final class EnchantItemService {
                 .flatMap(itemDefinitionRegistry::findByPdcItemId)
                 .orElse(null);
 
-        List<EnchantInstance> enchants = codec.decode(itemStateRepository.getEnchantsData(item).orElse(""));
+        final String rawEnchants = itemStateRepository.getEnchantsData(item).orElse("");
+        List<EnchantInstance> enchants = rawEnchants.isEmpty() ? List.of() : codec.decode(rawEnchants);
 
         if (definition == null && enchants.isEmpty()) {
             return false;
@@ -80,8 +84,7 @@ public final class EnchantItemService {
 
         if (schema != ENCHANTS_SCHEMA_VERSION || !normalizedLocale.equalsIgnoreCase(stampedLocale) || changed) {
             rebuildLore(item, definition, enchants);
-            itemStateRepository.setEnchantsSchema(item, ENCHANTS_SCHEMA_VERSION);
-            itemStateRepository.setEnchantsLocale(item, normalizedLocale);
+            itemStateRepository.stampEnchantsSchemaAndLocale(item, ENCHANTS_SCHEMA_VERSION, normalizedLocale);
             return true;
         }
         return false;
@@ -110,8 +113,7 @@ public final class EnchantItemService {
             }
         }
         rebuildLore(item, definition, enchants, forceAlwaysBaseLore);
-        itemStateRepository.setEnchantsSchema(item, ENCHANTS_SCHEMA_VERSION);
-        itemStateRepository.setEnchantsLocale(item, currentLocale());
+        itemStateRepository.stampEnchantsSchemaAndLocale(item, ENCHANTS_SCHEMA_VERSION, currentLocale());
         return true;
     }
 
@@ -124,12 +126,13 @@ public final class EnchantItemService {
             return;
         }
 
-        ensureUpToDate(equipment.getItemInMainHand());
-        ensureUpToDate(equipment.getItemInOffHand());
-        ensureUpToDate(equipment.getHelmet());
-        ensureUpToDate(equipment.getChestplate());
-        ensureUpToDate(equipment.getLeggings());
-        ensureUpToDate(equipment.getBoots());
+        final String locale = currentLocale();
+        ensureUpToDate(equipment.getItemInMainHand(), locale);
+        ensureUpToDate(equipment.getItemInOffHand(), locale);
+        ensureUpToDate(equipment.getHelmet(), locale);
+        ensureUpToDate(equipment.getChestplate(), locale);
+        ensureUpToDate(equipment.getLeggings(), locale);
+        ensureUpToDate(equipment.getBoots(), locale);
     }
 
     private void rebuildLore(

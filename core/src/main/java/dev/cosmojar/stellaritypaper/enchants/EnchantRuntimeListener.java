@@ -1,6 +1,7 @@
 package dev.cosmojar.stellaritypaper.enchants;
 
 import dev.cosmojar.stellaritypaper.data.ItemStateRepository;
+import io.papermc.paper.event.entity.EntityEquipmentChangedEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -8,16 +9,20 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemBreakEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -69,16 +74,64 @@ public final class EnchantRuntimeListener implements Listener {
         enchantRuntimeService.cleanup(event.getPlayer());
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onHeld(final PlayerItemHeldEvent event) {
         final Player player = event.getPlayer();
         scheduleRecalculate(player);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onSwap(final PlayerSwapHandItemsEvent event) {
         final Player player = event.getPlayer();
         scheduleRecalculate(player);
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onEquipmentChanged(final EntityEquipmentChangedEvent event) {
+        if (!(event.getEntity() instanceof Player player)) {
+            return;
+        }
+        for (final EntityEquipmentChangedEvent.EquipmentChange change : event.getEquipmentChanges().values()) {
+            if (isMeaningfulEquipmentChange(change.oldItem(), change.newItem())) {
+                scheduleRecalculate(player);
+                return;
+            }
+        }
+    }
+
+    private boolean isMeaningfulEquipmentChange(final ItemStack oldItem, final ItemStack newItem) {
+        final boolean oldAir = oldItem == null || oldItem.getType().isAir();
+        final boolean newAir = newItem == null || newItem.getType().isAir();
+        if (oldAir != newAir) {
+            return true;
+        }
+        if (oldAir) {
+            return false;
+        }
+        if (oldItem.getType() != newItem.getType()) {
+            return true;
+        }
+        if (!itemStateRepository.getItemId(oldItem).equals(itemStateRepository.getItemId(newItem))) {
+            return true;
+        }
+        return !itemStateRepository.getEnchantsData(oldItem).equals(itemStateRepository.getEnchantsData(newItem));
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onItemBreak(final PlayerItemBreakEvent event) {
+        scheduleRecalculate(event.getPlayer());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onEntityPickupItem(final EntityPickupItemEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            scheduleRecalculate(player);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onPlayerDropItem(final PlayerDropItemEvent event) {
+        scheduleRecalculate(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -86,7 +139,6 @@ public final class EnchantRuntimeListener implements Listener {
         if (!(event.getWhoClicked() instanceof Player player)) {
             return;
         }
-        enchantItemService.ensurePlayerEquipmentUpToDate(player);
         scheduleRecalculate(player);
     }
 
@@ -95,13 +147,15 @@ public final class EnchantRuntimeListener implements Listener {
         if (!(event.getWhoClicked() instanceof Player player)) {
             return;
         }
-        enchantItemService.ensurePlayerEquipmentUpToDate(player);
         scheduleRecalculate(player);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onInteract(final PlayerInteractEvent event) {
-        if (event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK) {
+        if (event.getAction() == Action.PHYSICAL) {
+            return;
+        }
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (event.useItemInHand() == org.bukkit.event.Event.Result.DENY) {
                 return;
             }
@@ -110,7 +164,6 @@ public final class EnchantRuntimeListener implements Listener {
         enchantItemService.ensureUpToDate(player.getInventory().getItemInMainHand());
         enchantItemService.ensureUpToDate(player.getInventory().getItemInOffHand());
         enchantRuntimeService.onInteract(event);
-        scheduleRecalculate(player);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -141,10 +194,6 @@ public final class EnchantRuntimeListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onDamage(final EntityDamageByEntityEvent event) {
         final Player player = resolvePlayerDamager(event.getDamager());
-        if (player != null) {
-            enchantItemService.ensurePlayerEquipmentUpToDate(player);
-            scheduleRecalculate(player);
-        }
         enchantRuntimeService.onDamage(event);
         handleArmorPenetrationAndTrueDamage(event, player);
     }
@@ -155,10 +204,6 @@ public final class EnchantRuntimeListener implements Listener {
             return;
         }
 
-        if (event.getEntity() instanceof Player player) {
-            enchantItemService.ensurePlayerEquipmentUpToDate(player);
-            scheduleRecalculate(player);
-        }
         enchantRuntimeService.onEntityDamage(event);
     }
 
@@ -173,7 +218,6 @@ public final class EnchantRuntimeListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntityResurrect(final EntityResurrectEvent event) {
         if (event.getEntity() instanceof Player player) {
-            enchantItemService.ensurePlayerEquipmentUpToDate(player);
             scheduleRecalculate(player);
         }
         enchantRuntimeService.onEntityResurrect(event);
@@ -184,7 +228,6 @@ public final class EnchantRuntimeListener implements Listener {
         final Player player = event.getPlayer();
         Bukkit.getScheduler().runTask(plugin, () -> {
             if (player.isOnline()) {
-                enchantItemService.ensurePlayerEquipmentUpToDate(player);
                 scheduleRecalculate(player);
             }
         });
@@ -196,7 +239,10 @@ public final class EnchantRuntimeListener implements Listener {
         }
         Bukkit.getScheduler().runTask(plugin, () -> {
             try {
-                enchantRuntimeService.recalculate(player);
+                if (player.isOnline()) {
+                    enchantItemService.ensurePlayerEquipmentUpToDate(player);
+                    enchantRuntimeService.recalculate(player);
+                }
             } finally {
                 pendingRecalculate.remove(player.getUniqueId());
             }

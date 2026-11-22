@@ -2,9 +2,7 @@ package dev.cosmojar.stellaritypaper.enchants;
 
 import dev.cosmojar.stellaritypaper.items.api.StellarityItemDefinition;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -14,6 +12,7 @@ import java.util.Optional;
 public final class EnchantDefinitionRegistry {
 
     private final Map<String, EnchantDefinition> byId = new HashMap<>();
+    private final List<EnchantDefinition> allDefinitions;
 
     public EnchantDefinitionRegistry(final Collection<EnchantDefinition> definitions) {
         for (final EnchantDefinition definition : definitions) {
@@ -31,6 +30,7 @@ public final class EnchantDefinitionRegistry {
                 throw new IllegalStateException("Duplicate enchant id: " + definition.id());
             }
         }
+        this.allDefinitions = List.copyOf(byId.values());
     }
 
     public Optional<EnchantDefinition> findById(final String id) {
@@ -41,7 +41,7 @@ public final class EnchantDefinitionRegistry {
     }
 
     public List<EnchantDefinition> all() {
-        return Collections.unmodifiableList(new ArrayList<>(byId.values()));
+        return allDefinitions;
     }
 
     public void validateItemBindings(final Collection<StellarityItemDefinition> itemDefinitions) {

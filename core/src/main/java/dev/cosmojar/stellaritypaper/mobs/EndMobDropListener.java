@@ -106,7 +106,7 @@ public final class EndMobDropListener implements Listener {
     }
 
     private void handleShulkerDeath(final EntityDeathEvent event, final Shulker shulker) {
-        // Игнорируем спец-части боссов (например Shulking)
+        // игнор спец-части боссов (например Shulking)
         if (shulker.getScoreboardTags().contains("stellarity.shulking.body")
             || shulker.getScoreboardTags().contains("stellarity.shulking.rod_shulker")) {
             return;

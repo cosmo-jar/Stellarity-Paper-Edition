@@ -50,4 +50,14 @@ public final class WorldGuardHook {
         }
     }
 
+    public static boolean isInRegion(final Location location, final String regionId) {
+        if (!enabled) {
+            return false;
+        }
+        try {
+            return WorldGuardChecker.isInRegion(location, regionId);
+        } catch (final Throwable t) {
+            return false;
+        }
+    }
 }

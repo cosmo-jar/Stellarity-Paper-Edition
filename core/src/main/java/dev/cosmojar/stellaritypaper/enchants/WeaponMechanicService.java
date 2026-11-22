@@ -134,9 +134,6 @@ public final class WeaponMechanicService {
 
     public void syncPlayer(final Player player) {
         if (player == null || !player.isOnline()) return;
-        if (radiantJewelService != null) {
-            radiantJewelService.rescan(player);
-        }
         final AttributeInstance gravity = player.getAttribute(Attribute.GRAVITY);
         if (!activeUpdraftTasks.containsKey(player.getUniqueId())
                 && (player.getPersistentDataContainer().has(updraftFloatKey, PersistentDataType.BOOLEAN)
@@ -1692,13 +1689,18 @@ public final class WeaponMechanicService {
         if (instance == null) {
             return;
         }
-        for (final AttributeModifier modifier : List.copyOf(instance.getModifiers())) {
-            if (key.equals(modifier.getKey())) {
-                instance.removeModifier(modifier);
-            }
-        }
+        final AttributeModifier existing = instance.getModifier(key);
         if (Math.abs(amount) < 1.0E-9D) {
+            if (existing != null) {
+                instance.removeModifier(existing);
+            }
             return;
+        }
+        if (existing != null) {
+            if (existing.getOperation() == operation && Math.abs(existing.getAmount() - amount) < 1.0E-9D) {
+                return;
+            }
+            instance.removeModifier(existing);
         }
         instance.addModifier(new AttributeModifier(key, amount, operation));
     }
@@ -1708,10 +1710,9 @@ public final class WeaponMechanicService {
         if (instance == null) {
             return;
         }
-        for (final AttributeModifier modifier : List.copyOf(instance.getModifiers())) {
-            if (key.equals(modifier.getKey())) {
-                instance.removeModifier(modifier);
-            }
+        final AttributeModifier existing = instance.getModifier(key);
+        if (existing != null) {
+            instance.removeModifier(existing);
         }
     }
 

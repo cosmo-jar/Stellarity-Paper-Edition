@@ -22,6 +22,7 @@ public final class MessageService {
     private final TextService textService;
 
     private YamlConfiguration bundle;
+    private String currentLocale = DEFAULT_LOCALE;
 
     public MessageService(
             final StellarityPaperPlugin plugin,
@@ -44,7 +45,16 @@ public final class MessageService {
         final String defaultLocale = normalizeLocale(localization.defaultLocale(), DEFAULT_LOCALE);
         final String fallbackLocale = normalizeLocale(localization.fallbackLocale(), DEFAULT_LOCALE);
 
+        this.currentLocale = defaultLocale;
         this.bundle = loadBundleOrFallback(defaultLocale, fallbackLocale);
+    }
+
+    public boolean isRussian() {
+        return "RU".equalsIgnoreCase(currentLocale);
+    }
+
+    public String getCurrentLocale() {
+        return currentLocale;
     }
 
     public Component message(final String key) {

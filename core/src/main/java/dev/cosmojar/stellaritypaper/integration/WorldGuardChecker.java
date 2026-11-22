@@ -4,6 +4,8 @@ import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.LocalPlayer;
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
 import org.bukkit.Location;
@@ -46,4 +48,19 @@ public final class WorldGuardChecker {
         return query.testState(weLoc, (LocalPlayer) null, com.sk89q.worldguard.protection.flags.Flags.MOB_SPAWNING);
     }
 
+    public static boolean isInRegion(final Location location, final String regionId) {
+        if (location == null || location.getWorld() == null || regionId == null || regionId.isBlank()) {
+            return false;
+        }
+        final RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
+        final RegionQuery query = container.createQuery();
+        final com.sk89q.worldedit.util.Location weLoc = BukkitAdapter.adapt(location);
+        final ApplicableRegionSet set = query.getApplicableRegions(weLoc);
+        for (final ProtectedRegion region : set) {
+            if (region.getId().equalsIgnoreCase(regionId)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

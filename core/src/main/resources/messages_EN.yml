@@ -522,6 +522,7 @@ altar_of_the_sacred:
   mob_spawning_denied: "<red>You cannot summon the boss here as mob spawning is disabled in this region!</red>"
   spawn_started: "<#FF69B4>An ancient ritual has begun! %boss% is awakening...</#FF69B4>"
   already_summoned: "<red>A boss summoned at this altar is already alive!</red>"
+  boss_cooldown: "<red>%boss% is recovering and will be available in %time%.</red>"
 
 altar_of_the_accursed:
   locked: "<dark_purple>Altar of the Accursed is locked...</dark_purple>"
@@ -637,4 +638,10 @@ endonomicon:
 mechanic:
   void-totem:
     actionbar: "<gradient:#E77CC6:#E7917C>Here be dragons...</gradient>"
+
+time:
+  day: "d"
+  hour: "h"
+  minute: "m"
+  second: "s"
 

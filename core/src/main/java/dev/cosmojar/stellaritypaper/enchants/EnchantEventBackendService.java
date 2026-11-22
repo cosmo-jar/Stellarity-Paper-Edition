@@ -136,10 +136,15 @@ public final class EnchantEventBackendService {
     }
 
     private void collect(final List<ActiveEnchant> output, final ItemStack item, final String sourceSlot) {
-        if (item == null || item.getType().isAir() || item.getType() == org.bukkit.Material.ENCHANTED_BOOK || item.getType() == org.bukkit.Material.BOOK) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()
+                || item.getType() == org.bukkit.Material.ENCHANTED_BOOK || item.getType() == org.bukkit.Material.BOOK) {
             return;
         }
-        final List<EnchantInstance> instances = enchantDataCodec.decode(itemStateRepository.getEnchantsData(item).orElse(""));
+        final String raw = itemStateRepository.getEnchantsData(item).orElse("");
+        if (raw.isEmpty()) {
+            return;
+        }
+        final List<EnchantInstance> instances = enchantDataCodec.decode(raw);
         for (final EnchantInstance instance : instances) {
             final EnchantDefinition definition = enchantRegistry.findById(instance.id()).orElse(null);
             if (definition == null) {

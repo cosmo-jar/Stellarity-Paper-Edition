@@ -15,7 +15,9 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -28,6 +30,8 @@ public final class RadiantJewelService implements Listener {
     private final Plugin plugin;
     private final ItemStateRepository itemStateRepository;
     private final Set<UUID> playersWithRadiantJewel = new HashSet<>();
+    private final Set<UUID> pendingRescans = new HashSet<>();
+    private final Map<UUID, Integer> lastScanTick = new HashMap<>();
 
     public RadiantJewelService(final Plugin plugin, final ItemStateRepository itemStateRepository) {
         this.plugin = plugin;
@@ -50,14 +54,24 @@ public final class RadiantJewelService implements Listener {
     public void rescan(final Player player) {
         if (player == null || !player.isOnline()) {
             if (player != null) {
-                playersWithRadiantJewel.remove(player.getUniqueId());
+                final UUID uuid = player.getUniqueId();
+                playersWithRadiantJewel.remove(uuid);
+                pendingRescans.remove(uuid);
+                lastScanTick.remove(uuid);
             }
+            return;
+        }
+
+        final UUID uuid = player.getUniqueId();
+        final int currentTick = org.bukkit.Bukkit.getCurrentTick();
+        final Integer prevTick = lastScanTick.put(uuid, currentTick);
+        if (prevTick != null && prevTick == currentTick) {
             return;
         }
 
         boolean found = false;
         for (final ItemStack item : player.getInventory().getContents()) {
-            if (item != null && !item.getType().isAir()) {
+            if (item != null && !item.getType().isAir() && item.hasItemMeta()) {
                 if (isRadiantJewel(item)) {
                     found = true;
                     break;
@@ -66,9 +80,9 @@ public final class RadiantJewelService implements Listener {
         }
 
         if (found) {
-            playersWithRadiantJewel.add(player.getUniqueId());
+            playersWithRadiantJewel.add(uuid);
         } else {
-            playersWithRadiantJewel.remove(player.getUniqueId());
+            playersWithRadiantJewel.remove(uuid);
         }
     }
 
@@ -82,7 +96,17 @@ public final class RadiantJewelService implements Listener {
         if (player == null || !player.isOnline()) {
             return;
         }
-        plugin.getServer().getScheduler().runTask(plugin, () -> rescan(player));
+        final UUID uuid = player.getUniqueId();
+        if (!pendingRescans.add(uuid)) {
+            return;
+        }
+        plugin.getServer().getScheduler().runTask(plugin, () -> {
+            try {
+                rescan(player);
+            } finally {
+                pendingRescans.remove(uuid);
+            }
+        });
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -123,10 +147,15 @@ public final class RadiantJewelService implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerQuit(final PlayerQuitEvent event) {
-        playersWithRadiantJewel.remove(event.getPlayer().getUniqueId());
+        final UUID uuid = event.getPlayer().getUniqueId();
+        playersWithRadiantJewel.remove(uuid);
+        pendingRescans.remove(uuid);
+        lastScanTick.remove(uuid);
     }
 
     public void clear() {
         playersWithRadiantJewel.clear();
+        pendingRescans.clear();
+        lastScanTick.clear();
     }
 }

@@ -504,13 +504,18 @@ public final class ArmorSetBonusService {
         if (instance == null) {
             return;
         }
-        for (final AttributeModifier modifier : List.copyOf(instance.getModifiers())) {
-            if (key.equals(modifier.getKey())) {
-                instance.removeModifier(modifier);
-            }
-        }
+        final AttributeModifier existing = instance.getModifier(key);
         if (Math.abs(amount) < 1.0E-9D) {
+            if (existing != null) {
+                instance.removeModifier(existing);
+            }
             return;
+        }
+        if (existing != null) {
+            if (existing.getOperation() == operation && Math.abs(existing.getAmount() - amount) < 1.0E-9D) {
+                return;
+            }
+            instance.removeModifier(existing);
         }
         instance.addModifier(new AttributeModifier(key, amount, operation));
     }
@@ -520,10 +525,9 @@ public final class ArmorSetBonusService {
         if (instance == null) {
             return;
         }
-        for (final AttributeModifier modifier : List.copyOf(instance.getModifiers())) {
-            if (key.equals(modifier.getKey())) {
-                instance.removeModifier(modifier);
-            }
+        final AttributeModifier existing = instance.getModifier(key);
+        if (existing != null) {
+            instance.removeModifier(existing);
         }
     }
 

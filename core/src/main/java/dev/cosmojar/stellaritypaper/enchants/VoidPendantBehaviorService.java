@@ -33,12 +33,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
-import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerPlayer;
-import org.bukkit.craftbukkit.entity.CraftEntity;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
 
 import java.util.Collections;
 import java.util.List;
@@ -88,6 +82,8 @@ public final class VoidPendantBehaviorService implements Listener {
     private final Map<UUID, BukkitTask> visionTasks = new ConcurrentHashMap<>();
     private final Map<UUID, BukkitTask> activeGlowTasks = new ConcurrentHashMap<>();
     private final Set<UUID> pendingZaps = Collections.newSetFromMap(new ConcurrentHashMap<>());
+    private final Set<UUID> pendingRescans = Collections.newSetFromMap(new ConcurrentHashMap<>());
+    private final Map<UUID, Integer> lastScanTick = new ConcurrentHashMap<>();
 
     public VoidPendantBehaviorService(
             final Plugin plugin,
@@ -138,16 +134,19 @@ public final class VoidPendantBehaviorService implements Listener {
             return;
         }
 
+        final UUID uuid = player.getUniqueId();
+        final int currentTick = org.bukkit.Bukkit.getCurrentTick();
+        final Integer prevTick = lastScanTick.put(uuid, currentTick);
+        if (prevTick != null && prevTick == currentTick) {
+            return;
+        }
+
         final PendantState state = new PendantState();
         for (final ItemStack item : player.getInventory().getContents()) {
             inspectPendant(item, state);
         }
-        for (final ItemStack item : player.getInventory().getArmorContents()) {
-            inspectPendant(item, state);
-        }
-        inspectPendant(player.getInventory().getItemInOffHand(), state);
 
-        playerStates.put(player.getUniqueId(), state);
+        playerStates.put(uuid, state);
         applyModifiers(player, state);
         updateVisionTask(player, state.hasVision);
     }
@@ -159,26 +158,37 @@ public final class VoidPendantBehaviorService implements Listener {
         if (player == null || !player.isOnline()) {
             return;
         }
-        plugin.getServer().getScheduler().runTask(plugin, () -> rescan(player));
+        final UUID uuid = player.getUniqueId();
+        if (!pendingRescans.add(uuid)) {
+            return;
+        }
+        plugin.getServer().getScheduler().runTask(plugin, () -> {
+            try {
+                rescan(player);
+            } finally {
+                pendingRescans.remove(uuid);
+            }
+        });
     }
 
     private void inspectPendant(final ItemStack item, final PendantState state) {
-        if (item == null || item.getType().isAir()) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return;
         }
 
-        // 1. Проверяем настоящие зарегистрированные зачарования Minecraft / Bukkit (Registry.ENCHANTMENT)
-        for (final Map.Entry<org.bukkit.enchantments.Enchantment, Integer> entry : item.getEnchantments().entrySet()) {
-            applyGem(entry.getKey().getKey().toString(), entry.getValue(), state);
+        // проверка зарегистрированных зачарований в реестре
+        final Map<org.bukkit.enchantments.Enchantment, Integer> enchants = item.getEnchantments();
+        if (!enchants.isEmpty()) {
+            for (final Map.Entry<org.bukkit.enchantments.Enchantment, Integer> entry : enchants.entrySet()) {
+                applyGem(entry.getKey().getKey().toString(), entry.getValue(), state);
+            }
         }
 
-        // 2. Дополнительно проверяем сохранённые данные чар в PDC предмета (если есть)
-        if (item.hasItemMeta()) {
-            final org.bukkit.persistence.PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();
-            final String pdcData = pdc.get(enchantsDataKey, org.bukkit.persistence.PersistentDataType.STRING);
-            if (pdcData != null && pdcData.contains("void_pendant")) {
-                applyGem(pdcData, 1, state);
-            }
+        // доп. проверка сохранённых данных чар в PDC предмета (если есть) без клонирования
+        final var pdc = item.getPersistentDataContainer();
+        final String pdcData = pdc.get(enchantsDataKey, org.bukkit.persistence.PersistentDataType.STRING);
+        if (pdcData != null && pdcData.contains("void_pendant")) {
+            applyGem(pdcData, 1, state);
         }
     }
 
@@ -441,8 +451,11 @@ public final class VoidPendantBehaviorService implements Listener {
 
     public void clear(final Player player) {
         if (player != null) {
-            playerStates.remove(player.getUniqueId());
-            visionCooldowns.remove(player.getUniqueId());
+            final UUID uuid = player.getUniqueId();
+            playerStates.remove(uuid);
+            visionCooldowns.remove(uuid);
+            pendingRescans.remove(uuid);
+            lastScanTick.remove(uuid);
             removeModifier(player, Attribute.ATTACK_DAMAGE, powerKey);
             removeModifier(player, Attribute.LUCK, luckKey);
             removeModifier(player, Attribute.ATTACK_SPEED, attackSpeedKey);
@@ -454,11 +467,11 @@ public final class VoidPendantBehaviorService implements Listener {
             removeModifier(player, Attribute.MOVEMENT_SPEED, agilitySpeedKey);
             removeModifier(player, Attribute.JUMP_STRENGTH, agilityJumpKey);
             removeModifier(player, Attribute.MOVEMENT_EFFICIENCY, agilityEfficiencyKey);
-            final BukkitTask task = visionTasks.remove(player.getUniqueId());
+            final BukkitTask task = visionTasks.remove(uuid);
             if (task != null) {
                 task.cancel();
             }
-            final BukkitTask glowTask = activeGlowTasks.remove(player.getUniqueId());
+            final BukkitTask glowTask = activeGlowTasks.remove(uuid);
             if (glowTask != null) {
                 glowTask.cancel();
             }
@@ -476,6 +489,8 @@ public final class VoidPendantBehaviorService implements Listener {
         activeGlowTasks.clear();
         visionCooldowns.clear();
         playerStates.clear();
+        pendingRescans.clear();
+        lastScanTick.clear();
     }
 
     private void updateVisionTask(final Player player, final boolean enabled) {
@@ -523,13 +538,18 @@ public final class VoidPendantBehaviorService implements Listener {
         if (instance == null) {
             return;
         }
-        for (final AttributeModifier modifier : List.copyOf(instance.getModifiers())) {
-            if (key.equals(modifier.getKey())) {
-                instance.removeModifier(modifier);
-            }
-        }
+        final AttributeModifier existing = instance.getModifier(key);
         if (Math.abs(amount) < 1.0E-9D) {
+            if (existing != null) {
+                instance.removeModifier(existing);
+            }
             return;
+        }
+        if (existing != null) {
+            if (existing.getOperation() == operation && Math.abs(existing.getAmount() - amount) < 1.0E-9D) {
+                return;
+            }
+            instance.removeModifier(existing);
         }
         instance.addModifier(new AttributeModifier(key, amount, operation));
     }
@@ -539,10 +559,9 @@ public final class VoidPendantBehaviorService implements Listener {
         if (instance == null) {
             return;
         }
-        for (final AttributeModifier modifier : List.copyOf(instance.getModifiers())) {
-            if (key.equals(modifier.getKey())) {
-                instance.removeModifier(modifier);
-            }
+        final AttributeModifier existing = instance.getModifier(key);
+        if (existing != null) {
+            instance.removeModifier(existing);
         }
     }
 

@@ -25,8 +25,15 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.Color;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public final class SacredAltarService implements org.bukkit.event.Listener {
+
+    public record BossDedicatedRegion(String world, String region, long cooldownSeconds) {}
 
     private final Plugin plugin;
     private final CustomBlockService customBlockService;
@@ -38,6 +45,9 @@ public final class SacredAltarService implements org.bukkit.event.Listener {
     private final java.util.Set<Location> staticAltars = new java.util.HashSet<>();
     private final java.util.Set<Location> activeSpawningAltars = new java.util.HashSet<>();
     private final java.util.Map<Location, Long> lastBusyWarnTime = new java.util.HashMap<>();
+    private final java.util.Map<String, Long> lastGlobalSummonTime = new java.util.concurrent.ConcurrentHashMap<>();
+    private final java.util.Map<String, Long> lastLocalSummonTime = new java.util.concurrent.ConcurrentHashMap<>();
+    private final java.util.Map<Location, Long> lastCooldownWarnTime = new java.util.concurrent.ConcurrentHashMap<>();
 
     public SacredAltarService(
             final Plugin plugin,
@@ -170,29 +180,9 @@ public final class SacredAltarService implements org.bukkit.event.Listener {
             return;
         }
 
-        if (!isBossSpawnAllowed(loc.getWorld())) {
-            target.sendMessage(messageService.message("altar_of_the_sacred.invalid_world"));
-            return;
-        }
-
-        if (!hasBuildRightsInRadius(target, loc, 10)) {
-            target.sendMessage(messageService.message("altar_of_the_sacred.too_close_to_private"));
-            return;
-        }
-
-        if (!isMobSpawningAllowedInRadius(loc, 10)) {
-            target.sendMessage(messageService.message("altar_of_the_sacred.mob_spawning_denied"));
-            return;
-        }
-
-        final ItemStack item = itemEntity.getItemStack();
-        if (item.getAmount() > 1) {
-            item.setAmount(item.getAmount() - 1);
-        } else {
-            itemEntity.remove();
-        }
-
         final boolean isEmpress = "Empress of Light".equalsIgnoreCase(bossName);
+        final String bossConfigKey = isEmpress ? "empress_of_light" : "shulking";
+
         boolean isRadiantRitual = false;
         if (isEmpress) {
             final ItemStack offHand = target.getInventory().getItemInOffHand();
@@ -202,6 +192,82 @@ public final class SacredAltarService implements org.bukkit.event.Listener {
                     isRadiantRitual = true;
                 }
             }
+        }
+
+        final String bossDisplayName = isRadiantRitual
+                ? messageService.raw("boss.radiant_empress_of_light.name")
+                : (isEmpress ? messageService.raw("boss.empress_of_light.name") : messageService.raw("boss.shulking.name"));
+        final String resolvedBossName = bossDisplayName != null ? bossDisplayName : bossName;
+
+        final BossDedicatedRegion dedicatedRegion = findMatchingDedicatedRegion(bossConfigKey, blockLoc);
+        final long now = System.currentTimeMillis();
+
+        if (dedicatedRegion != null) {
+            final long localCooldownSec = dedicatedRegion.cooldownSeconds();
+            final String localKey = bossConfigKey + ":" + blockLoc.getWorld().getName().toLowerCase(java.util.Locale.ROOT)
+                    + ":" + dedicatedRegion.region().toLowerCase(java.util.Locale.ROOT);
+            if (localCooldownSec > 0) {
+                final long lastSummon = lastLocalSummonTime.getOrDefault(localKey, 0L);
+                final long elapsedSec = (now - lastSummon) / 1000L;
+                if (elapsedSec < localCooldownSec) {
+                    final long remainingSec = localCooldownSec - elapsedSec;
+                    final long lastWarn = lastCooldownWarnTime.getOrDefault(blockLoc, 0L);
+                    if (now - lastWarn >= 3000L) {
+                        lastCooldownWarnTime.put(blockLoc, now);
+                        final String timeStr = formatRemainingTime(remainingSec);
+                        target.sendMessage(messageService.message("altar_of_the_sacred.boss_cooldown",
+                                java.util.Map.of("boss", resolvedBossName, "time", timeStr)));
+                    }
+                    return;
+                }
+            }
+        } else {
+            final long globalCooldownSec = plugin.getConfig().getLong("boss." + bossConfigKey + ".summon-cooldown-seconds", 0L);
+            if (globalCooldownSec > 0) {
+                final long lastSummon = lastGlobalSummonTime.getOrDefault(bossConfigKey, 0L);
+                final long elapsedSec = (now - lastSummon) / 1000L;
+                if (elapsedSec < globalCooldownSec) {
+                    final long remainingSec = globalCooldownSec - elapsedSec;
+                    final long lastWarn = lastCooldownWarnTime.getOrDefault(blockLoc, 0L);
+                    if (now - lastWarn >= 3000L) {
+                        lastCooldownWarnTime.put(blockLoc, now);
+                        final String timeStr = formatRemainingTime(remainingSec);
+                        target.sendMessage(messageService.message("altar_of_the_sacred.boss_cooldown",
+                                java.util.Map.of("boss", resolvedBossName, "time", timeStr)));
+                    }
+                    return;
+                }
+            }
+
+            if (!isBossSpawnAllowed(loc.getWorld())) {
+                target.sendMessage(messageService.message("altar_of_the_sacred.invalid_world"));
+                return;
+            }
+
+            if (!hasBuildRightsInRadius(target, loc, 10)) {
+                target.sendMessage(messageService.message("altar_of_the_sacred.too_close_to_private"));
+                return;
+            }
+
+            if (!isMobSpawningAllowedInRadius(loc, 10)) {
+                target.sendMessage(messageService.message("altar_of_the_sacred.mob_spawning_denied"));
+                return;
+            }
+        }
+
+        final ItemStack item = itemEntity.getItemStack();
+        if (item.getAmount() > 1) {
+            item.setAmount(item.getAmount() - 1);
+        } else {
+            itemEntity.remove();
+        }
+
+        if (dedicatedRegion != null) {
+            final String localKey = bossConfigKey + ":" + blockLoc.getWorld().getName().toLowerCase(java.util.Locale.ROOT)
+                    + ":" + dedicatedRegion.region().toLowerCase(java.util.Locale.ROOT);
+            lastLocalSummonTime.put(localKey, now);
+        } else {
+            lastGlobalSummonTime.put(bossConfigKey, now);
         }
 
         if (isRadiantRitual) {
@@ -241,7 +307,7 @@ public final class SacredAltarService implements org.bukkit.event.Listener {
             loc.getWorld().playSound(loc, Sound.ENTITY_ZOMBIE_INFECT, 1.0F, 1.0F);
             loc.getWorld().playSound(loc, Sound.ENTITY_ZOMBIE_INFECT, 1.0F, 0.0F);
 
-            final java.util.Map<String, String> placeholders = java.util.Map.of("boss", bossName);
+            final java.util.Map<String, String> placeholders = java.util.Map.of("boss", resolvedBossName);
             final net.kyori.adventure.text.Component startMsg = messageService.message("altar_of_the_sacred.spawn_started", placeholders);
             Bukkit.broadcast(startMsg);
         }
@@ -272,6 +338,111 @@ public final class SacredAltarService implements org.bukkit.event.Listener {
         } else if ("Shulking".equalsIgnoreCase(bossName)) {
             new Shulking(plugin, spawnLoc, bossManager, blockLoc);
         }
+    }
+
+    private List<BossDedicatedRegion> getDedicatedRegions(final String bossKey) {
+        final List<BossDedicatedRegion> result = new ArrayList<>();
+        final FileConfiguration config = plugin.getConfig();
+        final String path = "boss." + bossKey + ".dedicated-regions";
+
+        final List<Map<?, ?>> mapList = config.getMapList(path);
+        if (mapList != null && !mapList.isEmpty()) {
+            for (final Map<?, ?> map : mapList) {
+                final Object worldObj = map.get("world");
+                final Object regionObj = map.get("region");
+                if (worldObj == null || regionObj == null) {
+                    continue;
+                }
+                final String world = worldObj.toString().trim();
+                final String region = regionObj.toString().trim();
+                if (world.isEmpty() || region.isEmpty()) {
+                    continue;
+                }
+                long cooldown = 0L;
+                Object cdObj = map.get("cooldown-seconds");
+                if (cdObj == null) {
+                    cdObj = map.get("cooldown");
+                }
+                if (cdObj instanceof Number num) {
+                    cooldown = num.longValue();
+                } else if (cdObj != null) {
+                    try {
+                        cooldown = Long.parseLong(cdObj.toString().trim());
+                    } catch (final NumberFormatException ignored) {}
+                }
+                result.add(new BossDedicatedRegion(world, region, Math.max(0L, cooldown)));
+            }
+        } else {
+            final org.bukkit.configuration.ConfigurationSection sec = config.getConfigurationSection(path);
+            if (sec != null) {
+                for (final String key : sec.getKeys(false)) {
+                    final String world = sec.getString(key + ".world");
+                    final String region = sec.getString(key + ".region");
+                    if (world == null || region == null || world.isBlank() || region.isBlank()) {
+                        continue;
+                    }
+                    long cooldown = sec.getLong(key + ".cooldown-seconds", sec.getLong(key + ".cooldown", 0L));
+                    result.add(new BossDedicatedRegion(world.trim(), region.trim(), Math.max(0L, cooldown)));
+                }
+            }
+        }
+        return result;
+    }
+
+    private BossDedicatedRegion findMatchingDedicatedRegion(final String bossKey, final Location loc) {
+        if (loc == null || loc.getWorld() == null) {
+            return null;
+        }
+        if (!plugin.getConfig().getBoolean("boss.dedicated-regions-enabled", false)) {
+            return null;
+        }
+        final List<BossDedicatedRegion> regions = getDedicatedRegions(bossKey);
+        if (regions.isEmpty()) {
+            return null;
+        }
+        final String worldName = loc.getWorld().getName();
+        for (final BossDedicatedRegion dr : regions) {
+            if (worldName.equalsIgnoreCase(dr.world())) {
+                if (WorldGuardHook.isInRegion(loc, dr.region())) {
+                    return dr;
+                }
+            }
+        }
+        return null;
+    }
+
+    private String formatRemainingTime(long totalSeconds) {
+        final boolean isRu = messageService.isRussian();
+        final String dayUnit = messageService.hasKey("time.day") ? messageService.raw("time.day") : (isRu ? "д." : "d");
+        final String hourUnit = messageService.hasKey("time.hour") ? messageService.raw("time.hour") : (isRu ? "ч." : "h");
+        final String minUnit = messageService.hasKey("time.minute") ? messageService.raw("time.minute") : (isRu ? "мин." : "m");
+        final String secUnit = messageService.hasKey("time.second") ? messageService.raw("time.second") : (isRu ? "сек." : "s");
+
+        if (totalSeconds <= 0) {
+            return isRu ? ("0 " + secUnit) : ("0" + secUnit);
+        }
+
+        final long days = totalSeconds / 86400L;
+        totalSeconds %= 86400L;
+        final long hours = totalSeconds / 3600L;
+        totalSeconds %= 3600L;
+        final long minutes = totalSeconds / 60L;
+        final long seconds = totalSeconds % 60L;
+
+        final StringBuilder sb = new StringBuilder();
+        if (days > 0) {
+            sb.append(days).append(isRu ? (" " + dayUnit + " ") : (dayUnit + " "));
+        }
+        if (hours > 0) {
+            sb.append(hours).append(isRu ? (" " + hourUnit + " ") : (hourUnit + " "));
+        }
+        if (minutes > 0) {
+            sb.append(minutes).append(isRu ? (" " + minUnit + " ") : (minUnit + " "));
+        }
+        if (seconds > 0 || sb.isEmpty()) {
+            sb.append(seconds).append(isRu ? (" " + secUnit) : secUnit);
+        }
+        return sb.toString().trim();
     }
 
     private boolean isBossSpawnAllowed(final World world) {
@@ -446,7 +617,6 @@ public final class SacredAltarService implements org.bukkit.event.Listener {
 
     private static final class EmpressSpawnAnimationTask implements Runnable {
         private final Plugin plugin;
-        private final Location startLoc;
         private final BossManager bossManager;
         private final Location altarLoc;
         private final java.util.Set<Location> activeSpawningAltars;
@@ -468,7 +638,6 @@ public final class SacredAltarService implements org.bukkit.event.Listener {
                 final EmpressOfLight.Variant variant
         ) {
             this.plugin = plugin;
-            this.startLoc = startLoc;
             this.bossManager = bossManager;
             this.altarLoc = altarLoc;
             this.activeSpawningAltars = activeSpawningAltars;

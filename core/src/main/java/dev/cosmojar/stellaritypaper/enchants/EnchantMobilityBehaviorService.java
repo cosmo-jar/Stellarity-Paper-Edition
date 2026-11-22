@@ -12,7 +12,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -26,6 +29,7 @@ public final class EnchantMobilityBehaviorService {
     private final NamespacedKey platedToughnessKey;
     private final NamespacedKey platedGravityKey;
     private final NamespacedKey soaringGravityKey;
+    private final Map<UUID, Integer> cachedDuneLevels = new HashMap<>();
 
     public EnchantMobilityBehaviorService(
             final EnchantActiveService activeService,
@@ -47,9 +51,11 @@ public final class EnchantMobilityBehaviorService {
         }
 
         final Player player = event.getPlayer();
-        final List<EnchantActiveService.ActiveEnchant> active = activeService.fromPlayerEquipment(player);
-        final int duneLevel = activeService.highestLevel(active, EnchantIds.DUNE_SPEED);
-        final boolean shouldBoost = duneLevel > 0 && canUseDuneSpeed(player);
+        final int duneLevel = cachedDuneLevels.getOrDefault(player.getUniqueId(), 0);
+        if (duneLevel <= 0) {
+            return;
+        }
+        final boolean shouldBoost = canUseDuneSpeed(player);
         final double bonus = shouldBoost ? 0.025D + (0.009D * (duneLevel - 1)) : 0.0D;
         setModifier(player, Attribute.MOVEMENT_SPEED, duneSpeedKey, bonus, AttributeModifier.Operation.ADD_NUMBER);
 
@@ -60,8 +66,19 @@ public final class EnchantMobilityBehaviorService {
 
     public void recalculatePassives(final Player player) {
         final List<EnchantActiveService.ActiveEnchant> active = activeService.fromPlayerEquipment(player);
+        final int duneLevel = activeService.highestLevel(active, EnchantIds.DUNE_SPEED);
         final int platedLevel = activeService.highestLevel(active, EnchantIds.PLATED);
         final int soaringLevel = activeService.highestLevel(active, EnchantIds.SOARING);
+
+        if (duneLevel > 0) {
+            cachedDuneLevels.put(player.getUniqueId(), duneLevel);
+            final boolean shouldBoost = canUseDuneSpeed(player);
+            final double bonus = shouldBoost ? 0.025D + (0.009D * (duneLevel - 1)) : 0.0D;
+            setModifier(player, Attribute.MOVEMENT_SPEED, duneSpeedKey, bonus, AttributeModifier.Operation.ADD_NUMBER);
+        } else {
+            cachedDuneLevels.remove(player.getUniqueId());
+            removeModifier(player, Attribute.MOVEMENT_SPEED, duneSpeedKey);
+        }
 
         final double platedArmor = platedLevel <= 0 ? 0.0D : 2.0D + (platedLevel - 1);
         final double platedToughness = platedLevel >= 3 ? 1.0D : 0.0D;
@@ -75,6 +92,7 @@ public final class EnchantMobilityBehaviorService {
     }
 
     public void clear(final Player player) {
+        cachedDuneLevels.remove(player.getUniqueId());
         removeModifier(player, Attribute.MOVEMENT_SPEED, duneSpeedKey);
         removeModifier(player, Attribute.ARMOR, platedArmorKey);
         removeModifier(player, Attribute.ARMOR_TOUGHNESS, platedToughnessKey);
@@ -119,13 +137,18 @@ public final class EnchantMobilityBehaviorService {
         if (instance == null) {
             return;
         }
-        for (final AttributeModifier modifier : List.copyOf(instance.getModifiers())) {
-            if (key.equals(modifier.getKey())) {
-                instance.removeModifier(modifier);
-            }
-        }
+        final AttributeModifier existing = instance.getModifier(key);
         if (Math.abs(amount) < 1.0E-9D) {
+            if (existing != null) {
+                instance.removeModifier(existing);
+            }
             return;
+        }
+        if (existing != null) {
+            if (existing.getOperation() == operation && Math.abs(existing.getAmount() - amount) < 1.0E-9D) {
+                return;
+            }
+            instance.removeModifier(existing);
         }
         instance.addModifier(new AttributeModifier(key, amount, operation));
     }
@@ -135,10 +158,9 @@ public final class EnchantMobilityBehaviorService {
         if (instance == null) {
             return;
         }
-        for (final AttributeModifier modifier : List.copyOf(instance.getModifiers())) {
-            if (key.equals(modifier.getKey())) {
-                instance.removeModifier(modifier);
-            }
+        final AttributeModifier existing = instance.getModifier(key);
+        if (existing != null) {
+            instance.removeModifier(existing);
         }
     }
 }

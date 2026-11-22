@@ -8,7 +8,7 @@ allprojects {
 
 
     group = "dev.cosmojar.StellarityPaper"
-    version = "1.0.4-SNAPSHOT"
+    version = "1.0.5-SNAPSHOT"
 
     repositories {
         mavenCentral()

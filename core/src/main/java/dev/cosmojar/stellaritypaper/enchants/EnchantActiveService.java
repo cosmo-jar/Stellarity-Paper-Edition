@@ -4,7 +4,6 @@ import dev.cosmojar.stellaritypaper.data.ItemStateRepository;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,10 +67,6 @@ public final class EnchantActiveService {
         return max;
     }
 
-    public boolean hasAny(final List<ActiveEnchant> activeEnchants, final String enchantId) {
-        return highestLevel(activeEnchants, enchantId) > 0;
-    }
-
     public boolean slotMatches(final String targetSlot, final String sourceSlot) {
         final String normalizedTarget = normalize(targetSlot);
         final String normalizedSource = normalize(sourceSlot);
@@ -85,15 +80,16 @@ public final class EnchantActiveService {
     }
 
     private void collect(final List<ActiveEnchant> output, final ItemStack item, final String sourceSlot) {
-        if (item == null || item.getType().isAir() || item.getType() == org.bukkit.Material.ENCHANTED_BOOK || item.getType() == org.bukkit.Material.BOOK) {
-            return;
-        }
-        final ItemMeta meta = item.getItemMeta();
-        if (meta == null) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()
+                || item.getType() == org.bukkit.Material.ENCHANTED_BOOK || item.getType() == org.bukkit.Material.BOOK) {
             return;
         }
 
-        final List<EnchantInstance> instances = codec.decode(itemStateRepository.getEnchantsData(item).orElse(""));
+        final String raw = itemStateRepository.getEnchantsData(item).orElse("");
+        if (raw.isEmpty()) {
+            return;
+        }
+        final List<EnchantInstance> instances = codec.decode(raw);
         for (final EnchantInstance instance : instances) {
             final EnchantDefinition definition = enchantRegistry.findById(instance.id()).orElse(null);
             if (definition == null) {

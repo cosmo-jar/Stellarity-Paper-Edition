@@ -18,10 +18,10 @@ public final class ItemStateRepository {
     }
 
     public boolean isCustomItem(final ItemStack item) {
-        if (item == null || !item.hasItemMeta()) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return false;
         }
-        final PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();
+        final var pdc = item.getPersistentDataContainer();
         return pdc.has(keys.itemId(), PersistentDataType.STRING)
                 || pdc.has(itemKey, PersistentDataType.STRING);
     }
@@ -38,14 +38,14 @@ public final class ItemStateRepository {
     }
 
     public Optional<String> getItemId(final ItemStack item) {
-        final ItemMeta meta = item.getItemMeta();
-        if (meta == null) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return Optional.empty();
         }
 
-        String id = meta.getPersistentDataContainer().get(keys.itemId(), PersistentDataType.STRING);
+        final var pdc = item.getPersistentDataContainer();
+        String id = pdc.get(keys.itemId(), PersistentDataType.STRING);
         if (id == null) {
-            id = meta.getPersistentDataContainer().get(itemKey, PersistentDataType.STRING);
+            id = pdc.get(itemKey, PersistentDataType.STRING);
         }
         return Optional.ofNullable(id);
     }
@@ -65,12 +65,11 @@ public final class ItemStateRepository {
     }
 
     public Optional<String> getEnchantsData(final ItemStack item) {
-        final ItemMeta meta = item.getItemMeta();
-        if (meta == null) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return Optional.empty();
         }
 
-        return Optional.ofNullable(meta.getPersistentDataContainer().get(keys.enchantsData(), PersistentDataType.STRING));
+        return Optional.ofNullable(item.getPersistentDataContainer().get(keys.enchantsData(), PersistentDataType.STRING));
     }
 
     public void setEnchantsSchema(final ItemStack item, final int schema) {
@@ -84,31 +83,31 @@ public final class ItemStateRepository {
     }
 
     public Optional<Integer> getEnchantsSchema(final ItemStack item) {
-        final ItemMeta meta = item.getItemMeta();
-        if (meta == null) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return Optional.empty();
         }
 
-        return Optional.ofNullable(meta.getPersistentDataContainer().get(keys.enchantsSchema(), PersistentDataType.INTEGER));
+        return Optional.ofNullable(item.getPersistentDataContainer().get(keys.enchantsSchema(), PersistentDataType.INTEGER));
     }
 
-    public void setEnchantsLocale(final ItemStack item, final String locale) {
+    public void stampEnchantsSchemaAndLocale(final ItemStack item, final int schema, final String locale) {
         final ItemMeta meta = item.getItemMeta();
         if (meta == null) {
             return;
         }
 
-        meta.getPersistentDataContainer().set(keys.enchantsLocale(), PersistentDataType.STRING, locale);
+        final PersistentDataContainer pdc = meta.getPersistentDataContainer();
+        pdc.set(keys.enchantsSchema(), PersistentDataType.INTEGER, schema);
+        pdc.set(keys.enchantsLocale(), PersistentDataType.STRING, locale);
         item.setItemMeta(meta);
     }
 
     public Optional<String> getEnchantsLocale(final ItemStack item) {
-        final ItemMeta meta = item.getItemMeta();
-        if (meta == null) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return Optional.empty();
         }
 
-        return Optional.ofNullable(meta.getPersistentDataContainer().get(keys.enchantsLocale(), PersistentDataType.STRING));
+        return Optional.ofNullable(item.getPersistentDataContainer().get(keys.enchantsLocale(), PersistentDataType.STRING));
     }
 
     public void setHarvesterAbilities(final ItemStack item, final String data) {
@@ -121,10 +120,9 @@ public final class ItemStateRepository {
     }
 
     public Optional<String> getHarvesterAbilities(final ItemStack item) {
-        final ItemMeta meta = item.getItemMeta();
-        if (meta == null) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return Optional.empty();
         }
-        return Optional.ofNullable(meta.getPersistentDataContainer().get(keys.harvesterAbilities(), PersistentDataType.STRING));
+        return Optional.ofNullable(item.getPersistentDataContainer().get(keys.harvesterAbilities(), PersistentDataType.STRING));
     }
 }
